@@ -21,10 +21,17 @@ jobs:
         run: |
           pwd
           ls -a
+          cd ./docs/Pflichtenheft/
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: ./Pflichtenheft.tex
+
 
       - name: Compile LaTeX document
         run: |
-          cd ./docs/Pflichtenheft/
+          
           pdflatex -synctex=1 -interaction=nonstopmode "Pflichtenheft.tex" 
           makeindex -s nomencl.ist -o Pflichtenheft.nls Pflichtenheft.nlo
           pdflatex -synctex=1 -interaction=nonstopmode "Pflichtenheft.tex" 
