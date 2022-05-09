@@ -1,19 +1,19 @@
 \chapter{Testszenarien}
 
-\section{ewok}
+\section{rion}
 
 \begin{itemize}
-	\item[T0110] \textit{Installation:} Der Nutzer installiert mit \quotes{ewok install \textit{Packagename}} ein Paket. Das Paket wird installiert. Skripte werden erfolgreich ausgeführt.
-	\item[T0120] \textit{Suchen:} Der Nutzer sucht mit \quotes{ewok search \textit{text}} ein Paket und bekommt eine Liste von passenden Paketen, inklusive einer kurzen Beschreibung derer, ausgeben.
-	\item[T0130] \textit{Information:} Der Nutzer sucht mit \quotes{ewok info \textit{Packagename}} ein Informationen zu einem Paket und bekommt detaillierte Informationen zu einem Paket ausgeben.
-	\item[T0140] \textit{Aktualisieren:} Der Nutzer akualiersiert mit \quotes{ewok update} alle installierten Pakete. Diese werden aktualisiert. Er aktualisiert mit \quotes{ewok update \textit{Packagename}} ein bestimmtes Paket, welches nun aktualisiert wird.
+	\item[T0110] \textit{Installation:} Der Nutzer installiert mit \quotes{rion install \textit{Packagename}} ein Paket. Das Paket wird installiert. Skripte werden erfolgreich ausgeführt.
+	\item[T0120] \textit{Suchen:} Der Nutzer sucht mit \quotes{rion search \textit{text}} ein Paket und bekommt eine Liste von passenden Paketen, inklusive einer kurzen Beschreibung derer, ausgeben.
+	\item[T0130] \textit{Information:} Der Nutzer sucht mit \quotes{rion info \textit{Packagename}} ein Informationen zu einem Paket und bekommt detaillierte Informationen zu einem Paket ausgeben.
+	\item[T0140] \textit{Aktualisieren:} Der Nutzer akualiersiert mit \quotes{rion update} alle installierten Pakete. Diese werden aktualisiert. Er aktualisiert mit \quotes{rion update \textit{Packagename}} ein bestimmtes Paket, welches nun aktualisiert wird.
 
-	\item[T0150] \textit{Entfernen:} Der Nutzer entfernt mit \quotes{ewok remove \textit{Packagename/s}} ein oder mehrere Pakete, welche dadurch deinstalliert werden.
-	\item[T0160] \textit{Anleitung:} Der Nutzer schreibt \quotes{man ewok}, worauf ihm die Manpage zu ewok angezeigt wird.
-	\item[T0170] \textit{Installierte Pakete listen:} Der Nutzer gibt \quotes{\textit{ewok list (Packagename)}} ein. Er erhält Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
-	\item[T0180] Die Repositories auf die Ewok zugreift können mit einem config file angepasst werden.
-	\item[T0190] Ewok kann mehrere virtuellen Umgebungen verwalten. 
-	\item[T0111] Ewok kann mit 	\quotes{ewok check (\textit{Packagename (Packageversion)})} überprüfen, ob bestimmte oder alle installierten Pakete noch korrekt installiert sind.
+	\item[T0150] \textit{Entfernen:} Der Nutzer entfernt mit \quotes{rion remove \textit{Packagename/s}} ein oder mehrere Pakete, welche dadurch deinstalliert werden.
+	\item[T0160] \textit{Anleitung:} Der Nutzer schreibt \quotes{man rion}, worauf ihm die Manpage zu Rion angezeigt wird.
+	\item[T0170] \textit{Installierte Pakete listen:} Der Nutzer gibt \quotes{\textit{rion list (Packagename)}} ein. Er erhält Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
+	\item[T0180] Die Repositories auf die Rion zugreift können mit einem config file angepasst werden.
+	\item[T0190] Rion kann mehrere virtuellen Umgebungen verwalten. 
+	\item[T0111] Rion kann mit 	\quotes{rion check (\textit{Packagename (Packageversion)})} überprüfen, ob bestimmte oder alle installierten Pakete noch korrekt installiert sind.
 
 
 \end{itemize}
@@ -23,11 +23,11 @@
 \begin{itemize}
 	\item[T0210] \textit{Paket hinzufügen:} Derr Nutzer fügt mit \quotes{endor add \textit{Packagename Packagefile}} ein Paket zur Datenbank hinzu, welches noch nicht in der Datenbank ist. Darauf befindet es sich in der Datanbank.
 	\item[T0220] \textit{Neue Version hinzufügen:} Der Nutzer fügt mit \quotes{endor update \textit{Packagename Packageversion Packagefile}} eine neue Version eines vorhandenen Paketes zur Datenbank hinzu. Es befindet sich daraufhin in der Datenbank.
-	\item[T0230] \textit{Beschreibung hinzufügen:} Der Nutzer fügt mit \quotes{endor describ \textit{Packagename}} jene Beschreibung zu einem Paket hinzufügen, die beim Suchen durch ewok abgerufen wird. Die Beschreibung ist nun abrufbar.
-	\item[T0240] \textit{Lizenz:} Der Nutzer fügt mit \quotes{ewok install \textit{Packagename}} Lizenzinformation hinzu
+	\item[T0230] \textit{Beschreibung hinzufügen:} Der Nutzer fügt mit \quotes{endor describ \textit{Packagename}} jene Beschreibung zu einem Paket hinzufügen, die beim Suchen durch Rion abgerufen wird. Die Beschreibung ist nun abrufbar.
+	\item[T0240] \textit{Lizenz:} Der Nutzer fügt mit \quotes{rion install \textit{Packagename}} Lizenzinformation hinzu
 	\item[T0250] \textit{Paket entfernen:} Der Nutzer enfernt mit \quotes{endor remove \textit{Packagename}} alle Versionen eines Paketes aus der Datenbank entfernen oder er kann mit \quotes{endor remove \textit{Packagename Versionsnummer}} eine bestimmte Version eines Paketes aus der Datenbank entfernen. Das / Die Pakete befinden sich daraufhin nicht mehr in der Datenbank.
-	\item[T0260] \textit{Paket signieren:} Der Nutzer signiert mit \quotes{endor sign} alle installierten alle Pakete in der Datenbank signieren oder er signiert mit \quotes{ewok sign \textit{Packagename (Versionsnummer)}} ein bestimmtes Paket oder auch nur eine bestimmte Version eines Paketes. Die spezifizierten Pakete sind daraufhin signiert.
-	\item[T0270] \textit{Pakete publizieren:} Der Nutzer schaltet mit \quotes{textit{endor publish Packagename (Packageversion)}} alle spezifizierten Pakete für ewok frei. Daraufhin kann ewok auf die spezfizierten Pakete zugreifen.
-	\item[T0280] \textit{Pakete publizieren:} Der Nutzer sperrt mit \quotes{textit{endor unpublish Packagename (Packageversion)}} alle spezifizierten Pakete für ewok. Daraufhin kann ewok auf die spezfizierten Pakete nicht mehr zugreifen.
-	\item[T0290] \textit{Anleitung:} Der Nutzer schreibt \quotes{man endor}, worauf ihm die Manpage zu ewok angezeigt wird.
+	\item[T0260] \textit{Paket signieren:} Der Nutzer signiert mit \quotes{endor sign} alle installierten alle Pakete in der Datenbank signieren oder er signiert mit \quotes{rion sign \textit{Packagename (Versionsnummer)}} ein bestimmtes Paket oder auch nur eine bestimmte Version eines Paketes. Die spezifizierten Pakete sind daraufhin signiert.
+	\item[T0270] \textit{Pakete publizieren:} Der Nutzer schaltet mit \quotes{textit{endor publish Packagename (Packageversion)}} alle spezifizierten Pakete für Rion frei. Daraufhin kann Rion auf die spezfizierten Pakete zugreifen.
+	\item[T0280] \textit{Pakete publizieren:} Der Nutzer sperrt mit \quotes{textit{endor unpublish Packagename (Packageversion)}} alle spezifizierten Pakete für Rion. Daraufhin kann Rion auf die spezfizierten Pakete nicht mehr zugreifen.
+	\item[T0290] \textit{Anleitung:} Der Nutzer schreibt \quotes{man endor}, worauf ihm die Manpage zu Rion angezeigt wird.
 \end{itemize}
