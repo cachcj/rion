@@ -1,0 +1,42 @@
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Anhang: Literaturverzeichnis
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+% Mit dem Befehl \nocite werden auch nicht im Text zitierte
+% aus der Literaturdatenbank mit in das Literaturverzeichnis aufgenommen.
+% Ein "\nocite{*}" übernimmt ungeprüft die komplette Datenbank.
+%\nocite{*}
+
+\cleardoublepage
+\nocite{*}
+\ihead[]{Literaturverzeichnis}
+\bibliographystyle{acm}
+\bibliography{literatur} % "literatur.bib" ist hier die einzige Literaturdatenbank.
+
+% Alternativ: Mehrere Datenbanken verwenden, falls eine
+% oder mehrere umfangreiche Sammlungen exisitieren:
+%\bibliography{literatur_buecher,literatur_weblinks}
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Anhang: Abbildungsverzeichnis
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+% Keine Änderungen vornehmen!
+\cleardoublepage
+\ihead[]{Abbildungsverzeichnis}
+\listoffigures
+
+
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+%% Anhang: Abkürzungsverzeichnis
+%% ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+% Hier keine weiteren Änderungen vornehmen
+\cleardoublepage
+\ihead[]{Abkürzungsverzeichnis und Formelzeichen}
+\printnomenclature{} % TODO: Hyperref
+
