@@ -73,9 +73,12 @@
 % Hier in die zweite geschweifte Klammer jeweils
 % die persoenlichen Daten und das Thema der Arbeit eintragen:
 \newcommand{\artderausarbeitung}{Pflichtenheft}
-\newcommand{\namedesautors}{P.~Augustin, C.~Juin, G.~Lehmann, A.~Schmidt, R.~Schöne}
+\newcommand{\namedesautorsI}{P.~Augustin, J.~Skopp, C.~Juin, }
+\newcommand{\namedesautorsII}{G.~Lehmann, A.~Schmidt, R.~Schöne}
 \newcommand{\themaderarbeit}{RION  Package-Manager}
 \newcommand{\xRION}{\RION}
+%% Das passt schon so 
+\newcommand{\namedesautors}{\namedesautorsI \namedesautorsII}
 
 % PDF Metadaten definieren
 \hypersetup{
@@ -103,7 +106,7 @@
 \ohead[]{\pagemark}
 \chead[]{}
 \ifoot[]{}
-\ofoot[]{\scriptsize \artderausarbeitung\ \namedesautors}
+\ofoot[]{\scriptsize \artderausarbeitung\ - \namedesautors}
 \cfoot[]{}
 \renewcommand{\titlepagestyle}{scrheadings}
 \renewcommand{\partpagestyle}{scrheadings}
