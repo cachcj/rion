@@ -3,18 +3,18 @@
 \section{RION}
 
 \begin{itemize}
-	\item[T0110] \textit{Installation:} Der Nutzer installiert mit \quotes{rion install \textit{Packagename}} ein Paket. Das Paket wird installiert. Skripte werden erfolgreich ausgeführt.
+	\item[T0110] \textit{Installation:} Der Nutzer installiert mit \quotes{rion install \textit{Packagename}} ein Paket. Das Paket wird, mit eventuellen Abhängigkeiten, installiert. Skripte (Post-Install-Prozessierung) werden erfolgreich ausgeführt.
 	\item[T0120] \textit{Suchen:} Der Nutzer sucht mit \quotes{rion search \textit{text}} ein Paket und bekommt eine Liste von passenden Paketen, inklusive einer kurzen Beschreibung derer, ausgeben.
 	\item[T0130] \textit{Information:} Der Nutzer sucht mit \quotes{rion info \textit{Packagename}} ein Informationen zu einem Paket und bekommt detaillierte Informationen zu einem Paket ausgeben.
 	\item[T0140] \textit{Aktualisieren:} Der Nutzer akualiersiert mit \quotes{rion upgrade} alle installierten Pakete. Diese werden aktualisiert. Er aktualisiert mit \quotes{rion upgrade \textit{Packagename}} ein bestimmtes Paket, welches nun aktualisiert wird.
 	\item[T0150] \textit{Entfernen:} Der Nutzer entfernt mit \quotes{rion remove \textit{Packagename/s}} ein oder mehrere Pakete, welche dadurch deinstalliert werden.
 	\item[T0160] \textit{Anleitung:} Der Nutzer schreibt \quotes{man rion}, worauf ihm die Manpage zu RION angezeigt wird.
-	\item[T0170] \textit{Installierte Pakete listen:} Der Nutzer gibt \quotes{\textit{rion list (Packagename)}} ein. Er erhält Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
+	\item[T0170] \textit{Installierte Pakete listen:} Der Nutzer gibt \quotes{\textit{rion list (package\_name\_pattern)}} ein. Er erhält Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
 	\item[T0180] Die Repositories auf die RION zugreift können mit einem config file angepasst werden.
 	\item[T0190] RION kann mehrere virtuellen Umgebungen verwalten.
 	\item[T0111] RION kann mit 	\quotes{rion check (\textit{Packagename (Packageversion)})} überprüfen, ob bestimmte oder alle installierten Pakete noch korrekt installiert sind.
 	\item[T0121] RION kann mit \quotes{rion update} die lokale Datenbank aktualisieren.
-	\item[T0131] RION kann sich mit \quotes{rion auth -u >>USER<< -p >>PWD<<} anmelden. RION kann sich auch über einen Configfile (nur für den User lesbar) anmelden. Sollte keine Anmeldung vorliegen fragt RION beim ersten Aufruf nach den Anmeldedaten.
+	\item[T0131] RION kann sich mit \quotes{rion auth -u >>USER<< -p >>PWD<<} anmelden. RION kann sich auch über einen Configfile (nur für den Ersteller lesbar) anmelden. Sollte keine Anmeldung vorliegen fragt RION beim ersten Aufruf nach den Anmeldedaten.
 
 
 \end{itemize}
@@ -22,7 +22,7 @@
 \section{INOR}
 
 \begin{itemize}
-	\item[T0210] \textit{Paket hinzufügen:} Derr Nutzer fügt mit \quotes{inor add \textit{Packagename Packagefile}} ein Paket zur Datenbank hinzu, welches noch nicht in der Datenbank ist. Darauf befindet es sich in der Datanbank.
+	\item[T0210] \textit{Paket hinzufügen:} Derr Nutzer fügt mit \quotes{inor add \textit{Packagename Packagefile}} ein Paket zur Datenbank hinzu, welches noch nicht in der Datenbank ist. Darauf befindet es sich in der Datanbank. Abhängigkeiten wurden berücksichtigt.
 	\item[T0220] \textit{Neue Version hinzufügen:} Der Nutzer fügt mit \quotes{inor update \textit{Packagename Packageversion Packagefile}} eine neue Version eines vorhandenen Paketes zur Datenbank hinzu. Es befindet sich daraufhin in der Datenbank.
 	\item[T0230] \textit{Beschreibung hinzufügen:} Der Nutzer fügt mit \quotes{inor describ \textit{Packagename}} jene Beschreibung zu einem Paket hinzufügen, die beim Suchen durch RION abgerufen wird. Die Beschreibung ist nun abrufbar.
 	\item[T0240] \textit{Lizenz:} Der Nutzer fügt mit \quotes{rion install \textit{Packagename}} Lizenzinformation hinzu

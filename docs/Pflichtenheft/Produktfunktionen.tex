@@ -3,25 +3,25 @@
 \section{RION}
 
 \begin{itemize}
-	\item[F0110] \textit{Installation:} Der Nutzer kann mit \quotes{rion install \textit{Packagename}} Pakete installieren. Bei der Installation sollen Skripte ausgeführt werden können.
+	\item[F0110] \textit{Installation:} Der Nutzer kann mit \quotes{rion install \textit{Packagename}} Pakete, inklusive eventuellen Abhängigkeiten, installieren. Bei der Installation sollen Skripte (Post-Install-Prozessierung) ausgeführt werden können.
 	\item[F0120] \textit{Suchen:} Der Nutzer kann mit \quotes{rion search \textit{text}} Pakete suchen und bekommt eine Liste von passenden Paketen, inklusive einer kurzen Beschreibung derer, ausgeben.
 	\item[F0130] \textit{Information:} Der Nutzer bekommt mit \quotes{rion info \textit{Packagename}} detaillierte Informationen zu einem Paket ausgegeben.
 	\item[F0140] \textit{Aktualisieren:} Der Nutzer kann mit \quotes{rion upgrade} alle installierten Pakete aktualisieren oder er kann mit \quotes{rion upgrade \textit{Packagename}} ein bestimmtes Paket aktualisieren.
 	\item[F0150] \textit{Entfernen:} Der Nutzer kann mit \quotes{rion remove \textit{Packagename}} Pakete deinstallieren.
 	\item[F0160] \textit{Anleitung:} Der Nutzer erhält durch \quotes{man rion} eine Manpage, in der alle wichtigen Funktionen von RION beschrieben werden.
-	\item[F0170] \textit{Installierte Pakete listen:} Der Nutzer erhält durch \quotes{\textit{rion list (package_name_pattern)}} eine Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
+	\item[F0170] \textit{Installierte Pakete listen:} Der Nutzer erhält durch \quotes{\textit{rion list (package\_name\_pattern)}} eine Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
 	\item[F0180] Die Repositories auf die RION zugreift soll mit einem config file angepasst werden.
 	\item[F0190] RION soll mehrere virtuellen Umgebungen verwalten können.
 	\item[F0111] RION soll mit 	\quotes{rion check (\textit{Packagename (Packageversion)})} überprüfen können, ob bestimmte oder alle installierten Pakete noch korrekt installiert sind.
 	\item[F0121] RION soll mit \quotes{rion update} die lokale Datenbank aktualisieren.
-	\item[F0131] RION kann sich mit \quotes{rion auth -u >>USER<< -p >>PWD<<} anmelden. RION kann sich auch über einen Configfile (nur für den User lesbar) anmelden. Sollte keine Anmeldung vorliegen fragt RION beim ersten Aufruf nach den Anmeldedaten.
+	\item[F0131] RION kann sich mit \quotes{rion auth -u >>USER<< -p >>PWD<<} anmelden. RION kann sich auch über einen Configfile (nur für den Ersteller lesbar) anmelden. Sollte keine Anmeldung vorliegen fragt RION beim ersten Aufruf nach den Anmeldedaten.
 \end{itemize}
 
 \section{INOR}
 
 \begin{itemize}
-	\item[F0210] \textit{Paket hinzufügen:} Sofern noch keine Version des Paketes in der Datenbank existiert, kann der Nutzer mit \quotes{inor add \textit{Packagename Packagefile}} ein Paket zur Datenbank hinzufügen.
-	\item[F0220] \textit{Neue Version hinzufügen:} Der Nutzer kann mit \quotes{inor update \textit{Packagename Packageversion Packagefile}} eine neue Version eines Paketes zur Datenbank hinzufügen.
+	\item[F0210] \textit{Paket hinzufügen:} Sofern noch keine Version des Paketes in der Datenbank existiert, kann der Nutzer mit \quotes{inor add \textit{Packagename Packagefile}} ein Paket zur Datenbank hinzufügen. Abhängigkeiten werden automatisch berücksichtigt.
+	\item[F0220] \textit{Neue Version hinzufügen:} Der Nutzer kann mit \quotes{inor update \textit{Packagename Packageversion Packagefile}} eine neue Version eines Paketes zur Datenbank hinzufügen. Alte Versionen bleiben erhalten.
 	\item[F0230] \textit{Beschreibung hinzufügen:} Der Nutzer kann mit \quotes{inor describ \textit{Packagename}} jene Beschreibung zu einem Paket hinzufügen, die beim Suchen durch RION abgerufen wird.
 	\item[F0240] \textit{Lizenz:} Der Nutzer kann mit \quotes{rion license \textit{Packagename}} Paketen eine Lizenz hinzufügen.
 	\item[F0250] \textit{Paket entfernen:} Der Nutzer kann mit \quotes{inor remove \textit{Packagename}} alle Versionen eines Paketes aus der Datenbank entfernen oder er kann mit \quotes{inor remove \textit{Packagename Versionsnummer}} eine bestimmte Version eines Paketes aus der Datenbank entfernen.
