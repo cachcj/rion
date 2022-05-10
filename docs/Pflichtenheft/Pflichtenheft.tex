@@ -47,6 +47,21 @@
 %\usepackage[first,light]{draftcopy} % Für Probedruck
 \usepackage[plainpages=false,pdfpagelabels,hypertexnames=false]{hyperref}
 
+
+
+%% UNIX 
+\makeatletter
+\DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf}
+\DeclareOldFontCommand{\tt}{\normalfont\ttfamily}{\mathtt}
+\DeclareOldFontCommand{\bf}{\normalfont\bfseries}{\mathbf}
+\DeclareOldFontCommand{\it}{\normalfont\itshape}{\mathit}
+\DeclareOldFontCommand{\sl}{\normalfont\slshape}{\@nomath\sl}
+\DeclareOldFontCommand{\sc}{\normalfont\scshape}{\@nomath\sc}
+\makeatother
+
+%% 
+
 % Tiefe der Kapitelnummerierung beeinflussen
 \setcounter{secnumdepth}{3} % Tiefe der Nummerierung
 \setcounter{tocdepth}{3}    % Tiefe des Inhaltsverzeichnisses
@@ -58,7 +73,7 @@
 % Hier in die zweite geschweifte Klammer jeweils
 % die persoenlichen Daten und das Thema der Arbeit eintragen:
 \newcommand{\artderausarbeitung}{Pflichtenheft}
-\newcommand{\namedesautors}{P.~Augustin, C.~Juin, G.~Lehmann, A.~Schmidt, R.~Schöne, J.~Skopp}
+\newcommand{\namedesautors}{P.~Augustin, C.~Juin, G.~Lehmann, A.~Schmidt, R.~Schöne}
 \newcommand{\themaderarbeit}{RION  Package-Manager}
 \newcommand{\xRION}{\RION}
 
