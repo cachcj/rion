@@ -17,17 +17,17 @@ def def_requirements():
 
 
 setuptools.setup(
-    name="ewok",
+    name="rion",
     version='0.0.1',
     description='Package Manager',
     long_description=read_description(),
     long_description_content_type="text/markdown",
     license="MIT",
-    keywords="Package Manager-ewok",
-    url="https://github.com/Riffecs/ewok",
-    packages=["ewok"],
+    keywords="Package Manager-rion",
+    url="https://github.com/Riffecs/rion",
+    packages=["rion"],
     install_requires=def_requirements(),
-    python_requires=">=3.9",
+    python_requires=">=3.6",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
