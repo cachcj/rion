@@ -9,11 +9,12 @@
 	\item[F0140] \textit{Aktualisieren:} Der Nutzer kann mit \quotes{rion upgrade} alle installierten Pakete aktualisieren oder er kann mit \quotes{rion upgrade \textit{Packagename}} ein bestimmtes Paket aktualisieren.
 	\item[F0150] \textit{Entfernen:} Der Nutzer kann mit \quotes{rion remove \textit{Packagename}} Pakete deinstallieren.
 	\item[F0160] \textit{Anleitung:} Der Nutzer erhält durch \quotes{man rion} eine Manpage, in der alle wichtigen Funktionen von RION beschrieben werden.
-	\item[F0170] \textit{Installierte Pakete listen:} Der Nutzer erhält durch \quotes{\textit{rion list (Packagename)}} eine Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
+	\item[F0170] \textit{Installierte Pakete listen:} Der Nutzer erhält durch \quotes{\textit{rion list (package_name_pattern)}} eine Liste aller installierten Pakete, bzw aller installierten Funktionen eines Paketes.
 	\item[F0180] Die Repositories auf die RION zugreift soll mit einem config file angepasst werden.
 	\item[F0190] RION soll mehrere virtuellen Umgebungen verwalten können.
 	\item[F0111] RION soll mit 	\quotes{rion check (\textit{Packagename (Packageversion)})} überprüfen können, ob bestimmte oder alle installierten Pakete noch korrekt installiert sind.
 	\item[F0121] RION soll mit \quotes{rion update} die lokale Datenbank aktualisieren.
+	\item[F0131] RION kann sich mit \quotes{rion auth -u >>USER<< -p >>PWD<<} anmelden. RION kann sich auch über einen Configfile (nur für den User lesbar) anmelden. Sollte keine Anmeldung vorliegen fragt RION beim ersten Aufruf nach den Anmeldedaten.
 \end{itemize}
 
 \section{INOR}
