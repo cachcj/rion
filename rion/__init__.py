@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 import sys
-print("Hallo Welt!")
+print("Rion!")
 sys.exit(0)
