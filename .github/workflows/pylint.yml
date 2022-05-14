@@ -28,5 +28,5 @@ jobs:
       - name: Analyse the Rion Project
         working-directory: ./rion
         run: |
-          pylint --rcfile=".pylintrc" `ls -R|grep .py$|xargs`
+          pylint --rcfile="../.pylintrc" `ls -R|grep .py$|xargs`
       
