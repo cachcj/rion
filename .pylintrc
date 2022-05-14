@@ -1,4 +1,3 @@
 [MASTER]
 disable=
-    C0301, # line-too-long
     C0114, # missing-docstring

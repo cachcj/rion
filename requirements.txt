@@ -1,10 +1,5 @@
 # Test 
 numpy
 
-
 # Documentation
 Sphinx
-
-
-# content
-lichesspy

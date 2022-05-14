@@ -18,12 +18,12 @@ def def_requirements():
 
 setuptools.setup(
     name="rion",
-    version='0.0.1',
-    description='Package Manager',
+    version='0.0.2',
+    description='Package Manager CLI',
     long_description=read_description(),
     long_description_content_type="text/markdown",
     license="MIT",
-    keywords="Package Manager-rion",
+    keywords="Package Manager CLI - rion",
     url="https://github.com/Riffecs/rion",
     packages=["rion"],
     install_requires=def_requirements(),
