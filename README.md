@@ -56,12 +56,13 @@ Finally, we uninstall the package and add the path to the default environment. A
 - In contrast to the command ``list`` you get here a list including versions. This is necessary, for example, if you want to replicate the system on another system. No attention is paid to dependencies with regard to a login. All packages are output.
 
 ### Check packages
-``rion check``
-
+- ``rion check``
+- The command will check if all dependencies and packages are installed correctly. It does not correct any errors. The command only prints an error. 
 
 ### Customizing the Config 
-``rion config``
+- ``rion config``
+- Various files are stored in the Config. Among other things, the login and access permissions for other packages. These can be viewed and checked with this command.
 
 ### Login
-``rion login``
-
+- ``rion login``
+- With this command you can log in to the X-FAB servers
