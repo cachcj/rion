@@ -18,33 +18,42 @@ Finally, we uninstall the package and add the path to the default environment. A
 ## Usage
 
 ### Package installation
-``rion install  package``
+- ``rion install  package``
+- With the above command you can install packages. If the corresponding package is not available you will get an error message 
 
 ### Search package
-``rion search text``
+- ``rion search text``
+- If you don't know the name of the package you are looking for, you can search the local database.
+- The command searches only a local database. Therefore it makes sense to update this.: [update database](https://github.com/Riffecs/rion#update-package-list)
 
 ### Package Information
-
-```rion info package``` 
+- ```rion info package``` 
+- With the above command you get a short info about the specified package. This is very short and direct
 
 ### Update package list
-```rion update ```
+- ```rion update ```
+- The command updates the local list of packages. It only accesses the local database. It does not change any dependencies or packages.
 
 ### Update packages
-```rion upgrade ```
+- ```rion upgrade ```
+- This command updates packages. Here it is to be noted that old versions are not overwritten. The new version is installed in parallel. It is important to say that packages are never removed here.
 
 ### Remove packages
-```rion remove ```
+- ```rion remove ```
+- This is the only command that deletes packages. Once a package is deleted there is no way to restore it. It must be reinstalled.
 
 ### Instruction
-``rion man``
+- ``rion man``
+-  This command displays the man file of the package. 
 
 ### Packet list
-```rion list ```
+- ```rion list ```
+- This command returns a list with all installed packages. However, this list is without versions.
+
 
 ### Packet version
-```rion freeze ```
-
+- ```rion freeze ```
+- In contrast to the command ``list`` you get here a list including versions. This is necessary, for example, if you want to replicate the system on another system. No attention is paid to dependencies with regard to a login. All packages are output.
 
 ### Check packages
 ``rion check``
@@ -52,4 +61,7 @@ Finally, we uninstall the package and add the path to the default environment. A
 
 ### Customizing the Config 
 ``rion config``
+
+### Login
+``rion login``
 
