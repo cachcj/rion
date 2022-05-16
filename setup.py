@@ -20,6 +20,7 @@ setuptools.setup(
     name="rion",
     version='0.0.2',
     description='Package Manager CLI',
+    entry_points={'console_scripts': ['rion=rion:handler']},
     long_description=read_description(),
     long_description_content_type="text/markdown",
     license="MIT",

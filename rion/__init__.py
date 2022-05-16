@@ -1,4 +1,10 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
 import sys
-print("Rion!")
-sys.exit(0)
+def handler() -> None:
+    """ 
+    Gibt eine Liste der Steuerargumente zurück
+    """
+    for i in sys.argv:
+        print(i)
+
