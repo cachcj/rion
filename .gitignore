@@ -2,6 +2,10 @@
 # Logger
 *log*
 
+# idea
+.idea
+.idea/
+*idea*
 
 # Delete VSCode trash folder
 /VSCode
