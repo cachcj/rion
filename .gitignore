@@ -259,7 +259,6 @@ fabric.properties
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
-*.log
 *.lot
 *.fls
 *.out

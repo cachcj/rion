@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-
+"""
+ Start modules for all imports
+"""
 import sys
 
 
 def handler() -> None:
-    """Gibt eine Liste der Steuerargumente zurück"""
-    for i in sys.argv:
-        print(i)
+    """
+        Manages the CL arguments and distributes them to appropriate commands.
+    """
+    if sys.argv:
+        print("Hallo")
