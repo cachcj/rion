@@ -1,20 +1,17 @@
-from typing import List, Any
-
-
 class Package:
     """
     Simple Python Package Class
     """
     name: str = ""
     dependency: list[str] = []
-    version : str = ""
+    version: str = ""
     path: str = ""
 
-    def __init__(self, n, d, v, p) -> None:
+    def __init__(self, name, dependency, version, path) -> None:
         """
         parameterized constructor for packages
         """
-        self.name = n
-        self.dependency = d
-        self.version = v
-        self.path = p
+        self.name = name
+        self.dependency = dependency
+        self.version = version
+        self.path = path
