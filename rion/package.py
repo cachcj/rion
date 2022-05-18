@@ -1,3 +1,7 @@
+"""
+    Package Class
+"""
+
 class Package:
     """
     Simple Python Package Class
@@ -6,8 +10,9 @@ class Package:
     dependency: list[str] = []
     version: str = ""
     path: str = ""
+    venv: str = ""
 
-    def __init__(self, name, dependency, version, path) -> None:
+    def __init__(self, name, dependency, version, path, venv) -> None:
         """
         parameterized constructor for packages
         """
@@ -15,3 +20,4 @@ class Package:
         self.dependency = dependency
         self.version = version
         self.path = path
+        self.venv = venv
