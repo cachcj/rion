@@ -21,6 +21,6 @@ def handler() -> None:
         # Transfer the NumPy array with all configs to the relevant functions.
         if sys.argv[1] == "install":
             # Converts the Numpy array back to a normal list
-            runner.install(np.ndarray.tolist(command_list))
+            runner.install(np.ndarray.to(command_list))
     else:
         errors.noinput()

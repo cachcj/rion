@@ -7,5 +7,5 @@ def install(content: list) -> None:
     """
         install a package
     """
-    for i in list:
+    for i in content:
         print(i)
