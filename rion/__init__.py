@@ -45,7 +45,7 @@ def handler() -> None:
             runner.install_rion()
         else:
             # If no command was found, it aborts the program.
-            error.commandnotfound()
+            errors.commandnotfound()
 
     else:
         errors.noinput()
