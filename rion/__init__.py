@@ -6,8 +6,8 @@ import sys
 
 import numpy as np
 
-from errors import commandnotfound
-from . import runner
+from rion import runner
+from rion.errors import commandnotfound
 
 
 def handler() -> None:
