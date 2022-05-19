@@ -30,12 +30,14 @@ def upgrade(content: list) -> None:
     for i in content:
         print(i)
 
+
 def search(content: list) -> None:
     """
         Rion is now looking for packages
     """
     for i in content:
         print(i)
+
 
 def remove(content: list) -> None:
     """
