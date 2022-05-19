@@ -6,8 +6,8 @@ import sys
 
 import numpy as np
 
-from . import errors
-from . import runner
+from rion import errors
+from rion import runner
 
 
 def handler() -> None:
@@ -22,7 +22,7 @@ def handler() -> None:
         loader: str = sys.argv[1]
 
         # Converts the Numpy array back to a normal list
-        flags: list = np.ndarray.tolist(command_list)
+        flags: list[str] = np.ndarray.tolist(command_list)
 
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
@@ -34,7 +34,7 @@ def handler() -> None:
         elif loader == "search":
             runner.search(flags)
         elif loader == "list":
-            runner.list(flags)
+            runner.dlist(flags)
         elif loader == "freeze":
             runner.freeze(flags)
         elif loader == "config":
@@ -42,7 +42,7 @@ def handler() -> None:
         elif loader == "check":
             runner.check(flags)
         elif loader == "self":
-            runner.se
+            runner.install_rion()
         else:
             # If no command was found, it aborts the program.
             errors.commandnotfound()

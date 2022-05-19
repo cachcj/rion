@@ -2,10 +2,11 @@
     This is where the real magic happens
 """
 # Loads the Error.py to manage errors if necessary
-import errors
+
 
 # Loads all basic installations details.
-import self
+from rion import errors
+from rion import self
 
 
 def install(content: list) -> None:
@@ -21,7 +22,10 @@ def update(content: list) -> None:
         updates the package list
     """
     # No control argument is used for updating the list
-    if list:
+
+    if content:
+        # That's actually terrible semantics. But I can't change that right now.
+        content = None
         errors.neednoargs()
     else:
         print("do update")
@@ -51,7 +55,7 @@ def remove(content: list) -> None:
         print(i)
 
 
-def list(content: list) -> None:
+def dlist(content: list) -> None:
     """
         Rion list packages
     """
@@ -84,7 +88,7 @@ def config(content: list) -> None:
         print(i)
 
 
-def install() -> None:
+def install_rion() -> None:
     """
     Load install skript
     """
