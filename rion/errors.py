@@ -1,8 +1,10 @@
 """
     Short Error Libary
 """
-from termcolor import colored
+
 import sys
+
+from termcolor import colored
 
 
 def noinput() -> None:

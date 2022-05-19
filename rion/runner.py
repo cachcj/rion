@@ -51,7 +51,7 @@ def remove(content: list) -> None:
         print(i)
 
 
-def list(content: list) -> None:
+def dlist(content: list) -> None:
     """
         Rion list packages
     """

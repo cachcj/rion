@@ -6,7 +6,7 @@ import sys
 
 import numpy as np
 
-from . import errors
+import errors
 from . import runner
 
 
@@ -34,7 +34,7 @@ def handler() -> None:
         elif loader == "search":
             runner.search(flags)
         elif loader == "list":
-            runner.list(flags)
+            runner.dlist(flags)
         elif loader == "freeze":
             runner.freeze(flags)
         elif loader == "config":
@@ -42,7 +42,7 @@ def handler() -> None:
         elif loader == "check":
             runner.check(flags)
         elif loader == "self":
-            runner.se
+            runner.install()
         else:
             # If no command was found, it aborts the program.
             errors.commandnotfound()
