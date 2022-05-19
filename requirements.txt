@@ -3,3 +3,6 @@ numpy
 
 # Documentation
 Sphinx
+
+# color 
+termcolor 
