@@ -21,12 +21,28 @@ def handler() -> None:
         # Create a variable that stores the main command.
         loader: str = sys.argv[1]
 
+        # Converts the Numpy array back to a normal list
+        flags: list = np.ndarray.tolist(command_list)
+
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
-            # Converts the Numpy array back to a normal list
-            runner.install(np.ndarray.tolist(command_list))
+            runner.install(flags)
         elif loader == "update":
-            runner.update(np.ndarray.tolist(command_list))
+            runner.update(flags)
+        elif loader == "remove":
+            runner.remove(flags)
+        elif loader == "search":
+            runner.search(flags)
+        elif loader == "list":
+            runner.list(flags)
+        elif loader == "freeze":
+            runner.freeze(flags)
+        elif loader == "config":
+            runner.config(flags)
+        elif loader == "check":
+            runner.check(flags)
+        elif loader == "self":
+            runner.se
         else:
             # If no command was found, it aborts the program.
             errors.commandnotfound()
