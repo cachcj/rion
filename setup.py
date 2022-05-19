@@ -18,9 +18,10 @@ def def_requirements():
 
 setuptools.setup(
     name="rion",
-    version='0.0.3',
+    version='0.0.4',
     description='Package Manager CLI',
     entry_points={'console_scripts': ['rion=rion:handler']},
+    data_files = [('man/man1', ['man/rion.1'])],
     long_description=read_description(),
     long_description_content_type="text/markdown",
     license="MIT",
