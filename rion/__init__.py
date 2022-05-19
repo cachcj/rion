@@ -42,7 +42,7 @@ def handler() -> None:
         elif loader == "check":
             runner.check(flags)
         elif loader == "self":
-            runner.install()
+            runner.install_rion()
         else:
             # If no command was found, it aborts the program.
             commandnotfound()

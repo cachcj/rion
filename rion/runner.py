@@ -21,7 +21,10 @@ def update(content: list) -> None:
         updates the package list
     """
     # No control argument is used for updating the list
-    if list:
+
+    if content:
+        # That's actually terrible semantics. But I can't change that right now.
+        content = None
         errors.neednoargs()
     else:
         print("do update")
@@ -84,7 +87,7 @@ def config(content: list) -> None:
         print(i)
 
 
-def install() -> None:
+def install_rion() -> None:
     """
     Load install skript
     """
