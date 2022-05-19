@@ -27,3 +27,11 @@ def neednoargs() -> None:
     """
     print(colored('The Command does not need arguments.', 'red'))
     sys.exit(-1)
+
+
+def commandnotfound() -> None:
+    """
+    The command was not found.
+    """
+    print(colored('The command was not found.', 'red'))
+    sys.exit(-1)

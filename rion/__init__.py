@@ -5,7 +5,6 @@
 import sys
 
 import numpy as np
-]]
 
 from . import errors
 from . import runner
@@ -29,7 +28,8 @@ def handler() -> None:
         elif loader == "update":
             runner.update(np.ndarray.tolist(command_list))
         else:
-
+            # If no command was found, it aborts the program.
+            errors.commandnotfound()
 
     else:
         errors.noinput()
