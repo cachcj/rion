@@ -5,9 +5,8 @@
 
 
 # Loads all basic installations details.
-from errors import neednoargs
-from self import is_install, run_install
-
+from rion import errors
+from rion import self
 
 
 def install(content: list) -> None:
@@ -27,7 +26,7 @@ def update(content: list) -> None:
     if content:
         # That's actually terrible semantics. But I can't change that right now.
         content = None
-        neednoargs()
+        errors.neednoargs()
     else:
         print("do update")
 
@@ -76,7 +75,7 @@ def check(content: list) -> None:
     """
         Rion check packages
     """
-    if is_install:
+    if self.is_install:
         for i in content:
             print(i)
 
@@ -93,4 +92,4 @@ def install_rion() -> None:
     """
     Load install skript
     """
-    run_install()
+    self.run_install()
