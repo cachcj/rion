@@ -6,7 +6,7 @@ import sys
 
 import numpy as np
 
-import errors
+from errors import commandnotfound
 from . import runner
 
 
@@ -45,7 +45,7 @@ def handler() -> None:
             runner.install()
         else:
             # If no command was found, it aborts the program.
-            errors.commandnotfound()
+            commandnotfound()
 
     else:
         errors.noinput()
