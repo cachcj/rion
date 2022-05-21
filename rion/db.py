@@ -19,7 +19,7 @@ def create_table(db_name: str, db_table: str, db_header: str) -> None:
     Creates the corresponding tables via an SQL block.
     """
     # Creates a connection to the database
-    con = create_database(db_name)
+    con = sqlite3.connect(f"{db_name}.db")
     # Creates a courser that points to the database
     cur = con.cursor()
     # Creates the SQL Command
@@ -28,6 +28,28 @@ def create_table(db_name: str, db_table: str, db_header: str) -> None:
     cur.execute(table)
     # "Save" the changes
     con.commit()
+    # close
+    con.close()
+    # Destroys the Courser
+    cur = None
+
+
+def input_value(db_name: str, db_table: str, db_content: str) -> None:
+    """
+    Creates the corresponding tables via an SQL block.
+    """
+    # Creates a connection to the database
+    con = sqlite3.connect(f"{db_name}.db")
+    # Creates a courser that points to the database
+    cur = con.cursor()
+    # Creates the SQL Command
+    table = f"INSERT INTO {db_table} VALUES {db_content}"
+    # Executes the SQL
+    cur.execute(table)
+    # "Save" the changes
+    con.commit()
+    # close
+    con.close()
     # Destroys the Courser
     cur = None
 
@@ -49,7 +71,8 @@ def list_table(db_name: str, db_table: str, db_header: str):
     Return List of Table
     """
     # Creates a connection to the database
-    con = create_database(db_name)
+    con = sqlite3.connect(f"{db_name}.db")
     # Creates a courser that points to the database
     cur = con.cursor()
-    return cur.execute(f"SELECT {db_header} FROM {db_table}").fetchall()
+    for row in cur.execute(f"SELECT * FROM {db_table} ORDER BY {db_header}"):
+        print(row)
