@@ -58,7 +58,7 @@ def out_table(db_name: str, db_table: str):
     """
     Output of database entries via SQL as array
     """
-    # Stack Overflow: /53128279/how-to-print-output-from-sqlite3-in-python
+    # src: https://stackoverflow.com/questions/53128279
     con = sqlite3.connect(db_name + ".db")
     # Creates the SQL Command and execute
     cursor = con.execute(f"PRAGMA table_info({db_table});")
