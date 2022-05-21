@@ -2,10 +2,12 @@
     Package Class
 """
 
+
 class Package:
     """
     Simple Python Package Class
     """
+
     name: str = ""
     dependency: list[str] = []
     version: str = ""

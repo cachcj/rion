@@ -11,7 +11,7 @@ from rion import self
 
 def install(content: list) -> None:
     """
-        install a package
+    install a package
     """
     for i in content:
         print(i)
@@ -19,7 +19,7 @@ def install(content: list) -> None:
 
 def update(content: list) -> None:
     """
-        updates the package list
+    updates the package list
     """
     # No control argument is used for updating the list
 
@@ -33,7 +33,7 @@ def update(content: list) -> None:
 
 def upgrade(content: list) -> None:
     """
-        updates the package list
+    updates the package list
     """
     for i in content:
         print(i)
@@ -41,7 +41,7 @@ def upgrade(content: list) -> None:
 
 def search(content: list) -> None:
     """
-        Rion is now looking for packages
+    Rion is now looking for packages
     """
     for i in content:
         print(i)
@@ -49,7 +49,7 @@ def search(content: list) -> None:
 
 def remove(content: list) -> None:
     """
-        Rion remove packages
+    Rion remove packages
     """
     for i in content:
         print(i)
@@ -57,7 +57,7 @@ def remove(content: list) -> None:
 
 def dlist(content: list) -> None:
     """
-        Rion list packages
+    Rion list packages
     """
     for i in content:
         print(i)
@@ -65,7 +65,7 @@ def dlist(content: list) -> None:
 
 def freeze(content: list) -> None:
     """
-        Rion freeze packages
+    Rion freeze packages
     """
     for i in content:
         print(i)
@@ -73,7 +73,7 @@ def freeze(content: list) -> None:
 
 def check(content: list) -> None:
     """
-        Rion check packages
+    Rion check packages
     """
     if self.is_install:
         for i in content:
@@ -82,7 +82,7 @@ def check(content: list) -> None:
 
 def config(content: list) -> None:
     """
-        Rion config packages
+    Rion config packages
     """
     for i in content:
         print(i)

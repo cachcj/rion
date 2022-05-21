@@ -12,7 +12,7 @@ from rion import runner
 
 def handler() -> None:
     """
-        Manages the CL arguments and distributes them to appropriate commands.
+    Manages the CL arguments and distributes them to appropriate commands.
     """
     if len(sys.argv) >= 2:
         # Deletes the path and the basic command from the array
