@@ -25,7 +25,7 @@ def create_table(db_name: str, db_table: str, db_header: str) -> None:
     # Creates the SQL Command
     table = f"CREATE TABLE {db_table} ({db_header})"
     # Executes the SQL
-    cur.execute()
+    cur.execute(table)
     # "Save" the changes
     con.commit()
     # Destroys the Courser
