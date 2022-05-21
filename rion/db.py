@@ -45,7 +45,9 @@ def out_table(db_name: str, db_table: str):
 
 
 def list_table(db_name: str, db_table: str, db_header: str):
-    """ """
+    """
+    Return List of Table
+    """
     # Creates a connection to the database
     con = create_database(db_name)
     # Creates a courser that points to the database
