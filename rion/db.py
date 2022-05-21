@@ -1,9 +1,9 @@
-import sqlite3
-from pprint import pprint
-
 """
     Database system and database handler
 """
+
+import sqlite3
+from pprint import pprint
 
 
 def create_database(db_name: str) -> None:
@@ -32,7 +32,7 @@ def create_table(db_name: str, db_table: str, db_header: str) -> None:
     cur = None
 
 
-def out_table(db_name: str, db_table: str) -> None:
+def out_table(db_name: str, db_table: str):
     """
     Output of database entries via SQL as array
     """
@@ -44,10 +44,10 @@ def out_table(db_name: str, db_table: str) -> None:
     pprint(cursor.fetchall())
 
 
-def list_table(db_name: str, db_table: str, db_header: str) -> None:
+def list_table(db_name: str, db_table: str, db_header: str):
     """ """
     # Creates a connection to the database
     con = create_database(db_name)
     # Creates a courser that points to the database
     cur = con.cursor()
-    rows = cur.execute(f"SELECT {db_header} FROM {db_table}").fetchall()
+    return cur.execute(f"SELECT {db_header} FROM {db_table}").fetchall()
