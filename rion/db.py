@@ -1,13 +1,17 @@
 import sqlite3
 from pprint import pprint
 
+"""
+    Database system and database handler
+"""
 
-def create_database(name: str) -> None:
+
+def create_database(db_name: str) -> None:
     """
     Creates a database with sqlite3 and mysql
     """
     # Creates the database via a Python Courser
-    sqlite3.connect(f"{name}.db")
+    sqlite3.connect(f"{db_name}.db")
 
 
 def create_table(db_name: str, db_table: str, db_header: str) -> None:
@@ -37,7 +41,7 @@ def out_table(db_name: str, db_table: str) -> None:
     # Creates the SQL Command and execute
     cursor = con.execute(f"PRAGMA table_info({db_table});")
     # Return the values
-    print(cursor.fetchall())
+    pprint(cursor.fetchall())
 
 
 def list_table(db_name: str, db_table: str, db_header: str) -> None:
