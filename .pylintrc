@@ -2,4 +2,4 @@
 disable=
     R0903, # Too few public methods
     R0913, # To much args
-    E1111, # a
+    W0511, # fix to do
