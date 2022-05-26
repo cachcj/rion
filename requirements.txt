@@ -1,5 +1,6 @@
-# Test 
+# Math
 numpy
+pandas
 
 # Documentation
 Sphinx

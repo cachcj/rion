@@ -1,3 +1,9 @@
+# Database
+*.db
+
+# test
+*test*
+
 # Editor
 *vscode*
 *idea*

@@ -3,7 +3,6 @@
 """
 
 import sqlite3
-from pprint import pprint
 
 
 def create_database(db_name: str) -> None:
@@ -12,6 +11,14 @@ def create_database(db_name: str) -> None:
     """
     # Creates the database via a Python Courser
     sqlite3.connect(f"{db_name}.db")
+
+
+def courser(db_name: str) -> sqlite3.Connection:
+    """
+    Creates a courser
+    """
+    # Creates the database via a Python Courser
+    return sqlite3.connect(f"{db_name}.db")
 
 
 def create_table(db_name: str, db_table: str, db_header: str) -> None:
@@ -54,19 +61,7 @@ def input_value(db_name: str, db_table: str, db_content: str) -> None:
     cur = None
 
 
-def out_table(db_name: str, db_table: str):
-    """
-    Output of database entries via SQL as array
-    """
-    # src: https://stackoverflow.com/questions/53128279
-    con = sqlite3.connect(db_name + ".db")
-    # Creates the SQL Command and execute
-    cursor = con.execute(f"PRAGMA table_info({db_table});")
-    # Return the values
-    pprint(cursor.fetchall())
-
-
-def list_table(db_name: str, db_table: str, db_header: str):
+def list_table(db_name: str, db_table: str, db_header: str) -> list:
     """
     Return List of Table
     """
@@ -74,5 +69,16 @@ def list_table(db_name: str, db_table: str, db_header: str):
     con = sqlite3.connect(f"{db_name}.db")
     # Creates a courser that points to the database
     cur = con.cursor()
+    # Creates an empty list
+    container = []
     for row in cur.execute(f"SELECT * FROM {db_table} ORDER BY {db_header}"):
-        print(row)
+        container.append(row)
+    return container
+
+
+def print_table(db_name: str, db_table: str, db_header: str) -> None:
+    """
+    print List of Table
+    """
+    for i in list_table(db_name, db_table,  db_header):
+        print(i)
