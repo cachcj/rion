@@ -37,3 +37,11 @@ def commandnotfound() -> None:
     """
     print(colored("The command was not found.", "red"))
     sys.exit(-1)
+
+def argumentnotfound() -> None:
+    """
+    Required argument was not found.
+    """
+    print(colored("Required argument was not found.", "red"))
+    sys.exit(-1)
+    
