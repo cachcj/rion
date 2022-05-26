@@ -1,3 +1,8 @@
+# Package
+*.pdk
+*.zip
+*.eof
+
 # Database
 *.db
 
