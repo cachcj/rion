@@ -80,5 +80,5 @@ def print_table(db_name: str, db_table: str, db_header: str) -> None:
     """
     print List of Table
     """
-    for i in list_table(db_name, db_table,  db_header):
+    for i in list_table(db_name, db_table, db_header):
         print(i)

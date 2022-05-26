@@ -5,5 +5,5 @@ pandas
 # Documentation
 Sphinx
 
-# color 
-termcolor 
+# color
+termcolor
