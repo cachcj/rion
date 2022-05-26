@@ -7,7 +7,7 @@ import sys
 from termcolor import colored
 
 
-def noinput(self) -> None:
+def noinput() -> None:
     """
     The user has not provided any arguments.
     """
@@ -15,7 +15,7 @@ def noinput(self) -> None:
     sys.exit(-1)
 
 
-def commandlist(self) -> None:
+def commandlist() -> None:
     """
     The user gets a list of commands.
     """
@@ -23,7 +23,7 @@ def commandlist(self) -> None:
     sys.exit(-1)
 
 
-def neednoargs(self) -> None:
+def neednoargs() -> None:
     """
     The Command does not need arguments.
     """
@@ -31,7 +31,7 @@ def neednoargs(self) -> None:
     sys.exit(-1)
 
 
-def commandnotfound(self) -> None:
+def commandnotfound() -> None:
     """
     The command was not found.
     """

@@ -41,7 +41,7 @@ def handler() -> None:
             runner.config(flags)
         elif loader == "check":
             runner.check(flags)
-        elif loader == "self":
+        elif loader == "fix":
             runner.install_rion()
         else:
             # If no command was found, it aborts the program.

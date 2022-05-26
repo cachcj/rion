@@ -75,9 +75,8 @@ def check(content: list) -> None:
     """
     Rion check packages
     """
-    if self.is_install:
-        for i in content:
-            print(i)
+    # TODO: Check config file
+    print(".")
 
 
 def config(content: list) -> None:
@@ -92,4 +91,5 @@ def install_rion() -> None:
     """
     Load install skript
     """
-    self.run_install()
+    # TODO: Write install skript
+    print(".")
