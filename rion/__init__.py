@@ -6,8 +6,8 @@ import sys
 
 import numpy as np
 
-from riontest import errors
-from riontest import runner
+from rion import errors
+from rion import runner
 
 
 def handler() -> None:

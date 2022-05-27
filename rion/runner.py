@@ -5,10 +5,10 @@ import os
 from pathlib import Path
 
 
-from riontest import crypt
-from riontest import db
-from riontest import errors
-from riontest import helper
+from rion import crypt
+from rion import db
+from rion import errors
+from rion import helper
 
 
 def install(content: list) -> None:
@@ -128,4 +128,4 @@ def init() -> None:
 
     # write rion as root venv
     with open("venv.txt", "a", encoding="utf8") as docker:
-        docker.write("/node/pdk\n")
+        docker.write("/venv/node\n")
