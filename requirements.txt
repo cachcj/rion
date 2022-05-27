@@ -1,9 +1,4 @@
-# Math
 numpy
-pandas
-
-# Documentation
-Sphinx
-
-# color
 termcolor
+setuptools
+cryptography

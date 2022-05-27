@@ -24,6 +24,7 @@ def courser(db_name: str) -> sqlite3.Connection:
 def create_table(db_name: str, db_table: str, db_header: str) -> None:
     """
     Creates the corresponding tables via an SQL block.
+    @rtype: object
     """
     # Creates a connection to the database
     con = sqlite3.connect(f"{db_name}.db")

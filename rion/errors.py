@@ -7,6 +7,16 @@ import sys
 from termcolor import colored
 
 
+def short(text: str) -> None:
+    """_summary_
+
+    Args:
+        text (str): _description_
+    """
+    print(colored(f"{text}", "red"))
+    sys.exit(-1)
+
+
 def noinput() -> None:
     """
     The user has not provided any arguments.
@@ -36,4 +46,31 @@ def commandnotfound() -> None:
     The command was not found.
     """
     print(colored("The command was not found.", "red"))
+    sys.exit(-1)
+
+
+def patherror() -> None:
+    """
+    The folder could not be created
+    """
+    print(colored("The folder could not be created.", "red"))
+    sys.exit(-1)
+
+
+def install_error(number: int) -> None:
+    """
+    Lists all errors during installation
+    """
+    if number == 1:
+        print(colored("Rion has already been installed.", "red"))
+    else:
+        print(colored("No error code", "yellow"))
+    sys.exit(-1)
+
+
+def admin_error() -> None:
+    """
+    sudo / root / admin
+    """
+    print(colored("Please restart the program with admin rights.", "blue"))
     sys.exit(-1)

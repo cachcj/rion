@@ -1,19 +1,22 @@
 """
     This is where the real magic happens
 """
-# Loads the Error.py to manage errors if necessary
+import os
+from pathlib import Path
 
 
-# Loads all basic installations details.
-from rion import errors
+from riontest import crypt
+from riontest import db
+from riontest import errors
+from riontest import helper
 
 
 def install(content: list) -> None:
     """
     install a package
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def update(content: list) -> None:
@@ -33,40 +36,40 @@ def upgrade(content: list) -> None:
     """
     updates the package list
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def remove(content: list) -> None:
     """
     Rion remove packages
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def dlist(content: list) -> None:
     """
     Rion list packages
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def freeze(content: list) -> None:
     """
     Rion freeze packages
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
 def check(content: list) -> None:
@@ -81,13 +84,48 @@ def config(content: list) -> None:
     """
     Rion config packages
     """
-    for i in content:
-        print(i)
+    for runner in content:
+        print(runner)
 
 
-def install_rion() -> None:
+def init() -> None:
     """
     Load install skript
     """
-    # TODO: Write install skript
-    print(".")
+
+    # OS Path Modul
+    path: str = helper.os_bindings(f"{os.path.expanduser('.')}/rion")
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+    # Change base
+    os.chdir(path)
+
+    # Install config
+    with open("config.txt", "w", encoding="utf8") as docker:
+        docker.write("rion_conf\n")
+
+    # Install Database
+    db.create_database("Packages")
+    db.create_table("Packages", "Package", "name text, version text")
+
+    # Load Cipher
+    key = crypt.gen_key()
+
+    # Safe Key
+    key = crypt.gen_key_as_string(key)
+
+    # write key in conf
+    with open("config.txt", "a", encoding="utf8") as docker:
+        docker.write(f"key={key}\n")
+
+    # Install Venv Manager
+    with open("venv.txt", "w", encoding="utf8") as docker:
+        docker.write("Venv Manager\n")
+
+    # setup root venv
+    path += helper.os_bindings("/venv/node")
+    Path(path).mkdir(parents=True, exist_ok=True)
+
+    # write rion as root venv
+    with open("venv.txt", "a", encoding="utf8") as docker:
+        docker.write("/node/pdk\n")
