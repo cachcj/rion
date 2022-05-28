@@ -47,16 +47,7 @@ def commandnotfound() -> None:
     """
     print(colored("The command was not found.", "red"))
     sys.exit(-1)
-
-
-def argumentnotfound() -> None:
-    """
-    Required argument was not found.
-    """
-    print(colored("Required argument was not found.", "red"))
-    sys.exit(-1)
     
-
 
 def patherror() -> None:
     """
@@ -83,4 +74,11 @@ def admin_error() -> None:
     """
     print(colored("Please restart the program with admin rights.", "blue"))
     sys.exit(-1)
->>>>>>> upstream/main
+
+
+    def argumentnotfound() -> None:
+    """
+    Required argument was not found.
+    """
+    print(colored("Required argument was not found.", "red"))
+    sys.exit(-1)
