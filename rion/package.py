@@ -15,11 +15,10 @@ class Package:
     venv: str = ""
     date: str = ""
     description: str = ""
-    license: str = ""
-    sha: str = ""
-    pgp: str = ""
+    lizenz: str = ""
 
-    def __init__(self, name, dependency, version, path, venv, date, description, license, sha, pgp) -> None:
+
+    def __init__(self, name, dependency, version, path, venv, date, description, lizenz) -> None:
         """
         parameterized constructor for packages
         """
@@ -30,6 +29,4 @@ class Package:
         self.venv = venv
         self.date = date
         self.description = description
-        self.license = license
-        self.sha = sha
-        self.pgp = pgp
+        self.lizenz = lizenz
