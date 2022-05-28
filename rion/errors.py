@@ -76,7 +76,7 @@ def admin_error() -> None:
     sys.exit(-1)
 
 
-    def argumentnotfound() -> None:
+def argumentnotfound() -> None:
     """
     Required argument was not found.
     """
