@@ -42,12 +42,12 @@ def decrypt(key: bytes, message: str) -> str:
     return Fernet(key).decrypt(message).decode()
 
 
-def md5(fname: str):
+def sha256(fname: str):
     """
-    Return MD5 Value
+    Generate SHA Value of a file
     """
-    hash_md5 = hashlib.md5()
+    sha256_hash = hashlib.sha256()
     with open(fname, "rb") as docker:
-        for chunk in iter(lambda: docker.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
+        for byte_block in iter(lambda: docker.read(4096), b""):
+            sha256_hash.update(byte_block)
+        print(sha256_hash.hexdigest())
