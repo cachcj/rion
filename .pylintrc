@@ -3,3 +3,4 @@ disable=
     R0903, # Too few public methods
     R0913, # To much args
     W0511, # fix to do
+    R0902, # Too many instance attributes

@@ -17,8 +17,9 @@ class Package:
     description: str = ""
     lizenz: str = ""
 
-
-    def __init__(self, name, dependency, version, path, venv, date, description, lizenz) -> None:
+    def __init__(
+        self, name, dependency, version, path, venv, date, description, lizenz
+    ) -> None:
         """
         parameterized constructor for packages
         """

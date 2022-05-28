@@ -47,7 +47,7 @@ def commandnotfound() -> None:
     """
     print(colored("The command was not found.", "red"))
     sys.exit(-1)
-    
+
 
 def patherror() -> None:
     """
