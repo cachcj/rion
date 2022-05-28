@@ -14,6 +14,7 @@ def handler() -> None:
     """
     Manages the CL arguments and distributes them to appropriate commands.
     """
+
     if len(sys.argv) >= 2:
         # Deletes the path and the basic command from the array
         command_list = np.delete(np.array(sys.argv), [0, 1])
@@ -42,7 +43,7 @@ def handler() -> None:
         elif loader == "check":
             runner.check(flags)
         elif loader == "fix":
-            runner.install_rion()
+            runner.init()
         else:
             # If no command was found, it aborts the program.
             errors.commandnotfound()
