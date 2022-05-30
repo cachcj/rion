@@ -4,7 +4,7 @@ Search command
 from rion import db
 
 
-def runner_search(db_name: str) -> None:
+def runnerable_search(db_name: str) -> None:
     """
     Suche in der Datenbank nach Namen
     """
