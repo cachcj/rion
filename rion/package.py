@@ -19,7 +19,7 @@ class Package:
     sha: bytes = b""
 
     def __init__(
-            self, name, dependency, version, path, venv, date, description, lmit, sha
+        self, name, dependency, version, path, venv, date, description, lmit, sha
     ) -> None:
         """
         parameterized constructor for packages

@@ -4,7 +4,6 @@
 import os
 from pathlib import Path
 
-
 from rion import crypt
 from rion import db
 from rion import errors
@@ -15,8 +14,8 @@ def install(content: list) -> None:
     """
     install a package
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def update(content: list) -> None:
@@ -36,40 +35,40 @@ def upgrade(content: list) -> None:
     """
     updates the package list
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def remove(content: list) -> None:
     """
     Rion remove packages
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def dlist(content: list) -> None:
     """
     Rion list packages
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def freeze(content: list) -> None:
     """
     Rion freeze packages
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def check(content: list) -> None:
@@ -84,8 +83,8 @@ def config(content: list) -> None:
     """
     Rion config packages
     """
-    for runner in content:
-        print(runner)
+    # TODO: Check config file
+    print(content)
 
 
 def init() -> None:
