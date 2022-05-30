@@ -18,7 +18,7 @@ def make_tarfile(output_filename: str, source_dir: str) -> str:
     return helper.os_bindings(f"{os.getcwd()}/{output_filename}")
 
 
-def unmake_tarfile(input_filename: str, source_dir: str) -> None:
+def unmake_tarfile(input_filename: str) -> None:
     """
     TODO: Unmke
     """
