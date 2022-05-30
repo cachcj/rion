@@ -24,9 +24,8 @@ def unmake_tarfile(input_filename: str) -> None:
     """
     os.mkdir(input_filename[:-3])
     os.chdir(f"{os.getcwd()}/{input_filename}")
-    tar = tarfile.open(input_filename, "r:gz")
-    tar.extractall()
-    tar.close()
+    with tarfile.open(input_filename, "r:gz") as tar:
+        tar.extractall()
     os.chdir("..")
 
 
