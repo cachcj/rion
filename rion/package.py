@@ -19,7 +19,7 @@ class Package:
     sha: bytes = b""
 
     def __init__(
-        self, name, dependency, version, path, venv, date, description, license, sha
+        self, name, dependency, version, path, venv, date, description, lmit, sha
     ) -> None:
 
         """
@@ -32,4 +32,5 @@ class Package:
         self.venv = venv
         self.date = date
         self.description = description
-        self.license = license
+        self.lmit = lmit
+        self.sha = sha
