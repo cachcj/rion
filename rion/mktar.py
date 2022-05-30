@@ -22,7 +22,7 @@ def unmake_tarfile(input_filename: str) -> None:
     """
     TODO: Unmke
     """
-    os.mkdir(input_filename[:-3])
+    os.mkdir(input_filename[:-6])
     os.chdir(f"{os.getcwd()}/{input_filename}")
     with tarfile.open(input_filename, "r:gz") as tar:
         tar.extractall()
