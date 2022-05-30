@@ -2,6 +2,8 @@
 The module does all the things I am too lazy to do. sorry
 """
 
+# pylint: disable = E, W, R, C
+
 import ctypes
 import os
 import platform

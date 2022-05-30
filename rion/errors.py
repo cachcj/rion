@@ -8,10 +8,8 @@ from termcolor import colored
 
 
 def short(text: str) -> None:
-    """_summary_
-
-    Args:
-        text (str): _description_
+    """
+    Set a short array
     """
     print(colored(f"{text}", "red"))
     sys.exit(-1)
