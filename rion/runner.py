@@ -8,6 +8,7 @@ from rion import crypt
 from rion import db
 from rion import errors
 from rion import helper
+from rion import search
 
 
 def install(content: list) -> None:
@@ -43,8 +44,7 @@ def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    # TODO: Check config file
-    print(content)
+    search.runner_search(content)
 
 
 def remove(content: list) -> None:

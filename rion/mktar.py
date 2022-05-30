@@ -15,14 +15,14 @@ def make_tarfile(output_filename: str, source_dir: str) -> str:
     """
     with tarfile.open(output_filename, "w:gz") as tar:
         tar.add(source_dir, arcname=os.path.basename(source_dir))
-    return helper.os_bindings(f"{os.getcwd()}/{output_filename}_{helper.uid()}")
+    return helper.os_bindings(f"{os.getcwd()}/{output_filename}_{helper.uid()}.tar.gz")
 
 
 def unmake_tarfile(input_filename: str) -> None:
     """
-    TODO: Unmke
+    dhghfcgh
     """
-    os.mkdir(input_filename[:-6])
+    os.mkdir(input_filename[:-7])
     os.chdir(f"{os.getcwd()}/{input_filename}")
     with tarfile.open(input_filename, "r:gz") as tar:
         tar.extractall()
