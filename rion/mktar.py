@@ -15,7 +15,7 @@ def make_tarfile(output_filename: str, source_dir: str) -> str:
     """
     with tarfile.open(output_filename, "w:gz") as tar:
         tar.add(source_dir, arcname=os.path.basename(source_dir))
-    return helper.os_bindings(f"{os.getcwd()}/{output_filename}")
+    return helper.os_bindings(f"{os.getcwd()}/{output_filename}_{helper.uid()}")
 
 
 def unmake_tarfile(input_filename: str) -> None:

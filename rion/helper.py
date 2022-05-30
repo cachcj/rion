@@ -7,6 +7,7 @@ The module does all the things I am too lazy to do. sorry
 import ctypes
 import os
 import platform
+import uuid
 
 
 def testsudo() -> bool:
@@ -33,3 +34,10 @@ def os_bindings(path: str) -> str:
         return path.replace("/", "\\")
 
     return path
+
+
+def uid() -> str:
+    """
+    Return a str
+    """
+    return str(uuid.uuid4()).replace("-", "")
