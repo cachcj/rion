@@ -41,3 +41,9 @@ def uid() -> str:
     Return a str
     """
     return str(uuid.uuid4()).replace("-", "")
+
+
+def dimarray(notbeautiful: str) -> list:
+    """Makes the output beautiful, but not yet."""
+    notbeautiful = notbeautiful.replace("(", "")[1:-1].replace("'", "")
+    return notbeautiful.replace("'", "").split(",")
