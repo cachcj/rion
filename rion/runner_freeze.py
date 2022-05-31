@@ -3,8 +3,8 @@ Gibt alle Packages zurück
 """
 
 
-def runnable_freeze(content: str) -> None:
+def runnable_freeze(db_name: str, content: str) -> None:
     """
     gibt alle installierten Packete aus
     """
-    print(content)
+    print(content, db_name)

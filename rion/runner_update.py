@@ -3,8 +3,8 @@ List all packages
 """
 
 
-def runnable_update(content: str) -> None:
+def runnable_update(db_name: str, content: str) -> None:
     """
     gibt alle installierten Packete aus
     """
-    print(content)
+    print(content + db_name)

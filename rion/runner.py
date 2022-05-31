@@ -18,28 +18,28 @@ def install(content: list) -> None:
     """
     install a package
     """
-    runner_install.runnable_install(content)
+    runner_install.runnable_install("rion.db", content)
 
 
 def update(content: list) -> None:
     """
     updates the package list
     """
-    runner_update.runnable_update(content)
+    runner_update.runnable_update("rion.db", content)
 
 
 def upgrade(content: list) -> None:
     """
     updates the package list
     """
-    runner_upgrade.runnable_upgrade(content)
+    runner_upgrade.runnable_upgrade("rion.db", content)
 
 
 def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    runner_search.runnable_search(content)
+    runner_search.runnable_search("rion.db", content)
 
 
 def remove(content: list) -> None:
@@ -53,32 +53,32 @@ def dlist(content) -> None:
     """
     Rion list packages
     """
-    runner_dlist.runnable_dlist(content)
+    runner_dlist.runnable_dlist("rion.db", content)
 
 
 def freeze(content: list) -> None:
     """
     Rion freeze packages
     """
-    runner_freeze.runnable_freeze(content)
+    runner_freeze.runnable_freeze("rion.db", content)
 
 
 def check(content: list) -> None:
     """
     Rion check packages
     """
-    runner_check.runnable_check(content)
+    runner_check.runnable_check("rion.db", content)
 
 
 def config(content: list) -> None:
     """
     Rion config packages
     """
-    runner_config.runnable_config(content)
+    runner_config.runnable_config("rion.db", content)
 
 
 def init() -> None:
     """
     Load install skript
     """
-    runner_installer.runnable_install()
+    runner_installer.runnable_installer()
