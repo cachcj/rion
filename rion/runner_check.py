@@ -3,7 +3,7 @@ List all packages
 """
 
 
-def runnerable_check(content: str) -> None:
+def runnable_check(content: str) -> None:
     """
     gibt alle installierten Packete aus
     """

@@ -9,7 +9,7 @@ from rion import crypt
 from rion import db
 
 
-def runnerable_install() -> None:
+def runnable_install() -> None:
     """
     load installer
     """

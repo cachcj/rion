@@ -3,7 +3,7 @@ List all packages
 """
 
 
-def runnerable_update(content: str) -> None:
+def runnable_update(content: str) -> None:
     """
     gibt alle installierten Packete aus
     """

@@ -3,7 +3,7 @@ Delete Package
 """
 
 
-def runnerable_remove(db_name: str, content: str) -> None:
+def runnable_remove(db_name: str, content: str) -> None:
     """
     Löscht Packete vom System und aus der Datenbank
     """
