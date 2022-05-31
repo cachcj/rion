@@ -18,7 +18,7 @@ def install(content: list) -> None:
     """
     install a package
     """
-    runner_install.runnerable_install()
+    runner_install.runnerable_install(content)
 
 
 def update(content: list) -> None:
@@ -39,7 +39,7 @@ def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    runner_search.runnerable_search("rion.db", content)
+    runner_search.runnerable_search(content)
 
 
 def remove(content: list) -> None:
