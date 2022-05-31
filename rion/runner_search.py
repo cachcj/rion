@@ -2,6 +2,7 @@
 Search command
 """
 from rion import db
+from rion import helper
 
 
 def runnable_search(
@@ -30,10 +31,32 @@ def runnable_search(
         elif content in igit:
             indescrib.append(igit)
 
-    ## Now print them in the right order
+    xexact: list = []
+    xmoreorless: list = []
+    xindescrib: list = []
+
+    ## Now put them in the right order
     if exact:
-        print(exact)
-    for i in moreorless:
-        print(i)
-    for i in indescrib:
-        print(i)
+        for i in exact:
+            xexact.append(helper.dimarry(i))
+    if moreorless:
+        for i in moreorless:
+            xmoreorless.append(helper.dimarry(i))
+    if indescrib:
+        for i in indescrib:
+            xindescrib.append(helper.dimarry())
+
+    if xexact:
+        print("======================================================")
+        for i in range(len(xexact)):
+            print(f"{xexact[i][0]} : {xexact[i][2]}")
+
+    if xmoreorless:
+        print("======================================================")
+        for i in range(len(xmoreorless)):
+            print(f"{xmoreorless[i][0]} : {xmoreorless[i][2]}")
+
+    if xindescrib:
+        print("======================================================")
+        for i in range(len(xindescrib)):
+            print(f"{xindescrib[i][0]} : {xindescrib[i][2]}")
