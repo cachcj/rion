@@ -83,3 +83,41 @@ def print_table(db_name: str, db_table: str, db_header: str) -> None:
     """
     for i in list_table(db_name, db_table, db_header):
         print(i)
+
+
+def db_handler(db_name: str, sql_expression: str) -> None:
+    """
+        A Simple SQL Handler for Primitive Queries
+    """
+    # Creates a connection to the database
+    con = sqlite3.connect(f"{db_name}.db")
+    # Creates a courser that points to the database
+    cur = con.cursor()
+    # Executes the SQL
+    cur.execute(sql_expression)
+    # "Save" the changes
+    con.commit()
+    # close
+    con.close()
+    # Destroys the Courser
+    cur = None
+
+
+def delete_package(db_name: str, db_table: str, package: str) -> None:
+    """
+        Delete Packages from a SQL table
+    """
+    # Creates a connection to the database
+    con = sqlite3.connect(f"{db_name}.db")
+    # Creates a courser that points to the database
+    cur = con.cursor()
+    # Creates the SQL Command
+    table = f"IDELETE FROM {db_table} WHERE {package};"
+    # Executes the SQL
+    cur.execute(table)
+    # "Save" the changes
+    con.commit()
+    # close
+    con.close()
+    # Destroys the Courser
+    cur = None
