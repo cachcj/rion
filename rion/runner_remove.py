@@ -37,4 +37,3 @@ def runnable_remove(db_name: str, content: str) -> None:
     finally:
         con.close()
         cur = None
-        
