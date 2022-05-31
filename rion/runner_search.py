@@ -44,7 +44,7 @@ def runnable_search(
             xmoreorless.append(helper.dimarray(i))
     if indescrib:
         for i in indescrib:
-            xindescrib.append(helper.dimarray())
+            xindescrib.append(helper.dimarray(i))
 
     if xexact:
         print("======================================================")
