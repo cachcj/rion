@@ -4,9 +4,9 @@ Search command
 from rion import db
 
 
-def runnerable_search(db_name: str) -> None:
+def runnerable_search(db_name: str, content: str) -> None:
     """
     Suche in der Datenbank nach Namen
     """
-    courser = db.courser(db_name)
-    print(courser)
+    x = db_name + content
+    print(x)

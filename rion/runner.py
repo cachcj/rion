@@ -9,6 +9,7 @@ from rion import db
 from rion import errors
 from rion import helper
 from rion import runner_search
+from rion import runner_remove
 
 
 def install(content: list) -> None:
@@ -44,15 +45,14 @@ def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    runner_search.runnerable_search(content)
+    runner_search.runnerable_search("rion.db", content)
 
 
 def remove(content: list) -> None:
     """
     Rion remove packages
     """
-    # TODO: Check config file
-    print(content)
+    runner_remove.runnerable_remove("rion.db", content)
 
 
 def dlist(content: list) -> None:
