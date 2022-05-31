@@ -29,7 +29,7 @@ def runnable_remove(db_name: str, content: str) -> None:
         # Deletes package from database
         cur.execute(f"DELETE FROM {db_name} where content = {content}")
         con.execute.commit()
-        print(f"{content} has been removed from the database.")    
+        print(f"{content} has been removed from the database.")
     # Show error if error
     except sqlite3.Error as error:
         print("There was an error: ", error)
@@ -37,3 +37,4 @@ def runnable_remove(db_name: str, content: str) -> None:
     finally:
         con.close()
         cur = None
+        
