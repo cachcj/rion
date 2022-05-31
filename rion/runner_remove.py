@@ -1,7 +1,6 @@
 """
 Delete Package
 """
-from rion import db
 
 
 def runnerable_remove(db_name: str, content: str) -> None:
