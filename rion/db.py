@@ -87,7 +87,7 @@ def print_table(db_name: str, db_table: str, db_header: str) -> None:
 
 def db_handler(db_name: str, sql_expression: str) -> None:
     """
-        A Simple SQL Handler for Primitive Queries
+    A Simple SQL Handler for Primitive Queries
     """
     # Creates a connection to the database
     con = sqlite3.connect(f"{db_name}.db")
@@ -105,7 +105,7 @@ def db_handler(db_name: str, sql_expression: str) -> None:
 
 def delete_package(db_name: str, db_table: str, package: str) -> None:
     """
-        Delete Packages from a SQL table
+    Delete Packages from a SQL table
     """
     # Creates a connection to the database
     con = sqlite3.connect(f"{db_name}.db")
