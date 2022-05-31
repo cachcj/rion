@@ -49,11 +49,11 @@ def remove(content: list) -> None:
     runner_remove.runnerable_remove("rion.db", content)
 
 
-def dlist() -> None:
+def dlist(content) -> None:
     """
     Rion list packages
     """
-    runner_dlist.runnerable_dlist("rion.db")
+    runner_dlist.runnerable_dlist(content)
 
 
 def freeze(content: list) -> None:
