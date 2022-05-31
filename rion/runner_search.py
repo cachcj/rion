@@ -38,13 +38,13 @@ def runnable_search(
     ## Now put them in the right order
     if exact:
         for i in exact:
-            xexact.append(helper.dimarry(i))
+            xexact.append(helper.dimarray(i))
     if moreorless:
         for i in moreorless:
-            xmoreorless.append(helper.dimarry(i))
+            xmoreorless.append(helper.dimarray(i))
     if indescrib:
         for i in indescrib:
-            xindescrib.append(helper.dimarry())
+            xindescrib.append(helper.dimarray())
 
     if xexact:
         print("======================================================")
