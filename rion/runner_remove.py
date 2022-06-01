@@ -21,7 +21,7 @@ def runnable_remove(db_name: str, table_name: str, pkg_name: str, content: str) 
     elif os.path.exists(content) is False:
         print(f"{content} cannot be found on your machine.")
 
-    # If package exists in database, delete it    
+    # If package exists in database, delete it 
     try:
         db.delete_package(db_name, table_name, pkg_name, content)
         print(f"{content} has been removed from the database.")
