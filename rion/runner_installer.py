@@ -21,7 +21,7 @@ def runnable_installer() -> None:
     os.chdir(path)
 
     # Install config
-    with open("config.txt", "w", encoding="utf8") as docker:
+    with open("rion.conf", "w", encoding="utf8") as docker:
         docker.write("rion_conf\n")
 
     # Install Database
