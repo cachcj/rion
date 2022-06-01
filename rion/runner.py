@@ -39,7 +39,7 @@ def search(content: list) -> None:
     """
     Rion is now looking for packages
     """
-    runner_search.runnable_search("rion.db", content)
+    runner_search.runnable_search("rion.db", "available", "pkg_name", content)
 
 
 def remove(content: list) -> None:

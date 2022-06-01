@@ -80,3 +80,19 @@ def argumentnotfound() -> None:
     """
     print(colored("Required argument was not found.", "red"))
     sys.exit(-1)
+
+
+def sqlerror(error: Exception) -> None:
+    """
+    SQL Error.
+    """
+    print(colored(str(error), "red"))
+    sys.exit(-1)
+
+
+def nosearchargs() -> None:
+    """
+    No parameters
+    """
+    print(colored("No parameters were passed to search. ", "red"))
+    sys.exit(-1)

@@ -1,5 +1,5 @@
 [![Pylint](https://github.com/Riffecs/rion/actions/workflows/pylint.yml/badge.svg)](https://github.com/Riffecs/rion/actions/workflows/pylint.yml)
-[![Upload Python Package](https://github.com/Riffecs/rion/actions/workflows/pypi.yml/badge.svg)](https://github.com/Riffecs/rion/actions/workflows/pypi.yml)
+[![Upload Python Package](https://github.com/Riffecs/rion/actions/workflows/pypi.yml/badge.svg)](https://github.com/Riffecs/rion/actions/workflows/pypi.yml) ![PyPI](https://img.shields.io/pypi/v/rion?color=green) ![GitHub](https://img.shields.io/github/license/Riffecs/rion) ![PyPI - Downloads](https://img.shields.io/pypi/dm/rion) ![GitHub contributors](https://img.shields.io/github/contributors/Riffecs/rion) 
 
 # RION
 
