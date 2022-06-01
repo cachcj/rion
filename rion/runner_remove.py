@@ -7,6 +7,7 @@ import sqlite3
 from rion import db
 from rion import errors
 
+
 def runnable_remove(db_name: str, table_name: str, pkg_name: str, content: str) -> None:
     """
     Löscht Packete vom System und aus der Datenbank
