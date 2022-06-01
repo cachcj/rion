@@ -103,7 +103,7 @@ def db_handler(db_name: str, sql_expression: str) -> None:
     cur = None
 
 
-def delete_package(db_name: str, db_table: str, package: str) -> None:
+def delete_package(db_name: str, db_table: str, package_list: str, content: str) -> None:
     """
     Delete Packages from a SQL table
     """
@@ -111,8 +111,8 @@ def delete_package(db_name: str, db_table: str, package: str) -> None:
     con = sqlite3.connect(f"{db_name}.db")
     # Creates a courser that points to the database
     cur = con.cursor()
-    # Creates the SQL Command
-    table = f"IDELETE FROM {db_table} WHERE {package};"
+    # Creates the SQL DELETE Command
+    table = f"DELETE FROM {db_table} WHERE {package_list}={content};"
     # Executes the SQL
     cur.execute(table)
     # "Save" the changes
