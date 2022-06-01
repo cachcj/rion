@@ -111,7 +111,7 @@ def delete_package(db_name: str, db_table: str, package_list: str, content: str)
     con = sqlite3.connect(f"{db_name}.db")
     # Creates a courser that points to the database
     cur = con.cursor()
-    # Creates the SQL Command
+    # Creates the SQL DELETE Command
     table = f"DELETE FROM {db_table} WHERE {package_list}={content};"
     # Executes the SQL
     cur.execute(table)
