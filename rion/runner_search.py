@@ -33,7 +33,8 @@ def runnable_search(
         # Here we cast a tuple into a string.
         # This doesn't look very great, but it works.
         igit: str = str(igit)
-        # We cut off everything useless from the original string, so that only the package name remains.
+        # We cut off everything useless from the original string,
+        # so that only the package name remains.
         igitx: str = igit[2 : igit.index(",")][:-1]
         # The case occurs when the name is exactly the same.
         # Upper and lower case is respected.
