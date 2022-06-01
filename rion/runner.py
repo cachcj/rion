@@ -46,7 +46,7 @@ def remove(content: list) -> None:
     """
     Rion remove packages
     """
-    runner_remove.runnable_remove("rion.db", content)
+    runner_remove.runnable_remove("rion.db", "available", "pkg_name", content)
 
 
 def dlist(content) -> None:

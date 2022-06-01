@@ -6,3 +6,4 @@ disable=
     R0902, # Too many instance attributes
     C0200, # Enumerate
     R0912, # Too many branches
+    E1121, # To many args
