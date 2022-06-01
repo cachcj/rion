@@ -22,7 +22,7 @@ def runnable_remove(db_name: str, table_name: str, pkg_name: str, content: str) 
         print(f"{content} cannot be found on your machine.")
 
     try:
-        db.delete_package(db_name, db_table, content)
+        db.delete_package(db_name, table_name, content)
         print(f"{content} has been removed from the database.")
 
     except sqlite3.Error as error:
