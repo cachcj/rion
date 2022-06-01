@@ -1,18 +1,27 @@
-def runnable_config(pathToConfig: str) -> list:
+"""
+Read the config file
+"""
+
+
+def runnable_config(pathtoconfig: str) -> list:
+    """
+    Read username and password
+    """
     user: str = ""
     pwd: str = ""
 
     # Helper
-    cutter = lambda beta: beta.replace("'", '"').split('"')[1]
+    replace("'", '"').split('"')[1]
 
     # File Open
-    with open(pathToConfig, encoding="utf8") as config:
+    with open(pathtoconfig, encoding="utf8") as config:
         conflist: list = config.readlines()
 
     for runner in conflist:
         if "username" in runner:
-            user = cutter(runner)
+            user = runner.replace("'", '"').split('"')[1]
+
         if "password" in runner:
-            pwd = cutter(runner)
+            pwd = cutter.replace("'", '"').split('"')[1]
 
     return ["auth", [user, pwd]]

@@ -38,7 +38,7 @@ def runnable_search(
         igitx: str = igit[2 : igit.index(",")][:-1]
         # The case occurs when the name is exactly the same.
         # Upper and lower case is respected.
-        if igitx.__eq__(content):
+        if igitx == content:
             exact.append(igit)
         # If the user input is anywhere in the string, the following statement is executed.
         elif content in igitx:
