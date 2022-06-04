@@ -1,3 +1,6 @@
+# pylint: disable-all
+# pylint: disable = E, W, R, C
+
 """
 The module does all the things I am too lazy to do. sorry
 """
@@ -12,7 +15,6 @@ def testsudo() -> bool:
     """
     Checks if a script was started with admin or root rights.
     """
-    # pylint: disable = E, W, R, C
     test: bool = True
     try:
         is_admin = os.getuid() == 0
