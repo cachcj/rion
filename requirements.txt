@@ -2,4 +2,3 @@ numpy
 termcolor
 setuptools
 cryptography
-pandas
