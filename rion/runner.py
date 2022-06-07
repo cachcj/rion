@@ -18,7 +18,7 @@ def install(content: list) -> None:
     """
     install a package
     """
-    runner_install.runnable_install("rion.db", content)
+    runner_install.runnable_install(content)
 
 
 def update(content: list) -> None:

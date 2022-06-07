@@ -2,6 +2,9 @@
 *.txt
 *.conf
 
+# test files
+!test/*
+
 # Package
 *.pdk
 *.zip

@@ -3,7 +3,6 @@ Read the config file
 """
 
 
-
 def runnable_config(pathtoconfig: str) -> list:
     """
     Read username and password
