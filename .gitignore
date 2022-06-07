@@ -2,9 +2,6 @@
 *.txt
 *.conf
 
-# test files
-!test/*
-
 # Package
 *.pdk
 *.zip
@@ -15,6 +12,9 @@
 
 # test
 *test*
+
+# test files
+!test/*
 
 # Editor
 *vscode*
