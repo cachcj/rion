@@ -3,9 +3,8 @@ install packages
 """
 
 import tarfile
-from rion import db
-import shutil
 import os
+from rion import db
 
 
 def runnable_install(content: str) -> None:
