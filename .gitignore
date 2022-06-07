@@ -11,7 +11,7 @@
 *.db
 
 # test
-*test*
+*test*.py
 
 # test files
 !test/*
