@@ -22,6 +22,6 @@ def runnable_install(content: str) -> None:
 
     # get Versionumber
     pos = abs(content[0][::-1].find("v-") - len(a)) - 1
-    version = content[0][pos : len(a) - 4 : 1].replace("_", ".")
+    version = content[0][pos : len(a) - 7 : 1].replace("_", ".")
 
-    db.input_value("rion.db", "installed", f"({content[0]})")
+    db.input_value("rion.db", "installed", f"({content[0]}, {version})")
