@@ -25,8 +25,8 @@ def runnable_installer() -> None:
         docker.write("rion_conf\n")
 
     # Install Database
-    db.create_database("Packages")
-    db.create_table("Packages", "Package", "name text, version text")
+    db.create_database("rion.db")
+    db.create_table("rion.db", "installed", "name text, version text, venv text ")
 
     # Load Cipher
     key = crypt.gen_key()
@@ -38,14 +38,6 @@ def runnable_installer() -> None:
     with open("config.txt", "a", encoding="utf8") as docker:
         docker.write(f"key={key}\n")
 
-    # Install Venv Manager
-    with open("venv.txt", "w", encoding="utf8") as docker:
-        docker.write("Venv Manager\n")
-
     # setup root venv
     path += helper.os_bindings("/venv/node")
     Path(path).mkdir(parents=True, exist_ok=True)
-
-    # write rion as root venv
-    with open("venv.txt", "a", encoding="utf8") as docker:
-        docker.write("/venv/node\n")
