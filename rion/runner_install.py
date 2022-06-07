@@ -1,9 +1,11 @@
-import tarfile
-from rion import db
-
 """
 install packages
 """
+
+import tarfile
+from rion import db
+import shutil
+import os
 
 
 def runnable_install(content: str) -> None:
@@ -13,15 +15,17 @@ def runnable_install(content: str) -> None:
 
     # specifying database loacation
     db_name: str = "rion.db"
-    # setting config-file location
-    pathtovenv: str = "rion.conf"
 
     # extract given archive
+    pathstring: str = os.getcwd()
+    os.chdir(f"{pathstring}/venv/{content[1]}")
     with tarfile.open(content[0], "r") as archive:
         archive.extractall()
+    os.chdir(pathstring)
 
     # get Versionumber
-    pos = abs(content[0][::-1].find("v-") - len(a)) - 1
-    version = content[0][pos : len(a) - 7 : 1].replace("_", ".")
+    pos = abs(content[0][::-1].find("v-") - len(content[0])) - 1
+    version = content[0][pos : len(content[0]) - 7 : 1].replace("_", ".")
 
-    db.input_value("rion.db", "installed", f"({content[0]}, {version})")
+    # add to database
+    db.input_value(db_name, "installed", f"({content[0]}, {version}, {content[1]})")
