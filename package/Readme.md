@@ -29,3 +29,17 @@ tar czvf buddy-v100_0_3.tar.gz buddy/
 ```
 
 ## Dependencies
+The dependencies list is kept pretty close to pythons pip requirements. 
+Strictly speaking it is just a txt list with all values. These can be refined by operators. 
+
+### Example
+```txt
+katzenfutter>=43
+```
+
+### Flags
+The separation operator is a =.  Nevertheless, there are other options.
+
+- hallo==0.1: The package hallo version 0.1 is installed.
+- hallo>=:0.1 The package hallo with the minimum version 0.1 is installed.
+- hallo: The latest version of the hallo package is installed.  
