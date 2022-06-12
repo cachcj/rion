@@ -96,6 +96,7 @@ class Rion:
         # We overload the path management
         # with platform specific instances to prevent errors
         os.mkdir(self.helper.os_bindings("rion"))
+        os.chdir(self.helper.os_bindings("rion"))
         # Database Management
         self.rion.create_database()
         self.rion.create_table("installed", "name text, version text, venv text")
