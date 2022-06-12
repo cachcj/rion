@@ -19,7 +19,7 @@ class Conmanager:
         Konstruktor
         @param server:
         @param port:
-        @param protocoll:
+        @param protocol:
         @param user:
         @param pwd:
         @return:

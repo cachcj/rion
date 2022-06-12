@@ -1,5 +1,3 @@
-
-
 """
     Short Error Class
 """
