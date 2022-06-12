@@ -92,7 +92,7 @@ class Rion:
         Rion installer
         """
         # To install Rion we go to the user directory.
-        os.chdir(self.user)
+        os.chdir(self.path_user)
         # We overload the path management
         # with platform specific instances to prevent errors
         os.mkdir(self.helper.os_bindings("rion"))
@@ -157,6 +157,9 @@ class Rion:
         """
 
     def search(self) -> None:
+        """
+        Search Package in Database
+        """
         # If there are spaces in the name the package will be rejected
         if " " in self.content:
             self.error.error_message("Wrong Package Syntax")
