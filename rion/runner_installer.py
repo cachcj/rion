@@ -2,6 +2,7 @@
 Delete Package
 """
 
+
 from pathlib import Path
 import os
 from rion import helper
@@ -14,7 +15,7 @@ def runnable_installer() -> None:
     load installer
     """
     # OS Path Modul
-    path: str = helper.os_bindings(f"{os.path.expanduser('.')}/rion")
+    path: str = helper.os_bindings(f"{str(Path.home())}/rion")
     Path(path).mkdir(parents=True, exist_ok=True)
 
     # Change base
@@ -22,7 +23,7 @@ def runnable_installer() -> None:
 
     # Install Database
     db.create_database("rion.db")
-    db.create_table("rion.db", "installed", "name text, version text, venv text ")
+    db.create_table("rion.db", "installed", "name text, version text, venv text")
 
     # Load Cipher
     key = crypt.gen_key()
@@ -35,5 +36,5 @@ def runnable_installer() -> None:
         docker.write(f"key={key}\n")
 
     # setup root venv
-    path = helper.os_bindings(f"{os.path.expanduser('.')}/rion/node")
+    path = helper.os_bindings(f"{str(Path.home())}/rion/node")
     Path(path).mkdir(parents=True, exist_ok=True)
