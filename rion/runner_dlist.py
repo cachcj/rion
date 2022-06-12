@@ -41,3 +41,6 @@ def runnable_dlist() -> None:
             docker.write(
                 (str(runner).replace("(", "").replace(")", "").replace("'", ""))
             )
+
+    # Return folder
+    os.chdir(path)
