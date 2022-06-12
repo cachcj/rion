@@ -4,7 +4,6 @@ Rion Class
 import os
 import tarfile
 from pathlib import Path
-from typing import Callable, Any
 
 from rion.database import Database
 from rion.package import Package
@@ -67,7 +66,7 @@ class Rion:
         install packages
         """
         # Create Package
-        pkg = Package("None", "None", "None")
+        pkg = Package()
 
         # specifying database loacation
         db_name: str = "rion.db"
@@ -87,10 +86,10 @@ class Rion:
         os.chdir(pathstring)
 
         # The version number is part of the package. Therefore it must be read out.
-        pos: Callable[[Any], int | Any] = lambda docker: abs(docker[::-1].find("v-") - len(docker)) - 1
+        pos = lambda docker: abs(docker[::-1].find("v-") - len(docker)) - 1
         pkg.set_version(
             self.content[0][
-                pos(self.content[0]) : len(self.content[0]) - 7 : 1
+            pos(self.content[0]): len(self.content[0]) - 7: 1
             ].replace("_", ".")
         )
 

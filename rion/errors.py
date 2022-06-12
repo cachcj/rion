@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 """
     Short Error Class
 """

@@ -1,3 +1,8 @@
+"""
+Package Class
+"""
+
+
 class Package:
     """
     Create a package

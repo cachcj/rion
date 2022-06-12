@@ -1,12 +1,10 @@
 """
 simple FTP Handler
 """
+import urllib3
 import os
 
-import urllib3
-
-
-class FTPHandler:
+class Conmanager:
     """
     simple FTP Handler
     """
