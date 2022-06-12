@@ -1,19 +1,28 @@
-#!/usr/bin/env python3
 """
  Start modules for all imports
 """
 import sys
+from datetime import datetime
 
 import numpy as np
 
-from rion import errors
-from rion import runner
+from rion.errors import Errors
+from rion.rion import Rion
+
+"""
+Start modules for all imports
+"""
 
 
 def handler() -> None:
     """
     Manages the CL arguments and distributes them to appropriate commands.
     """
+    # time Handler
+    start = datetime.now()
+
+    # Load Error Object
+    errorx = Errors()
 
     if len(sys.argv) >= 2:
         # Deletes the path and the basic command from the array
@@ -25,30 +34,34 @@ def handler() -> None:
         # Converts the Numpy array back to a normal list
         flags: list[str] = np.ndarray.tolist(command_list)
 
+        # Create Object
+        riox = Rion(flags)
+
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
-            runner.install(flags)
+            riox.install()
         elif loader == "update":
-            runner.update(flags)
+            riox.update()
         elif loader == "remove":
-            runner.remove(flags)
+            riox.remove()
         elif loader == "search":
-            runner.search(flags)
-        elif loader == "list":
-            runner.dlist(flags)
+            riox.search()
         elif loader == "freeze":
-            runner.freeze(flags)
+            riox.freeze()
         elif loader == "config":
-            runner.config(flags)
+            riox.config()
         elif loader == "check":
-            runner.check(flags)
+            riox.check()
         elif loader == "installer":
-            runner.init()
+            riox.installer()
         elif loader == "login":
-            runner.login()
+            riox.login()
         else:
             # If no command was found, it aborts the program.
-            errors.commandnotfound()
-
+            errorx.error_message("no command was found")
     else:
-        errors.noinput()
+        errorx.error_message("no input")
+
+    # End Time Managment
+    diff = datetime.now() - start
+    print(f"run: {diff.seconds}s")
