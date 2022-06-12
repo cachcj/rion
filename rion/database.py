@@ -1,7 +1,14 @@
+"""
+Database Class
+"""
 import sqlite3
 
 
 class Database:
+    """
+    Database Class
+    """
+
     def __init__(self, db_name: str):
         self.db_name = db_name
 
