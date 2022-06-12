@@ -2,3 +2,4 @@
 disable=
     R0903, # Too few public methods
     C3001, # lambda
+    R0902, # overload cons

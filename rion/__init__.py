@@ -9,10 +9,6 @@ import numpy as np
 from rion.errors import Errors
 from rion.rion import Rion
 
-"""
-Start modules for all imports
-"""
-
 
 def handler() -> None:
     """
