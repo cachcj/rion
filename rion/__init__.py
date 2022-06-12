@@ -53,6 +53,6 @@ class Handler:
                 riox.login()
             else:
                 # If no command was found, it aborts the program.
-                errors.commandnotfound()
+                Errors("command was found")
         else:
             Errors("no input")
