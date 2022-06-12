@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['os_5fbindings_184',['os_bindings',['../namespacerion_1_1helper.html#a884c358a1905246a4035edbeffd4b737',1,'rion::helper']]]
+  ['read_5fdescription_135',['read_description',['../namespacesetup.html#ac0bdee80c9ae2bb78cb28cb50fb181c6',1,'setup']]],
+  ['remove_136',['remove',['../classrion_1_1rion_1_1_rion.html#aa6e081c0885ec7828f4b43ff9fd5df06',1,'rion::rion::Rion']]]
 ];

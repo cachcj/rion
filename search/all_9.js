@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['list_5ftable_33',['list_table',['../namespacerion_1_1db.html#abf1cbef806f60088b4922e3140e53f39',1,'rion::db']]],
-  ['login_34',['login',['../namespacerion_1_1runner.html#a6e3528fbdfc0ebb9c41e21fdf2a17827',1,'rion::runner']]]
+  ['node_39',['node',['../classrion_1_1rion_1_1_rion.html#ab60045bcd70af6080e00c68bb3e486cd',1,'rion::rion::Rion']]]
 ];

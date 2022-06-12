@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['calc_5fadd_150',['calc_add',['../namespacerion_1_1____main____.html#a9bb2a18e88071dbf175c7e6ed1ca1f45',1,'rion::__main__']]],
-  ['check_151',['check',['../namespacerion_1_1runner.html#ababf4931e310bdce70219f4600349b4b',1,'rion::runner']]],
-  ['commandlist_152',['commandlist',['../namespacerion_1_1errors.html#ae43ecb7fd209b548becc59f576025ffa',1,'rion::errors']]],
-  ['commandnotfound_153',['commandnotfound',['../namespacerion_1_1errors.html#a6ef6e9feebc87fc52be2e5ac9f64163f',1,'rion::errors']]],
-  ['config_154',['config',['../namespacerion_1_1runner.html#a7bf4c8141a0860005922081a2910415a',1,'rion::runner']]],
-  ['courser_155',['courser',['../namespacerion_1_1db.html#ac92797fa184d546a673d5df7f78f8c82',1,'rion::db']]],
-  ['create_5fdatabase_156',['create_database',['../namespacerion_1_1db.html#a280a429a606990cb03219b77e53138f3',1,'rion::db']]],
-  ['create_5ftable_157',['create_table',['../namespacerion_1_1db.html#a29bb7959c475a3a55e3ddc5e6812b100',1,'rion::db']]]
+  ['check_111',['check',['../classrion_1_1rion_1_1_rion.html#ad359d182ecc06ed806a59da04dec3c32',1,'rion::rion::Rion']]],
+  ['config_112',['config',['../classrion_1_1rion_1_1_rion.html#a21354e31204895ea82f5b28697480c74',1,'rion::rion::Rion']]],
+  ['courser_113',['courser',['../classrion_1_1database_1_1_database.html#ab2199fdb00fac8d128b9c2c91bb65cab',1,'rion::database::Database']]],
+  ['create_5fdatabase_114',['create_database',['../classrion_1_1database_1_1_database.html#a0afd1a9d71b9b1b9b5f18be1bafc993b',1,'rion::database::Database']]],
+  ['create_5ftable_115',['create_table',['../classrion_1_1database_1_1_database.html#a3ec9aa17d2ae457ff34f1439e2d0ceb7',1,'rion::database::Database']]]
 ];

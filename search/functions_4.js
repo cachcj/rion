@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['freeze_167',['freeze',['../namespacerion_1_1runner.html#ae2a977aed25a6ad84c09b180b53b8292',1,'rion::runner']]]
+  ['freeze_123',['freeze',['../classrion_1_1rion_1_1_rion.html#ac6b6c5f5a2fe1f38d13e13eddc405d60',1,'rion::rion::Rion']]]
 ];
