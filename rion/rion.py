@@ -63,8 +63,8 @@ class Rion:
 
     def install(self) -> None:
         """
-           install packages
-           """
+        install packages
+        """
         # Create Package
         pkg = Package("None", "None", "None")
 
@@ -86,10 +86,18 @@ class Rion:
 
         # The version number is part of the package. Therefore it must be read out.
         pos = lambda docker: abs(docker[::-1].find("v-") - len(docker)) - 1
-        pkg.set_version(self.content[0][pos(self.content[0]): len(self.content[0]) - 7: 1].replace("_", "."))
+        pkg.set_version(
+            self.content[0][
+                pos(self.content[0]) : len(self.content[0]) - 7 : 1
+            ].replace("_", ".")
+        )
 
         # After the attempted installation we add the entry to the Rion database
-        self.rion.input_value(db_name, "installed", f"({self.content[0]}, {pkg.get_version()}, {self.content[1]})")
+        self.rion.input_value(
+            db_name,
+            "installed",
+            f"({self.content[0]}, {pkg.get_version()}, {self.content[1]})",
+        )
 
     @staticmethod
     def installer() -> None:
