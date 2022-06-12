@@ -68,4 +68,4 @@ Finally, we uninstall the package and add the path to the default environment. A
 - With this command you can log in to the X-FAB servers
 
 # Package 
-You can find all information about the packages [here](package). 
+You can find all information about the packages [here](https://github.com/Riffecs/rion/tree/main/package). 
