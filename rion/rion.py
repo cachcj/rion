@@ -89,7 +89,7 @@ class Rion:
         pos = lambda docker: abs(docker[::-1].find("v-") - len(docker)) - 1
         pkg.set_version(
             self.content[0][
-            pos(self.content[0]): len(self.content[0]) - 7: 1
+                pos(self.content[0]) : len(self.content[0]) - 7 : 1
             ].replace("_", ".")
         )
 

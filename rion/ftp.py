@@ -4,12 +4,15 @@ simple FTP Handler
 import urllib3
 import os
 
+
 class Conmanager:
     """
     simple FTP Handler
     """
 
-    def __int__(self, server: str, port: str, protocol: str, user: str, pwd: str) -> None:
+    def __int__(
+        self, server: str, port: str, protocol: str, user: str, pwd: str
+    ) -> None:
         """
         Konstruktor
         @param server:
