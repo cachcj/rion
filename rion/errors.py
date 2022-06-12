@@ -120,3 +120,11 @@ def user_exists() -> None:
     """
     print(colored("There is already a user", "red"))
     sys.exit(-1)
+
+
+def emptydb() -> None:
+    """
+    empty database
+    """
+    print(colored("The database is empty", "red"))
+    sys.exit(-1)

@@ -20,7 +20,7 @@ def runnable_search(
         errors.nosearchargs()
 
     # outputty contains an array of all records from corresponding table
-    outputty: list = db.list_table(db_name, header_name, table_name)
+    outputty: list = db.list_table(db_name, table_name, header_name)
 
     # We need three lists to represent the three differnt search priorities.
     exact: list = []
