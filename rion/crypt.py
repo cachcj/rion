@@ -1,5 +1,5 @@
 """
-    Crypt Function
+    Crypt Module
 """
 import hashlib
 
