@@ -4,7 +4,9 @@ Rion Class
 import os
 import string
 from getpass import getpass
+from os.path import exists
 from pathlib import Path
+from typing import TextIO
 
 from rion.database import Database
 from rion.errors import Errors
@@ -19,9 +21,9 @@ class Rion:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
-        self.path_config = f"{self.user}/rion.conf"
-        self.path_db = f"{self.user}/rion.db"
-        self.node = f"{self.user}/node"
+        self.path_config = f"{self.path_user}/rion.conf"
+        self.path_db = f"{self.path_user}/rion.db"
+        self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
         self.error = Errors()
         self.pkg = Package()
@@ -39,17 +41,45 @@ class Rion:
         Read username and password
         """
 
-    @staticmethod
-    def dlist() -> None:
+    def dlist(self) -> None:
         """
-        Rion
-        """
+         Prints all installed packages
+         """
+        # outputty contains an array of all records from corresponding table
+        outputty: list = self.rion.list_table("installed", "name")
+        # Checks if the output is empty
+        if len(outputty) == 0:
+            self.error.error_message("The database is empty")
+        # Set Path
+        path = os.getcwd()
+        # Switch to Rion
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # check old lists
+        if exists("rion_list.txt"):
+            os.remove("rion_list.txt")
+        # write new file
+        docker: TextIO
+        with open("rion_list.txt", "a", encoding="utf8") as docker:
+            for runner in outputty:
+                docker.write(
+                    (str(runner).replace("(", "").replace(")", "").replace("'", ""))
+                )
+        # Return folder
+        os.chdir(path)
 
-    @staticmethod
-    def freeze() -> None:
+    def freeze(self) -> None:
         """
-        Rion
+        Prints all installed packages
         """
+        # outputty contains an array of all records from corresponding table
+        outputty: list = self.rion.list_table("installed", "name")
+        # Checks if the output is empty
+        if len(outputty) == 0:
+            self.error.error_message("The database is empty")
+        else:
+            # If it is not empty, then spend it all
+            for runner in outputty:
+                print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
     @staticmethod
     def install() -> None:
