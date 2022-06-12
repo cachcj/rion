@@ -5,88 +5,85 @@ from rion.database import Database
 
 
 class Rion:
-    """
-    Rion Class
-    """
+    """ Rion Class """
 
+    def __init__(self, content: str) -> None:
+        self.rion = Database("rion")
+        self.content = content
 
-def __init__(self, content: str) -> None:
-    self.rion = Database("rion")
-    self.content = content
+    @staticmethod
+    def check() -> None:
+        """
+        Rion
+        """
+        pass
 
+    @staticmethod
+    def config() -> None:
+        """
+        Rion
+        """
+        pass
 
-def check(self) -> None:
-    """
-    Rion
-    """
-    pass
+    @staticmethod
+    def dlist() -> None:
+        """
+        Rion
+        """
+        pass
 
+    @staticmethod
+    def freeze() -> None:
+        """
+        Rion
+        """
+        pass
 
-def config(self) -> None:
-    """
-    Rion
-    """
-    pass
+    @staticmethod
+    def install() -> None:
+        """
+        Rion
+        """
+        pass
 
+    @staticmethod
+    def installer() -> None:
+        """
+        Rion
+        """
+        pass
 
-def dlist(self) -> None:
-    """
-    Rion
-    """
-    pass
+    @staticmethod
+    def login() -> None:
+        """
+        Rion
+        """
+        pass
 
+    @staticmethod
+    def remove() -> None:
+        """
+        Rion
+        """
+        pass
 
-def freeze(self) -> None:
-    """
-    Rion
-    """
-    pass
+    @staticmethod
+    def search() -> None:
+        """
+        Rion
+        """
+        pass
 
+    @staticmethod
+    def update() -> None:
+        """
+        Rion
+        """
+        pass
 
-def install(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def installer(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def login(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def remove(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def search(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def update(self) -> None:
-    """
-    Rion
-    """
-    pass
-
-
-def upgrade(self) -> None:
-    """
-    Rion
-    """
-    pass
+    @staticmethod
+    def upgrade() -> None:
+        """
+        Rion
+        """
+        pass

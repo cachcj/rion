@@ -78,11 +78,11 @@ class Database:
             container.append(row)
         return container
 
-    def print_table(self, db_table: str, db_header: str) -> None:
+    def print_table(self, db_table: str) -> None:
         """
         print List of Table
         """
-        for i in self.list_table(self.db_name, db_table, db_header):
+        for i in self.list_table(self.db_name, db_table):
             print(i)
 
     def db_handler(self, sql_expression: str) -> None:
