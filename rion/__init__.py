@@ -3,7 +3,6 @@
 """
 import sys
 from datetime import datetime
-
 import numpy as np
 
 from rion.errors import Errors
