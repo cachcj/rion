@@ -10,11 +10,16 @@ class Database:
     """
 
     def __init__(self, db_name: str):
+        """
+        Konstruktor
+        @param db_name:
+        """
         self.db_name = db_name
 
     def create_database(self) -> None:
         """
         Creates a database with sqlite3
+        @return:
         """
         # Creates the database via a Python Courser
         sqlite3.connect(f"{self.db_name}.db")
@@ -22,6 +27,7 @@ class Database:
     def courser(self) -> sqlite3.Connection:
         """
         Creates a courser
+        @return:
         """
         # Creates the database via a Python Courser
         return sqlite3.connect(f"{self.db_name}.db")
@@ -29,6 +35,9 @@ class Database:
     def create_table(self, db_table: str, db_header: str) -> None:
         """
         Creates the corresponding tables via an SQL block.
+        @param db_table:
+        @param db_header:
+        @return:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
@@ -48,6 +57,10 @@ class Database:
     def input_value(self, db_table: str, db_content: str) -> None:
         """
         Creates the corresponding tables via an SQL block.
+        @param self:
+        @param db_table:
+        @param db_content:
+        @return:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
@@ -67,6 +80,10 @@ class Database:
     def list_table(self, db_table: str, db_header: str) -> list:
         """
         Return List of Table
+        @param self:
+        @param db_table:
+        @param db_header:
+        @return:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
@@ -81,6 +98,9 @@ class Database:
     def print_table(self, db_table: str) -> None:
         """
         print List of Table
+        @param self:
+        @param db_table:
+        @return:
         """
         for i in self.list_table(self.db_name, db_table):
             print(i)
@@ -88,6 +108,9 @@ class Database:
     def db_handler(self, sql_expression: str) -> None:
         """
         A Simple SQL Handler for Primitive Queries
+        @param self:
+        @param sql_expression:
+        @return:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
@@ -105,6 +128,11 @@ class Database:
     def delete_package(self, db_table: str, package_list: str, content: str) -> None:
         """
         Delete Packages from a SQL table
+        @param self:
+        @param db_table:
+        @param package_list:
+        @param content:
+        @return:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")

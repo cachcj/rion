@@ -2,11 +2,9 @@
 Rion Class
 """
 import os
-import tarfile
 from pathlib import Path
 
 from rion.database import Database
-from rion.package import Package
 
 
 class Rion:
@@ -28,7 +26,6 @@ class Rion:
         """
 
     def config(self) -> list:
-
         """
         Read username and password
         """
@@ -44,12 +41,12 @@ class Rion:
         """
         Rion
         """
+
     @staticmethod
     def install() -> None:
         """
         install packages
         """
-
 
     @staticmethod
     def installer() -> None:
