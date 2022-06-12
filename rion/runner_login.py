@@ -3,6 +3,7 @@ login user
 """
 import os
 import string
+from getpass import getpass
 from os.path import expanduser
 
 from rion import errors
@@ -31,7 +32,7 @@ def runnable_login() -> None:
         errors.nouser()
 
     # Reads the password
-    password = input("Password:")
+    password = getpass()
 
     # Checks if the password is long enough
     if len(password) >= 8:
