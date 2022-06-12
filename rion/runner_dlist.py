@@ -2,9 +2,21 @@
 List all packages
 """
 
+from rion import db
+from rion import errors
 
-def runnable_dlist(db_name: str, content: str) -> None:
+
+def runnable_dlist() -> None:
     """
-    gibt alle installierten Packete aus
+        Prints all installed packages
     """
-    print(content, db_name)
+
+    # outputty contains an array of all records from corresponding table
+    outputty: list = db.list_table("rion", "installed", "name")
+
+    if len(outputty) == 0:
+        # empty Database
+        errors.emptydb()
+
+    for runner in outputty:
+        print(str(runner).replace("(", "").replace(")", "").replace("'", ""))

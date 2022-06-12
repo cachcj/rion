@@ -54,7 +54,7 @@ def dlist(content) -> None:
     """
     Rion list packages
     """
-    runner_dlist.runnable_dlist("rion.db", content)
+    runner_dlist.runnable_dlist()
 
 
 def freeze(content: list) -> None:

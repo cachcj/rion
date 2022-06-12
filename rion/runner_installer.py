@@ -22,7 +22,7 @@ def runnable_installer() -> None:
     os.chdir(path)
 
     # Install Database
-    db.create_database("rion.db")
+    db.create_database("rion")
     db.create_table("rion.db", "installed", "name text, version text, venv text")
 
     # Load Cipher
