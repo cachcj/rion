@@ -23,7 +23,7 @@ packages
 ...
 ```
 ## Build
-The packages are simply formed using the "tar" command. Alternatively, you can also use the script for this. [Script](../makepacs.sh)
+The packages are simply formed using the "tar" command. Alternatively, you can also use the script for this. [Script](/package/extract/makepacs.sh)
 ```shell
 tar czvf buddy-v100_0_3.tar.gz buddy/
 ```

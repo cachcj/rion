@@ -5,4 +5,3 @@ tar czvf katzenfutter-v44_0_3.tar.gz katzenfutter/
 tar czvf scotty-v42_0_2.tar.gz scotty/
 tar czvf tapwater-v2_1.tar.gz tapwater/
 tar czvf packages.tar.gz * 
-
