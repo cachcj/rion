@@ -2,9 +2,8 @@ import sqlite3
 
 
 class Database:
-    def __init__(self, db_name: str, db_table: str):
+    def __init__(self, db_name: str):
         self.db_name = db_name
-        self.db_table = db_table
 
     def create_database(self) -> None:
         """
@@ -20,7 +19,7 @@ class Database:
         # Creates the database via a Python Courser
         return sqlite3.connect(f"{self.db_name}.db")
 
-    def create_table(self, db_header: str) -> None:
+    def create_table(self, db_table: str, db_header: str) -> None:
         """
         Creates the corresponding tables via an SQL block.
         """
@@ -29,7 +28,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"CREATE TABLE {self.db_table} ({db_header})"
+        table = f"CREATE TABLE {db_table} ({db_header})"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
@@ -39,7 +38,7 @@ class Database:
         # Destroys the Courser
         cur = None
 
-    def input_value(self, db_content: str) -> None:
+    def input_value(self, db_table: str, db_content: str) -> None:
         """
         Creates the corresponding tables via an SQL block.
         """
@@ -48,7 +47,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"INSERT INTO {self.db_table} VALUES {db_content}"
+        table = f"INSERT INTO {db_table} VALUES {db_content}"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
@@ -58,7 +57,7 @@ class Database:
         # Destroys the Courser
         cur = None
 
-    def list_table(self, db_header: str) -> list:
+    def list_table(self, db_table: str, db_header: str) -> list:
         """
         Return List of Table
         """
@@ -68,15 +67,15 @@ class Database:
         cur = con.cursor()
         # Creates an empty list
         container = []
-        for row in cur.execute(f"SELECT * FROM {self.db_table} ORDER BY {db_header}"):
+        for row in cur.execute(f"SELECT * FROM {db_table} ORDER BY {db_header}"):
             container.append(row)
         return container
 
-    def print_table(self, db_header: str) -> None:
+    def print_table(self, db_table: str, db_header: str) -> None:
         """
         print List of Table
         """
-        for i in self.list_table(self.db_name, self.db_table, db_header):
+        for i in self.list_table(self.db_name, db_table, db_header):
             print(i)
 
     def db_handler(self, sql_expression: str) -> None:
@@ -96,7 +95,7 @@ class Database:
         # Destroys the Courser
         cur = None
 
-    def delete_package(self, package_list: str, content: str) -> None:
+    def delete_package(self, db_table: str, package_list: str, content: str) -> None:
         """
         Delete Packages from a SQL table
         """
@@ -105,7 +104,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL DELETE Command
-        table = f"DELETE FROM {self.db_table} WHERE {package_list}={content};"
+        table = f"DELETE FROM {db_table} WHERE {package_list}={content};"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes

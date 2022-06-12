@@ -3,39 +3,39 @@ from rion.errors import Errors
 
 
 class Rion:
-    
-    def __init__(self) -> None:
-        self.db = Database("rion", "installed")
+    def __init__(self, content: str) -> None:
+        self.rion = Database("rion")
+        self.content = content
 
-    def check() -> None: 
+    def check(self) -> None:
         pass
 
-    def config() -> None: 
+    def config(self) -> None:
         pass
-    
-    def dlist() -> None: 
+
+    def dlist(self) -> None:
         pass
-    
-    def freeze() -> None: 
+
+    def freeze(self) -> None:
         pass
-    
-    def install() -> None: 
+
+    def install(self) -> None:
         pass
-    
-    def installer() -> None: 
+
+    def installer(self) -> None:
         pass
-    
-    def login() -> None: 
+
+    def login(self) -> None:
         pass
-    
-    def remove() -> None: 
+
+    def remove(self) -> None:
         pass
-    
-    def search() -> None: 
+
+    def search(self) -> None:
         pass
-    
-    def update() -> None: 
+
+    def update(self) -> None:
         pass
-    
-    def upgrade() -> None: 
+
+    def upgrade(self) -> None:
         pass

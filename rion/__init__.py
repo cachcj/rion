@@ -3,24 +3,23 @@
 """
 import sys
 
-from rion.errors import Errors
 import numpy as np
 
+from rion.errors import Errors
 from rion.rion import Rion
-    
-class handler: 
-    def __init__(self) -> None:
-        pass 
 
+
+class Handler:
+    def __init__(self) -> None:
+        pass
+
+    @staticmethod
     def handler() -> None:
         """
         Manages the CL arguments and distributes them to appropriate commands.
         """
 
         if len(sys.argv) >= 2:
-            # Create Object
-            rion = Rion()
-
             # Deletes the path and the basic command from the array
             command_list = np.delete(np.array(sys.argv), [0, 1])
 
@@ -30,27 +29,28 @@ class handler:
             # Converts the Numpy array back to a normal list
             flags: list[str] = np.ndarray.tolist(command_list)
 
+            # Create Object
+            riox = Rion(flags)
+
             # Transfer the NumPy array with all configs to the relevant functions.
             if loader == "install":
-                runner.install(flags)
+                riox.install()
             elif loader == "update":
-                runner.update(flags)
+                riox.update()
             elif loader == "remove":
-                runner.remove(flags)
+                riox.remove()
             elif loader == "search":
-                runner.search(flags)
-            elif loader == "list":
-                runner.dlist(flags)
+                riox.search()
             elif loader == "freeze":
-                runner.freeze(flags)
+                riox.freeze()
             elif loader == "config":
-                runner.config(flags)
+                riox.config()
             elif loader == "check":
-                runner.check(flags)
+                riox.check()
             elif loader == "installer":
-                runner.init()
+                riox.installer()
             elif loader == "login":
-                runner.login()
+                riox.login()
             else:
                 # If no command was found, it aborts the program.
                 errors.commandnotfound()
