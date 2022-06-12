@@ -2,6 +2,7 @@
  Start modules for all imports
 """
 import sys
+from datetime import datetime
 
 import numpy as np
 
@@ -22,6 +23,11 @@ class Handler:
         """
         Manages the CL arguments and distributes them to appropriate commands.
         """
+        # time Handler
+        start = datetime.now()
+
+        # Load Error Object
+        errorx = Errors()
 
         if len(sys.argv) >= 2:
             # Deletes the path and the basic command from the array
@@ -57,6 +63,10 @@ class Handler:
                 riox.login()
             else:
                 # If no command was found, it aborts the program.
-                Errors("command was found")
+                errorx.error_message("no command was found")
         else:
-            Errors("no input")
+            errorx.error_message("no input")
+
+        # End Time Managment
+        diff = datetime.now() - start
+        print(f"run: {diff.seconds}s")

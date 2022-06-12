@@ -12,6 +12,13 @@ class Errors:
     Short Error Class
     """
 
-    def __init__(self, text: str) -> None:
+    def __init__(self) -> None:
+        pass
+
+    @staticmethod
+    def error_message(text):
+        """
+        Resume an error
+        """
         print(colored(text, "red"))
         sys.exit(0)
