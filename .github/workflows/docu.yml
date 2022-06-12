@@ -4,7 +4,12 @@ name: Documentation
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   build-documentation:
