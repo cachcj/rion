@@ -1,9 +1,9 @@
 """
 simple FTP Handler
 """
-import ftplib
 import os
-import urllib
+
+import urllib3
 
 
 class FTPHandler:
@@ -12,7 +12,7 @@ class FTPHandler:
     """
 
     def __int__(
-        self, server: str, port: int, protocoll: str, user: str, pwd: str
+            self, server: str, port: int, protocoll: str, user: str, pwd: str
     ) -> None:
         """
         Konstruktor
@@ -29,18 +29,6 @@ class FTPHandler:
         self.pwd = pwd
         self.port = str(port)
 
-    def upload(self, file: str) -> None:
-        """
-        Upload an File to a FTP Server
-        @param file:
-        @return:
-        """
-        session = ftplib.FTP(self.server, self.user, self.pwd)
-        file = open(self.file, "rb")  #
-        session.storbinary(f"STOR {self.file}", file)
-        file.close()
-        session.quit()
-
     def download(self, file: str, folder: str) -> None:
         """
         Download an File from a FTP Server
@@ -50,7 +38,7 @@ class FTPHandler:
         """
         path = os.getcwd()
         os.chdir(folder)
-        urllib.urlretrieve(
+        urllib3.urlretrieve(
             f"ftp://{self.user}:{self.pwd}@{self.server}:{self.port}", file
         )
         os.chdir(path)
