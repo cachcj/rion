@@ -1,4 +1,7 @@
-numpy
-termcolor
-setuptools
+numpy~=1.22.4
+termcolor~=1.1.0
+setuptools~=62.3.2
 cryptography
+
+urllib3~=1.26.9
+rion~=0.0.6
