@@ -50,18 +50,18 @@ def remove(content: list) -> None:
     runner_remove.runnable_remove("rion.db", "available", "pkg_name", content)
 
 
-def dlist(content) -> None:
+def dlist() -> None:
     """
     Rion list packages
     """
     runner_dlist.runnable_dlist()
 
 
-def freeze(content: list) -> None:
+def freeze() -> None:
     """
     Rion freeze packages
     """
-    runner_freeze.runnable_freeze("rion.db", content)
+    runner_freeze.runnable_freeze()
 
 
 def check(content: list) -> None:
