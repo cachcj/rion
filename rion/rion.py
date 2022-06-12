@@ -6,7 +6,6 @@ import os.path
 import shutil
 import string
 from getpass import getpass
-from os import path
 from os.path import exists
 from pathlib import Path
 from typing import TextIO
@@ -46,8 +45,8 @@ class Rion:
 
     def dlist(self) -> None:
         """
-         Prints all installed packages
-         """
+        Prints all installed packages
+        """
         # outputty contains an array of all records from corresponding table
         outputty: list = self.rion.list_table("installed", "name")
         # Checks if the output is empty
@@ -97,7 +96,7 @@ class Rion:
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
-        if path.exists('rion'):
+        if path.exists("rion"):
             # Since Rion is already installed it cannot be installed again.
             # Therefore, this is canceled.
             self.error.error_message("Rion is already installed.")
@@ -119,7 +118,7 @@ class Rion:
 
     def login(self) -> None:
         """
-            Creates a user in the User Config
+        Creates a user in the User Config
         """
         # create Correct list
         correct: str = string.ascii_letters + string.digits
@@ -192,7 +191,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
