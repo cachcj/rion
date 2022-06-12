@@ -1,7 +1,10 @@
 """
 Rion Class
 """
+import os
+
 from rion.database import Database
+from pathlib import Path
 
 
 class Rion:
@@ -10,6 +13,11 @@ class Rion:
     def __init__(self, content: str) -> None:
         self.rion = Database("rion")
         self.content = content
+        self.user = str(Path.home())
+        self.path_config = f"{self.user}/rion.conf"
+        self.path_db = f"{self.user}/rion.db"
+        self.node = f"{self.user}/node"
+        self.path = os.getcwd()
 
     @staticmethod
     def check() -> None:
