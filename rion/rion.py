@@ -204,8 +204,8 @@ class Rion:
         # checking whether folder exists or not
         try:
             shutil.rmtree("rion")
-        except OSError as e:
-            self.error.error_message("Error: %s - %s." % (e.filename, e.strerror))
+        except OSError as error_log:
+            self.error.error_message(f"Error: %s - %s. % ({error_log.filename}, {error_log.strerror})")
 
     @staticmethod
     def update() -> None:
