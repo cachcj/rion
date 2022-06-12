@@ -2,9 +2,11 @@
 Rion Class
 """
 import os
+import os.path
 import shutil
 import string
 from getpass import getpass
+from os import path
 from os.path import exists
 from pathlib import Path
 from typing import TextIO
@@ -52,7 +54,7 @@ class Rion:
         if len(outputty) == 0:
             self.error.error_message("The database is empty")
         # Set Path
-        path = os.getcwd()
+        path_now: str = os.getcwd()
         # Switch to Rion
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # check old lists
@@ -66,7 +68,7 @@ class Rion:
                     (str(runner).replace("(", "").replace(")", "").replace("'", ""))
                 )
         # Return folder
-        os.chdir(path)
+        os.chdir(path_now)
 
     def freeze(self) -> None:
         """
@@ -94,20 +96,26 @@ class Rion:
         """
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
-        # We overload the path management
-        # with platform specific instances to prevent errors
-        os.mkdir(self.helper.os_bindings("rion"))
-        os.chdir(self.helper.os_bindings("rion"))
-        # Database Management
-        self.rion.create_database()
-        self.rion.create_table("installed", "name text, version text, venv text")
-        # Config Managment
-        with open("rion.conf", "w", encoding="utf8") as docker:
-            docker.write("conf=rion\n")
-        # Venv Management
-        os.mkdir(self.helper.os_bindings("node"))
-        # Go back to the folder
-        os.chdir(self.path)
+        # We need to check if rion is already installed.
+        if path.exists('rion'):
+            # Since Rion is already installed it cannot be installed again.
+            # Therefore, this is canceled.
+            self.error.error_message("Rion is already installed.")
+        else:
+            # We overload the path management
+            # with platform specific instances to prevent errors
+            os.mkdir(self.helper.os_bindings("rion"))
+            os.chdir(self.helper.os_bindings("rion"))
+            # Database Management
+            self.rion.create_database()
+            self.rion.create_table("installed", "name text, version text, venv text")
+            # Config Managment
+            with open("rion.conf", "w", encoding="utf8") as docker:
+                docker.write("conf=rion\n")
+            # Venv Management
+            os.mkdir(self.helper.os_bindings("node"))
+            # Go back to the folder
+            os.chdir(self.path)
 
     def login(self) -> None:
         """

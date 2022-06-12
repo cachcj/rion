@@ -16,7 +16,7 @@ class Errors:
         pass
 
     @staticmethod
-    def error_message(text):
+    def error_message(text: str) -> None:
         """
         Resume an error
         """
