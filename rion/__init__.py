@@ -1,54 +1,72 @@
-#!/usr/bin/env python3
 """
  Start modules for all imports
 """
 import sys
+from datetime import datetime
 
 import numpy as np
 
-from rion import errors
-from rion import runner
+from rion.errors import Errors
+from rion.rion import Rion
 
 
-def handler() -> None:
+class Handler:
     """
-    Manages the CL arguments and distributes them to appropriate commands.
+    Start modules for all imports
     """
 
-    if len(sys.argv) >= 2:
-        # Deletes the path and the basic command from the array
-        command_list = np.delete(np.array(sys.argv), [0, 1])
+    def __init__(self) -> None:
+        pass
 
-        # Create a variable that stores the main command.
-        loader: str = sys.argv[1]
+    @staticmethod
+    def handler() -> None:
+        """
+        Manages the CL arguments and distributes them to appropriate commands.
+        """
+        # time Handler
+        start = datetime.now()
 
-        # Converts the Numpy array back to a normal list
-        flags: list[str] = np.ndarray.tolist(command_list)
+        # Load Error Object
+        errorx = Errors()
 
-        # Transfer the NumPy array with all configs to the relevant functions.
-        if loader == "install":
-            runner.install(flags)
-        elif loader == "update":
-            runner.update(flags)
-        elif loader == "remove":
-            runner.remove(flags)
-        elif loader == "search":
-            runner.search(flags)
-        elif loader == "list":
-            runner.dlist(flags)
-        elif loader == "freeze":
-            runner.freeze(flags)
-        elif loader == "config":
-            runner.config(flags)
-        elif loader == "check":
-            runner.check(flags)
-        elif loader == "installer":
-            runner.init()
-        elif loader == "login":
-            runner.login()
+        if len(sys.argv) >= 2:
+            # Deletes the path and the basic command from the array
+            command_list = np.delete(np.array(sys.argv), [0, 1])
+
+            # Create a variable that stores the main command.
+            loader: str = sys.argv[1]
+
+            # Converts the Numpy array back to a normal list
+            flags: list[str] = np.ndarray.tolist(command_list)
+
+            # Create Object
+            riox = Rion(flags)
+
+            # Transfer the NumPy array with all configs to the relevant functions.
+            if loader == "install":
+                riox.install()
+            elif loader == "update":
+                riox.update()
+            elif loader == "remove":
+                riox.remove()
+            elif loader == "search":
+                riox.search()
+            elif loader == "freeze":
+                riox.freeze()
+            elif loader == "config":
+                riox.config()
+            elif loader == "check":
+                riox.check()
+            elif loader == "installer":
+                riox.installer()
+            elif loader == "login":
+                riox.login()
+            else:
+                # If no command was found, it aborts the program.
+                errorx.error_message("no command was found")
         else:
-            # If no command was found, it aborts the program.
-            errors.commandnotfound()
+            errorx.error_message("no input")
 
-    else:
-        errors.noinput()
+        # End Time Managment
+        diff = datetime.now() - start
+        print(f"run: {diff.seconds}s")

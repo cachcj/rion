@@ -1,10 +1,4 @@
 [MASTER]
 disable=
     R0903, # Too few public methods
-    R0913, # To much args
-    W0511, # fix to do
-    R0902, # Too many instance attributes
-    C0200, # Enumerate
-    R0912, # Too many branches
-    E1121, # To many args
-    C3001, # Lambda
+    C3001, # lambda
