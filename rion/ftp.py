@@ -1,3 +1,5 @@
+# pylint: disable-all
+# pylint: skip-file
 """
 simple FTP Handler
 """
