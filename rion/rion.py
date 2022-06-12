@@ -96,7 +96,7 @@ class Rion:
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
-        if path.exists("rion"):
+        if os.path.exists("rion"):
             # Since Rion is already installed it cannot be installed again.
             # Therefore, this is canceled.
             self.error.error_message("Rion is already installed.")
