@@ -12,6 +12,7 @@ from rion import runner_check
 from rion import runner_update
 from rion import runner_upgrade
 from rion import runner_install
+from rion import runner_login
 
 
 def install(content: list) -> None:
@@ -82,3 +83,10 @@ def init() -> None:
     Load install skript
     """
     runner_installer.runnable_installer()
+
+
+def login() -> None:
+    """
+    Load login skript
+    """
+    runner_login.runnable_login()

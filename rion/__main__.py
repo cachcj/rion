@@ -7,7 +7,7 @@ from . import handler
 # test test function
 def calc_add(zahl1: int, zahl2: int) -> int:
     """
-        Adds 2 simple numbers
+    Adds 2 simple numbers
     """
     return zahl1 + zahl2
 

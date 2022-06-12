@@ -96,3 +96,27 @@ def nosearchargs() -> None:
     """
     print(colored("No parameters were passed to search. ", "red"))
     sys.exit(-1)
+
+
+def nouser() -> None:
+    """
+    No user name
+    """
+    print(colored("Please enter a longer username", "red"))
+    sys.exit(-1)
+
+
+def errorsyntax() -> None:
+    """
+    No syntax
+    """
+    print(colored("Please keep to the given syntax", "red"))
+    sys.exit(-1)
+
+
+def user_exists() -> None:
+    """
+    User exists
+    """
+    print(colored("There is already a user", "red"))
+    sys.exit(-1)

@@ -44,6 +44,8 @@ def handler() -> None:
             runner.check(flags)
         elif loader == "installer":
             runner.init()
+        elif loader == "login":
+            runner.login()
         else:
             # If no command was found, it aborts the program.
             errors.commandnotfound()

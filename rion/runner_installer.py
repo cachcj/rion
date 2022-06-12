@@ -20,7 +20,7 @@ def runnable_installer() -> None:
     # Change base
     os.chdir(path)
 
-   # Install Database
+    # Install Database
     db.create_database("rion.db")
     db.create_table("rion.db", "installed", "name text, version text, venv text ")
 
