@@ -205,7 +205,7 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.error.error_message(f"Error: %s - %s. % ({error_log.filename}, {error_log.strerror})")
+            self.error.error_message(error_log)
 
     @staticmethod
     def update() -> None:
