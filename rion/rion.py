@@ -2,6 +2,7 @@
 Rion Class
 """
 import os
+import shutil
 import string
 from getpass import getpass
 from os.path import exists
@@ -193,6 +194,18 @@ class Rion:
                 moreorless.append(module_layer)
             elif self.content in module_layer:
                 indescrib.append(module_layer)
+
+    def uninstall(self) -> None:
+        """
+        Uninstall Rion
+        """
+        # go to user folder
+        os.chdir(self.path_user)
+        # checking whether folder exists or not
+        try:
+            shutil.rmtree("rion")
+        except OSError as e:
+            self.error.error_message("Error: %s - %s." % (e.filename, e.strerror))
 
     @staticmethod
     def update() -> None:
