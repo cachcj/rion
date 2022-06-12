@@ -1,8 +1,8 @@
 """
  Module to launch all core commands
 """
-from rion.__init__ import Handler
+from rion import __init__
 
 if __name__ == "__main__":
     # enable entry points
-    Handler.handler()
+    __init__.handler()

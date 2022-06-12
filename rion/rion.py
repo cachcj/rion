@@ -2,10 +2,13 @@
 Rion Class
 """
 import os
+import string
+from getpass import getpass
 from pathlib import Path
 
 from rion.database import Database
 from rion.errors import Errors
+from rion.helper import Helper
 from rion.package import Package
 
 
@@ -15,7 +18,7 @@ class Rion:
     def __init__(self, content: str) -> None:
         self.rion = Database("rion")
         self.content = content
-        self.user = str(Path.home())
+        self.path_user = str(Path.home())
         self.path_config = f"{self.user}/rion.conf"
         self.path_db = f"{self.user}/rion.db"
         self.node = f"{self.user}/node"
@@ -23,6 +26,7 @@ class Rion:
         self.error = Errors()
         self.pkg = Package()
         self.table = "installed"
+        self.helper = Helper()
 
     @staticmethod
     def check() -> None:
@@ -53,17 +57,68 @@ class Rion:
         install packages
         """
 
-    @staticmethod
-    def installer() -> None:
+    def installer(self) -> None:
         """
-        Rion
+        Rion installer
         """
+        # To install Rion we go to the user directory.
+        os.chdir(self.user)
+        # We overload the path management
+        # with platform specific instances to prevent errors
+        os.mkdir(self.helper.os_bindings("rion"))
+        # Database Management
+        self.rion.create_database()
+        self.rion.create_table("installed", "name text, version text, venv text")
+        # Config Managment
+        with open("rion.conf", "w", encoding="utf8") as docker:
+            docker.write("conf=rion\n")
+        # Venv Management
+        os.mkdir(self.helper.os_bindings("node"))
+        # Go back to the folder
+        os.chdir(self.path)
 
-    @staticmethod
-    def login() -> None:
+    def login(self) -> None:
         """
-        Rion
+            Creates a user in the User Config
         """
+        # create Correct list
+        correct: str = string.ascii_letters + string.digits
+        # Reads the username
+        username: str = input("Username:")
+        # Checks if the username is long enough
+        if len(username) >= 5:
+            # Checks if there are any illegal characters in the string
+            for runner in username:
+                if runner not in correct:
+                    self.error.error_message("Wrong Syntax")
+        else:
+            self.error.error_message("User exist")
+        # Reads the password
+        password = getpass()
+        # Checks if the password is long enough
+        if len(password) >= 8:
+            # Checks if there are any illegal characters in the string
+            for runner in password:
+                if runner not in correct:
+                    self.error.error_message("Wrong Syntax")
+        else:
+            self.error.error_message("User exist")
+        # Load the rion System
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Open the config file
+        with open("rion.conf", encoding="utf8") as config:
+            conflist: list = config.readlines()
+            # Search for an existing user
+            for runner in conflist:
+                if "username" in runner:
+                    self.error.error_message("User exist")
+        # Change the mode for opening the file
+        with open("rion.conf", "a", encoding="utf8") as config:
+            # Creates a user in the User Config
+            config.write(f"username={username}\n")
+            config.write(f"password={password}\n")
+        # Goes back to the initial directory
+        os.chdir(self.path)
 
     @staticmethod
     def remove() -> None:
@@ -94,7 +149,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
