@@ -42,7 +42,7 @@ def handler() -> None:
             runner.config(flags)
         elif loader == "check":
             runner.check(flags)
-        elif loader == "fix":
+        elif loader == "installer":
             runner.init()
         else:
             # If no command was found, it aborts the program.

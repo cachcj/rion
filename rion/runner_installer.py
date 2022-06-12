@@ -20,11 +20,7 @@ def runnable_installer() -> None:
     # Change base
     os.chdir(path)
 
-    # Install config
-    with open("rion.conf", "w", encoding="utf8") as docker:
-        docker.write("rion_conf\n")
-
-    # Install Database
+   # Install Database
     db.create_database("rion.db")
     db.create_table("rion.db", "installed", "name text, version text, venv text ")
 
@@ -35,9 +31,9 @@ def runnable_installer() -> None:
     key = crypt.gen_key_as_string(key)
 
     # write key in conf
-    with open("config.txt", "a", encoding="utf8") as docker:
+    with open("rion.conf", "a", encoding="utf8") as docker:
         docker.write(f"key={key}\n")
 
     # setup root venv
-    path += helper.os_bindings("/venv/node")
+    path = helper.os_bindings(f"{os.path.expanduser('.')}/rion/node")
     Path(path).mkdir(parents=True, exist_ok=True)
