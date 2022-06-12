@@ -1,8 +1,6 @@
 # Config files
 *.txt
 *.conf
-*rion*
-!*rion.py
 
 # Package
 *.pdk
