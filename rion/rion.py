@@ -2,9 +2,9 @@
 Rion Class
 """
 import os
+from pathlib import Path
 
 from rion.database import Database
-from pathlib import Path
 
 
 class Rion:
