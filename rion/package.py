@@ -1,16 +1,16 @@
-"""
+"""!
 Package Class
 """
 
 
 class Package:
-    """
-    Create a package
+    """!
+    Creates a package.
     """
 
     def __init__(self):
-        """
-        Konstruktor
+        """!
+        Konstruktor.
         """
         self._venv = None
         self._version = None
@@ -19,47 +19,53 @@ class Package:
     # Getter
 
     def get_name(self):
-        """
-        Get Name
-        @return:
+        """!
+        Gets Name of the Package.
+
+        @return The name of the Package.
         """
         return self._name
 
     def get_version(self):
-        """
-        Get Version
-        @return:
+        """!
+        Gets Version of the Package.
+
+        @return The version of the Package.
         """
         return self._version
 
     def get_venv(self):
-        """
-        Get Venv
-        @return:
+        """!
+        Gets Venv of the Package.
+
+        @return The venv of the Package.
         """
         return self._venv
 
     # Setter
     def set_name(self, content):
-        """
-        Set Name
-        @param content:
+        """!
+        Sets Name of the Package.
+
+        @param content  The name of the Package.
         @return:
         """
         self._name = content
 
     def set_version(self, content):
-        """
-        Set Version
-        @param content:
+        """!
+        Set Version of the Package.
+
+        @param content  The version of the Package.
         @return:
         """
         self._version = content
 
     def set_venv(self, content):
-        """
-        Set Venv
-        @param content:
+        """!
+        Set Venv of the Package.
+
+        @param content  The venve of the Package.
         @return:
         """
         self._venv = content
