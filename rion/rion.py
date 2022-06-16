@@ -1,4 +1,4 @@
-"""
+"""!
 Rion Class
 """
 import os
@@ -17,7 +17,9 @@ from rion.package import Package
 
 
 class Rion:
-    """Rion Class"""
+    """!
+    Rion Class
+    """
 
     def __init__(self, content: str) -> None:
         self.rion = Database("rion")
@@ -34,17 +36,17 @@ class Rion:
 
     @staticmethod
     def check() -> None:
-        """
+        """!
         Rion
         """
 
     def config(self) -> list:
-        """
+        """!
         Read username and password
         """
 
     def dlist(self) -> None:
-        """
+        """!
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
@@ -70,7 +72,7 @@ class Rion:
         os.chdir(path_now)
 
     def freeze(self) -> None:
-        """
+        """!
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
@@ -85,12 +87,12 @@ class Rion:
 
     @staticmethod
     def install() -> None:
-        """
+        """!
         install packages
         """
 
     def installer(self) -> None:
-        """
+        """!
         Rion installer
         """
         # To install Rion we go to the user directory.
@@ -117,7 +119,7 @@ class Rion:
             os.chdir(self.path)
 
     def login(self) -> None:
-        """
+        """!
         Creates a user in the User Config
         """
         # create Correct list
@@ -161,12 +163,12 @@ class Rion:
 
     @staticmethod
     def remove() -> None:
-        """
+        """!
         Rion
         """
 
     def search(self) -> None:
-        """
+        """!
         Search Package in Database
         """
         # If there are spaces in the name the package will be rejected
@@ -203,7 +205,7 @@ class Rion:
                 indescrib.append(module_layer)
 
     def uninstall(self) -> None:
-        """
+        """!
         Uninstall Rion
         """
         # go to user folder
@@ -216,12 +218,12 @@ class Rion:
 
     @staticmethod
     def update() -> None:
-        """
+        """!
         Rion
         """
 
     @staticmethod
     def upgrade() -> None:
-        """
+        """!
         Rion
         """
