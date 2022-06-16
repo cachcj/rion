@@ -1,28 +1,29 @@
 # pylint: disable-all
 # pylint: skip-file
-"""
-simple FTP Handler
+"""!
+Simple FTP Handler.
 """
 import urllib3
 import os
 
 
 class Conmanager:
-    """
-    simple FTP Handler
+    """!
+    Simple FTP Handler.
     """
 
     def __int__(
         self, server: str, port: str, protocol: str, user: str, pwd: str
     ) -> None:
-        """
-        Konstruktor
-        @param server:
-        @param port:
-        @param protocol:
-        @param user:
-        @param pwd:
-        @return:
+        """!
+        Konstruktor.
+        
+        @param server   
+        @param port 
+        @param protocol 
+        @param user 
+        @param pwd  
+        @return 
         """
         self.server = server
         self.protocoll = protocol
@@ -31,11 +32,12 @@ class Conmanager:
         self.port = port
 
     def download(self, file: str, folder: str) -> None:
-        """
-        Download an File from a FTP Server
-        @param file:
-        @param folder:
-        @return:
+        """!
+        Download an File from a FTP Server.
+
+        @param file 
+        @param folder   
+        @return 
         """
         path = os.getcwd()
         os.chdir(folder)
