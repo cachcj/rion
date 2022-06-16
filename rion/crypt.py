@@ -1,23 +1,25 @@
-"""
-    Crypt Module
+"""!
+Crypt Module.
 """
 import hashlib
 
 
 class Crypt:
-    """
-    Crypt Class
+    """!
+    Crypt Class.
     """
 
     def __int__(self):
-        """
-        Konstruktor
+        """!
+        Konstruktor.
         """
 
     @staticmethod
     def sha256(fname: str) -> None:
-        """
-        Generate SHA Value of a file
+        """!
+        Generate SHA Value of a file.
+
+        @param fname
         """
         sha256_hash = hashlib.sha256()
         with open(fname, "rb") as docker:
