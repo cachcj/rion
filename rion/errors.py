@@ -1,4 +1,4 @@
-"""
+"""!
     Short Error Class
 """
 
@@ -8,7 +8,7 @@ from termcolor import colored
 
 
 class Errors:
-    """
+    """!
     Short Error Class
     """
 
@@ -17,8 +17,8 @@ class Errors:
 
     @staticmethod
     def error_message(text: str) -> None:
-        """
-        Resume an error
+        """!
+        Resumes an error.
         """
         print(colored(text, "red"))
         sys.exit(0)
