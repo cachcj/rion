@@ -11,7 +11,6 @@ from os.path import exists
 from pathlib import Path
 from typing import TextIO
 
-from rion.errors import Errors
 
 from rion import __init__
 from rion.database import Database
