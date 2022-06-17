@@ -4,3 +4,4 @@ disable=
     C3001, # lambda
     R0902, # overload cons
     R0912, # to many imports
+    W0511, # to do

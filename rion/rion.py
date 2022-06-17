@@ -184,7 +184,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
@@ -226,9 +226,9 @@ class Rion:
         Writes the connection parameters for the server into the Config
         """
         # Reads the username
-        ip: str = input("Server:")
+        ipadress: str = input("Server:")
         # Checks if the username is long enough
-        if len(ip) >= 5:
+        if len(ipadress) >= 5:
             self.error.error_message("Wrong Syntax")
         else:
             self.error.error_message("Server exist")
@@ -244,10 +244,13 @@ class Rion:
             self.error.error_message("Port exist")
         # Load the rion System
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Test Server
+        if self.helper.ping(f"{ipadress}:{port}"):
+            self.error.error_message("Cant reach server")
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
-            config.write(f"server={ip}\n")
+            config.write(f"server={ipadress}\n")
             config.write(f"port={port}\n")
         # Goes back to the initial directory
         os.chdir(self.path)
