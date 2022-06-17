@@ -75,12 +75,10 @@ def handler() -> None:
 
 def read_config() -> dict:
     """
-        Read the config
+    Read the config
     """
     # create dict
-    user = {
-        "system": rion
-    }
+    user = {"system": rion}
     # go to config file
     path: str = os.getcwd()
     os.chdir(Path.home())
