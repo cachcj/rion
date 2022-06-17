@@ -23,6 +23,7 @@ class Rion:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
+        self.helper = Helper()
         self.path_config = f"{self.path_user}/rion.conf"
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
@@ -225,32 +226,26 @@ class Rion:
         """
         Writes the connection parameters for the server into the Config
         """
-        # Reads the username
-        ipadress: str = input("Server:")
-        # Checks if the username is long enough
-        if len(ipadress) >= 5:
-            self.error.error_message("Wrong Syntax")
-        else:
-            self.error.error_message("Server exist")
-        # Reads the password
-        port: str = input("Port:")
-        # Checks if the password is long enough
-        if len(port) >= 8:
-            # Checks if there are any illegal characters in the string
-            for runner in port:
-                if runner not in string.digits:
-                    self.error.error_message("Wrong Syntax")
-        else:
-            self.error.error_message("Port exist")
-        # Load the rion System
-        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        # Test Server
-        if self.helper.ping(f"{ipadress}:{port}"):
-            self.error.error_message("Cant reach server")
-        # Change the mode for opening the file
-        with open("rion.conf", "a", encoding="utf8") as config:
-            # Creates a user in the User Config
-            config.write(f"server={ipadress}\n")
-            config.write(f"port={port}\n")
-        # Goes back to the initial directory
-        os.chdir(self.path)
+        # Reads the server
+        ipaddres: str = input("IP Adresse: ")
+        # Read the Port
+        port: str = input("Port: ")
+        # check IP Adress (Syntax)
+        for runner in ipaddres:
+            if runner not in string.digits + ".":
+                self.error.error_message("Wrong Syntax")
+        # check Port
+        if port not in ["22", "21", "2121"]:
+            self.error.error_message("Wrong Port")
+        # check if server or port exist
+        config = Helper.os_bindings(self.path_config)
+        # load conf
+        with open(config, "w", encoding="utf8") as runner:
+            for line in runner.readlines():
+                if "server" in line:
+                    self.error.error_message("Server Exist")
+                if "port" in line:
+                    self.error.error_message("Port Exist")
+            # write conf
+            runner.write(f"server={ipaddres}")
+            runner.write(f"port={port}")
