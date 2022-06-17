@@ -11,11 +11,11 @@ from os.path import exists
 from pathlib import Path
 from typing import TextIO
 
+from rion.errors import Errors
+
 from rion import __init__
 from rion.database import Database
-from rion.errors import Errors
 from rion.helper import Helper
-from rion.package import Package
 
 
 class Rion:
@@ -31,7 +31,6 @@ class Rion:
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
         self.error = Errors()
-        self.pkg = Package()
         self.table = "installed"
         self.helper = Helper()
         self.user = __init__.read_config()
@@ -153,11 +152,20 @@ class Rion:
         # Reload Config
         self.user = __init__.read_config()
 
-    @staticmethod
-    def remove() -> None:
+    def remove(self, name: str, venv: str, version: str) -> None:
         """
-        Rion
+        Remove Package from venv
         """
+        # Fix Path
+        path: str = os.getcwd()
+        os.chdir(Helper.os_bindings(f"{self.path_user}/rion/node/{venv}"))
+        # Delete Package
+        pkg = f"{name}_v.{version}"
+        if os.path.exists(pkg):
+            # removing the file using the os.remove() method
+            os.remove(pkg)
+        # Remove DB Entry
+        self.rion.delete_package("installed", "packages", pkg)
 
     def search(self) -> None:
         """
@@ -207,8 +215,6 @@ class Rion:
             shutil.rmtree("rion")
         except OSError as error_log:
             self.error.error_message(str(error_log))
-        # Delete package from the database
-        # TODO: Delete from Database
 
     @staticmethod
     def update() -> None:
