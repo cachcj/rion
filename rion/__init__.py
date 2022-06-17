@@ -9,8 +9,8 @@ from datetime import datetime
 from pathlib import Path
 
 import numpy as np
-from rion.errors import Errors
 
+from rion.errors import Errors
 from rion.rion import Rion
 
 
@@ -63,7 +63,7 @@ def handler() -> None:
         elif loader == "server":
             riox.server()
         elif loader == "venv":
-            riox.venv()
+            riox.venv(flags)
         else:
             # If no command was found, it aborts the program.
             errorx.error_message("no command was found")
@@ -80,12 +80,12 @@ def read_config() -> dict:
     Read the config
     """
     # create dict
-    user = {"system": rion}
+    user = {"system": "rion"}
     # go to config file
     path: str = os.getcwd()
     os.chdir(Path.home())
     if not os.path.isdir("rion"):
-        subprocess.run("rion installer")
+        subprocess.run("rion installer", check=True)
         time.sleep(1)
     os.chdir("rion")
     # open file

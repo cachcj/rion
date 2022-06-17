@@ -105,7 +105,9 @@ class Rion:
             os.chdir(self.helper.os_bindings("rion"))
             # Database Management
             self.rion.create_database()
-            self.rion.create_table(self.table, f"{self.identify} text, name text, version text, venv text")
+            self.rion.create_table(
+                self.table, f"{self.identify} text, name text, version text, venv text"
+            )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
                 docker.write("conf=rion\n")
@@ -157,9 +159,11 @@ class Rion:
         Remove Package from venv
         """
         # Message
-        print("Since here beside the name also the Venv and the version plays a role "
-              "the uninstalling must be adapted somewhat. "
-              "We ask for your understanding. ")
+        print(
+            "Since here beside the name also the Venv and the version plays a role "
+            "the uninstalling must be adapted somewhat. "
+            "We ask for your understanding. "
+        )
         if " " in self.content:
             # [name, venv, version]
             # Remove DB Entry
@@ -210,7 +214,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
