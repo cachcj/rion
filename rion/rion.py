@@ -5,11 +5,13 @@ import os
 import os.path
 import shutil
 import string
+import subprocess
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
 from typing import TextIO
 
+from rion import __init__
 from rion.database import Database
 from rion.errors import Errors
 from rion.helper import Helper
@@ -19,7 +21,7 @@ from rion.package import Package
 class Rion:
     """Rion Class"""
 
-    def __init__(self, content: str) -> None:
+    def __init__(self, content: object) -> None:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
@@ -32,16 +34,12 @@ class Rion:
         self.pkg = Package()
         self.table = "installed"
         self.helper = Helper()
+        self.user = __init__.read_config()
 
     @staticmethod
     def check() -> None:
         """
         Rion
-        """
-
-    def config(self) -> list:
-        """
-        Read username and password
         """
 
     def dlist(self) -> None:
@@ -152,6 +150,8 @@ class Rion:
             config.write(f"password={password}\n")
         # Goes back to the initial directory
         os.chdir(self.path)
+        # Reload Config
+        self.user = __init__.read_config()
 
     @staticmethod
     def remove() -> None:
@@ -238,9 +238,9 @@ class Rion:
         if port not in ["22", "21", "2121"]:
             self.error.error_message("Wrong Port")
         # check if server or port exist
-        config = Helper.os_bindings(self.path_config)
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # load conf
-        with open(config, "w", encoding="utf8") as runner:
+        with open("rion.conf", "w", encoding="utf8") as runner:
             for line in runner.readlines():
                 if "server" in line:
                     self.error.error_message("Server Exist")
@@ -249,3 +249,13 @@ class Rion:
             # write conf
             runner.write(f"server={ipaddres}")
             runner.write(f"port={port}")
+
+        # Reload Config
+        self.user = __init__.read_config()
+
+    @staticmethod
+    def version() -> None:
+        """
+        Upgrade Rion Version
+        """
+        subprocess.run("pip install -U rion")

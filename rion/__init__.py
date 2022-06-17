@@ -1,8 +1,12 @@
 """
  Start modules for all imports
 """
+import os
+import subprocess
 import sys
+import time
 from datetime import datetime
+from pathlib import Path
 
 import numpy as np
 
@@ -28,7 +32,7 @@ def handler() -> None:
         loader: str = sys.argv[1]
 
         # Converts the Numpy array back to a normal list
-        flags: list[str] = np.ndarray.tolist(command_list)
+        flags: object = np.ndarray.tolist(command_list)
 
         # Create Object
         riox = Rion(flags)
@@ -38,14 +42,16 @@ def handler() -> None:
             riox.install()
         elif loader == "update":
             riox.update()
+        elif loader == "upgrade":
+            riox.upgrade()
+        elif loader == "version":
+            riox.version()
         elif loader == "remove":
             riox.remove()
         elif loader == "search":
             riox.search()
         elif loader == "freeze":
             riox.freeze()
-        elif loader == "config":
-            riox.config()
         elif loader == "check":
             riox.check()
         elif loader == "installer":
@@ -65,3 +71,35 @@ def handler() -> None:
     # End Time Managment
     diff = datetime.now() - start
     print(f"run: {diff.total_seconds()}s")
+
+
+def read_config() -> dict:
+    """
+        Read the config
+    """
+    # create dict
+    user = {
+        "system": rion
+    }
+    # go to config file
+    path: str = os.getcwd()
+    os.chdir(Path.home())
+    if not os.path.isdir("rion"):
+        subprocess.run("rion installer")
+        time.sleep(1)
+    os.chdir("rion")
+    # open file
+    with open("rion.conf", "w", encoding="utf8") as runner:
+        for line in runner.readlines():
+            # The config has no line breaks
+            line = line.replace(" ", "")
+            # Since the config has no descriptions, each line must have a =.
+            # The Config is not there for decoration but to store values.
+            if "=" not in line:
+                Errors.error_message("Wrong Syntax")
+            # Manipulating the Dictonary through the user configs.
+            line = line.split("=")
+            user[line[0]] = line[1]
+    # go back
+    os.chdir(path)
+    return user
