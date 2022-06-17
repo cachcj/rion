@@ -144,13 +144,6 @@ class Rion:
             self.error.error_message("User exist")
         # Load the rion System
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        # Open the config file
-        with open("rion.conf", encoding="utf8") as config:
-            conflist: list = config.readlines()
-            # Search for an existing user
-            for runner in conflist:
-                if "username" in runner:
-                    self.error.error_message("User exist")
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
@@ -228,8 +221,33 @@ class Rion:
         Rion
         """
 
-    @staticmethod
-    def server() -> None:
+    def server(self) -> None:
         """
         Writes the connection parameters for the server into the Config
         """
+        # Reads the username
+        ip: str = input("Server:")
+        # Checks if the username is long enough
+        if len(ip) >= 5:
+            self.error.error_message("Wrong Syntax")
+        else:
+            self.error.error_message("Server exist")
+        # Reads the password
+        port: str = input("Port:")
+        # Checks if the password is long enough
+        if len(port) >= 8:
+            # Checks if there are any illegal characters in the string
+            for runner in port:
+                if runner not in string.digits:
+                    self.error.error_message("Wrong Syntax")
+        else:
+            self.error.error_message("Port exist")
+        # Load the rion System
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Change the mode for opening the file
+        with open("rion.conf", "a", encoding="utf8") as config:
+            # Creates a user in the User Config
+            config.write(f"server={ip}\n")
+            config.write(f"port={port}\n")
+        # Goes back to the initial directory
+        os.chdir(self.path)
