@@ -258,4 +258,4 @@ class Rion:
         """
         Upgrade Rion Version
         """
-        subprocess.run("pip install -U rion")
+        subprocess.run("pip install -U rion", check = True)
