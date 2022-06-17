@@ -54,6 +54,8 @@ def handler() -> None:
             riox.uninstall()
         elif loader == "login":
             riox.login()
+        elif loader == "server":
+            riox.server()
         else:
             # If no command was found, it aborts the program.
             errorx.error_message("no command was found")
