@@ -7,12 +7,19 @@ The module does all the things I am too lazy to do. sorry
 
 import ctypes
 import os
+import os.path
 import platform
 import uuid
+from pathlib import Path
 
 
 class Helper:
-    def testsudo(self) -> bool:
+    """
+    Helper Class
+    """
+
+    @staticmethod
+    def testsudo() -> bool:
         """
         Checks if a script was started with admin or root rights.
         """
@@ -24,7 +31,8 @@ class Helper:
             test = False
         return test
 
-    def os_bindings(self, path: str) -> str:
+    @staticmethod
+    def os_bindings(path: str) -> str:
         """
         Changes the paths from Linux to Windows.
         It's really only about the backslash.
@@ -34,15 +42,33 @@ class Helper:
 
         return path
 
-    def uid(self) -> str:
+    @staticmethod
+    def uid() -> str:
         """
         Returns a unique random string
         """
         return str(uuid.uuid4()).replace("-", "")
 
-    def dimarray(self, notbeautiful: str) -> list:
+    @staticmethod
+    def dimarray(notbeautiful: str) -> list:
         """
         We turn the tuple into a more dimensional array
         """
         notbeautiful = notbeautiful.replace("(", "")[1:-1].replace("'", "")
         return notbeautiful.replace("'", "").split(",")
+
+    @staticmethod
+    def check(name: str, version: str, venv: str) -> bool:
+        """
+        Checks if a package is installed.
+        """
+        path: str = os.getcwd()
+        name = f"{name}_v.{version}"
+        if len(venv) == 0:
+            venv = "venv"
+        pathlib: list[str] = [str(Path.home()), "rion", "node", venv]
+        for runner in pathlib:
+            os.chdir(runner)
+        bondage: bool = os.path.isfile(name)
+        os.chdir(path)
+        return bondage

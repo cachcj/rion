@@ -175,7 +175,7 @@ class Rion:
         # Looks if parameters were passed
         if len(self.content) == 0:
             # There are no flags and thus there are no packages to search for.
-            # Consequently there is an error
+            # Consequently, there is an error
             self.error.error_message("No content")
         # db_content contains an array of all records from corresponding table
         db_content = self.rion.list_table(self.table, "name")
@@ -212,7 +212,9 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.error.error_message(error_log)
+            self.error.error_message(str(error_log))
+        # Delete package from the database
+        # TODO: Delete from Database
 
     @staticmethod
     def update() -> None:
@@ -224,4 +226,10 @@ class Rion:
     def upgrade() -> None:
         """
         Rion
+        """
+
+    @staticmethod
+    def server() -> None:
+        """
+        Writes the connection parameters for the server into the Config
         """

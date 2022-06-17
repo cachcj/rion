@@ -62,4 +62,4 @@ def handler() -> None:
 
     # End Time Managment
     diff = datetime.now() - start
-    print(f"run: {diff.seconds}s")
+    print(f"run: {diff.total_seconds()}s")
