@@ -76,6 +76,10 @@ class Helper:
 
     @staticmethod
     def ping(host):
-        param = '-n' if platform.system().lower() == 'windows' else '-c'
-        command = ['ping', param, '1', host]
+        param = "-n" if platform.system().lower() == "windows" else "-c"
+        command = ["ping", param, "1", host]
         return subprocess.call(command) == 0
+
+    @staticmethod
+    def make_init(name: str, venv: str, version: str) -> str:
+        return f"{name}_{version}_{venv}"

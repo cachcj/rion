@@ -15,7 +15,6 @@ from rion import __init__
 from rion.database import Database
 from rion.errors import Errors
 from rion.helper import Helper
-from rion.package import Package
 
 
 class Rion:
@@ -31,8 +30,8 @@ class Rion:
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
         self.error = Errors()
-        self.pkg = Package()
         self.table = "installed"
+        self.identify = "ident"
         self.helper = Helper()
         self.user = __init__.read_config()
 
@@ -47,7 +46,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table("installed", "name")
+        outputty: list = self.rion.list_table(self.table, "name")
         # Checks if the output is empty
         if len(outputty) == 0:
             self.error.error_message("The database is empty")
@@ -73,7 +72,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table("installed", "name")
+        outputty: list = self.rion.list_table(self.table, self.identify)
         # Checks if the output is empty
         if len(outputty) == 0:
             self.error.error_message("The database is empty")
@@ -106,7 +105,7 @@ class Rion:
             os.chdir(self.helper.os_bindings("rion"))
             # Database Management
             self.rion.create_database()
-            self.rion.create_table("installed", "name text, version text, venv text")
+            self.rion.create_table(self.table, f"{self.identify} text, name text, version text, venv text")
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
                 docker.write("conf=rion\n")
@@ -153,11 +152,37 @@ class Rion:
         # Reload Config
         self.user = __init__.read_config()
 
-    @staticmethod
-    def remove() -> None:
+    def remove(self) -> None:
         """
-        Rion
+        Remove Package from venv
         """
+        # Message
+        print("Since here beside the name also the Venv and the version plays a role "
+              "the uninstalling must be adapted somewhat. "
+              "We ask for your understanding. ")
+        if " " in self.content:
+            # [name, venv, version]
+            # Remove DB Entry
+            pkg = Helper.make_init(self.content[0], self.content[1], self.content[2])
+        else:
+            name = self.content
+            # input other data
+            venv = input("Venv: ")
+            # Test Venv Name
+            if len(venv) <= 3:
+                Errors.error_message("Venv Name is to short")
+            # version
+            version = input("Version: ")
+            pkg = Helper.make_init(name, venv, version)
+        # Fix Path
+        path: str = os.getcwd()
+        os.chdir(Helper.os_bindings(f"{self.path_user}/rion/node/{venv}"))
+        if os.path.exists(pkg):
+            # removing the file using the os.remove() method
+            os.remove(pkg)
+        self.rion.delete_package(self.table, self.identify, pkg)
+        # go back
+        os.chdir(path)
 
     def search(self) -> None:
         """
@@ -207,8 +232,6 @@ class Rion:
             shutil.rmtree("rion")
         except OSError as error_log:
             self.error.error_message(str(error_log))
-        # Delete package from the database
-        # TODO: Delete from Database
 
     @staticmethod
     def update() -> None:
@@ -258,4 +281,20 @@ class Rion:
         """
         Upgrade Rion Version
         """
-        subprocess.run("pip install -U rion", check = True)
+        subprocess.run("pip install -U rion", check=True)
+
+    def venv(self, content) -> None:
+        """
+        create a new venv
+        """
+        path = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        if " " in content[1]:
+            Errors.error_message("Wrong Syntax")
+        if content[0] == "create":
+            os.mkdir(content)
+            print(f"create venv: {content[1]}")
+        elif content[0] == "remove":
+            os.remove(content[1])
+            self.rion.delete_package(self.table, "venv", content[1])
+        os.chdir(path)
