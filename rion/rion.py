@@ -94,16 +94,21 @@ class Rion:
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if len(self.content) == 0:
-            self.error.error_message("Please provide the name of the package that shall be installed.")
+            self.error.error_message(
+                "Please provide the name of the package that shall be installed."
+            )
         os.chdir(self.content[1])
-        name: str = self.helper.name(content[0], content[2])        
+        name: str = self.helper.name(content[0], content[2])
         self.FTPModule.download(name)
         tar = tarfile.open(name)
         tar.extractall()
         tar.close()
         os.remove(name)
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        self.rion.input_value(self.table, f"{name}, {self.content[0]}, {self.content[2]}, {self.content[1]}")
+        self.rion.input_value(
+            self.table,
+            f"{name}, {self.content[0]}, {self.content[2]}, {self.content[1]}",
+        )
         os.chdir(path)
 
     def installer(self) -> None:
@@ -238,7 +243,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
