@@ -19,7 +19,7 @@ from rion.helper import Helper
 class Rion:
     """Rion Class"""
 
-    def __init__(self, content: object) -> None:
+    def __init__(self, content: object, command: str) -> None:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
@@ -32,7 +32,8 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper()
-        self.user = Helper.read_config()
+        self.command = command
+        self.user = Helper.make_init() if command != 'installer' else {}
 
     @staticmethod
     def check() -> None:
