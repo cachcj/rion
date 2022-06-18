@@ -6,6 +6,7 @@ import os.path
 import shutil
 import string
 import subprocess
+import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
@@ -86,11 +87,24 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    @staticmethod
-    def install() -> None:
+    def install(self) -> None:
         """
         install packages
         """
+        path: str = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        if len(self.content) == 0:
+            self.error.error_message("Please provide the name of the package that shall be installed.")
+        os.chdir(self.content[1])
+        name: str = self.helper.name(content[0], content[2])        
+        self.FTPModule.download(name)
+        tar = tarfile.open(name)
+        tar.extractall()
+        tar.close()
+        os.remove(name)
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        self.rion.input_value(self.table, f"{name}, {self.content[0]}, {self.content[2]}, {self.content[1]}")
+        os.chdir(path)
 
     def installer(self) -> None:
         """
