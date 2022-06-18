@@ -59,7 +59,7 @@ def handler() -> None:
         elif loader == "server":
             riox.server()
         elif loader == "venv":
-            riox.venv()
+            riox.manage_venv()
         else:
             # If no command was found, it aborts the program.
             errorx.error_message("no command was found")

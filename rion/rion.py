@@ -287,7 +287,7 @@ class Rion:
         """
         subprocess.run("pip install -U rion", check=True)
 
-    def venv(self) -> None:
+    def manage_venv(self) -> None:
         """
         create a new venv
         """
