@@ -11,21 +11,14 @@ class FTPHandler:
     simple FTP Handler
     """
 
-    def __int__(self, server: str, port: str, protocol: str, user: str, pwd: str):
+    def __init__(self, server: str, port: str, user: str, pwd: str):
         """
         Konstruktor
-        @param server:
-        @param port:
-        @param protocol:
-        @param user:
-        @param pwd:
-        @return:
         """
         self.server = server
-        self.protocol = protocol
+        self.port = port
         self.user = user
         self.pwd = pwd
-        self.port = port
 
     def download(self, file: str) -> None:
         """

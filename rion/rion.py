@@ -37,7 +37,6 @@ class Rion:
         self.FTPModule = FTPHandler(
             "139.162.141.181",
             "2121",
-            "ftps",
             "user",
             "aghast-unhealthy-sloppy-elastic-referable",
         )
