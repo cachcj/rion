@@ -54,7 +54,9 @@ def handler() -> None:
             riox.installer()
         elif loader == "uninstall":
             riox.uninstall()
-        elif loader == "login" or loader == "user":
+        elif loader == "login"
+            riox.login()
+        elif loader == "user"
             riox.login()
         elif loader == "server":
             riox.server()
