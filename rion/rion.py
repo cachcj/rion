@@ -11,7 +11,6 @@ from os.path import exists
 from pathlib import Path
 from typing import TextIO
 
-from rion import __init__
 from rion.database import Database
 from rion.errors import Errors
 from rion.helper import Helper
@@ -33,7 +32,7 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper()
-        self.user = __init__.read_config()
+        self.user = Helper.read_config()
 
     @staticmethod
     def check() -> None:
@@ -214,7 +213,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
