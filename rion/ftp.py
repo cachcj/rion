@@ -29,4 +29,4 @@ class FTPHandler:
         server = ftplib.FTP()
         server.connect(self.server, int(self.port))
         server.login(self.user, self.pwd)
-        server.retrbinary("RETR " + file, open(file, 'wb').write)
+        server.retrbinary("RETR " + file, open(file, "wb").write)
