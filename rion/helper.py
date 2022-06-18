@@ -83,8 +83,8 @@ class Helper:
         return subprocess.call(command) == 0
 
     @staticmethod
-    def make_init(name: str, venv: str, version: str) -> str:
-        return f"{name}_{version}_{venv}"
+    def name(name: str, version: str) -> str:
+        return f"{name}_v{version}"
 
     @staticmethod
     def read_config(modul: str) -> dict:
