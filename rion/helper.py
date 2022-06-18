@@ -104,7 +104,6 @@ class Helper:
             try:
                 with open("rion.conf", encoding="utf8") as runner:
                     for line in runner.readlines():
-                        print(line)
                         # The config has no line breaks
                         line = line.replace(" ", "")
                         # Since the config has no descriptions, each line must have a =.
