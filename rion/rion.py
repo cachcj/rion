@@ -34,8 +34,13 @@ class Rion:
         self.helper = Helper()
         self.command = command
         self.user: dict = Helper.read_config(command)
-        self.FTPHandler = FTPHandler("139.162.141.181", "2121", "ftps", "user",
-                                     "aghast-unhealthy-sloppy-elastic-referable")
+        self.FTPModule = FTPHandler(
+            "139.162.141.181",
+            "2121",
+            "ftps",
+            "user",
+            "aghast-unhealthy-sloppy-elastic-referable",
+        )
 
     @staticmethod
     def check() -> None:
@@ -220,7 +225,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
@@ -244,11 +249,16 @@ class Rion:
         except OSError as error_log:
             self.error.error_message(str(error_log))
 
-    @staticmethod
-    def update() -> None:
+    def update(self) -> None:
         """
-        Rion
+        Load Update File from rion
         """
+        path: str = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        if os.path.exists("inor.db"):
+            os.remove("inor.db")
+        self.FTPModule.download("inor.db")
+        os.chdir(path)
 
     @staticmethod
     def upgrade() -> None:
