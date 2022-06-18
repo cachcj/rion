@@ -147,8 +147,8 @@ class Rion:
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
-            config.write(f"username={username}")
-            config.write(f"password={password}")
+            config.write(f"username={username}\n")
+            config.write(f"password={password}\n")
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
@@ -192,6 +192,9 @@ class Rion:
         """
         Search Package in Database
         """
+        # Modify Path
+        path: str = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # If there are spaces in the name the package will be rejected
         if " " in self.content:
             self.error.error_message("Wrong Package Syntax")
@@ -201,7 +204,7 @@ class Rion:
             # Consequently, there is an error
             self.error.error_message("No content")
         # db_content contains an array of all records from corresponding table
-        db_content = self.rion.list_table(self.table, "name")
+        db_content = self.rion.list_table(self.table, self.identify)
         # We need three lists to represent the three differnt search priorities.
         exact: list = []
         moreorless: list = []
@@ -214,7 +217,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content:
@@ -224,6 +227,7 @@ class Rion:
                 moreorless.append(module_layer)
             elif self.content in module_layer:
                 indescrib.append(module_layer)
+        os.chdir(path)
 
     def uninstall(self) -> None:
         """
@@ -275,8 +279,8 @@ class Rion:
                     self.error.error_message("Port Exist")
             # write conf
             print(f"server={ipaddres}\nport={port}")
-            runner.write(str(f"server={ipaddres}"))
-            runner.write(str(f"port={port}"))
+            runner.write(str(f"server={ipaddres}\n"))
+            runner.write(str(f"port={port}\n"))
 
         # Reload Config
         self.user = Helper.read_config("server")
