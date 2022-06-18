@@ -12,6 +12,7 @@ import platform
 import subprocess
 import uuid
 from pathlib import Path
+
 from rion.errors import Errors
 
 
@@ -86,30 +87,36 @@ class Helper:
         return f"{name}_{version}_{venv}"
 
     @staticmethod
-    def read_config() -> dict:
+    def read_config(modul: str) -> dict:
         """
         Read the config
         """
         # create dict
         user = {"system": "rion"}
-        # go to config file
-        path: str = os.getcwd()
-        os.chdir(Path.home())
-        if not os.path.isdir("rion"):
-            Errors.error_message("Rion ist not installed")
-        os.chdir("rion")
-        # open file
-        with open("rion.conf", "w", encoding="utf8") as runner:
-            for line in runner.readlines():
-                # The config has no line breaks
-                line = line.replace(" ", "")
-                # Since the config has no descriptions, each line must have a =.
-                # The Config is not there for decoration but to store values.
-                if "=" not in line:
-                    Errors.error_message("Wrong Syntax")
-                # Manipulating the Dictonary through the user configs.
-                line = line.split("=")
-                user[line[0]] = line[1]
-        # go back
-        os.chdir(path)
+        if modul != "installer":
+            # go to config file
+            path: str = os.getcwd()
+            os.chdir(Path.home())
+            if not os.path.isdir("rion"):
+                Errors.error_message("Rion ist not installed")
+            os.chdir("rion")
+            # open file
+            try:
+                with open("rion.conf", encoding="utf8") as runner:
+                    for line in runner.readlines():
+                        print(line)
+                        # The config has no line breaks
+                        line = line.replace(" ", "")
+                        # Since the config has no descriptions, each line must have a =.
+                        # The Config is not there for decoration but to store values.
+                        if "=" not in line:
+                            Errors.error_message("Wrong Syntax")
+                        # Manipulating the Dictonary through the user configs.
+                        line = line.replace("\n", "")
+                        line = line.split("=")
+                        user[line[0]] = line[1]
+                # go back
+                os.chdir(path)
+            except Exception as error:
+                Errors.error_message(str(error))
         return user
