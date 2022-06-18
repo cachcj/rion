@@ -152,7 +152,7 @@ class Rion:
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
-        self.user = __init__.read_config()
+        self.user = Helper.read_config()
 
     def remove(self) -> None:
         """
@@ -278,7 +278,7 @@ class Rion:
             runner.write(f"port={port}")
 
         # Reload Config
-        self.user = __init__.read_config()
+        self.user = Helper.read_config()
 
     @staticmethod
     def version() -> None:
@@ -287,18 +287,18 @@ class Rion:
         """
         subprocess.run("pip install -U rion", check=True)
 
-    def venv(self, content) -> None:
+    def venv(self) -> None:
         """
         create a new venv
         """
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if " " in content[1]:
+        if " " in self.content[1]:
             Errors.error_message("Wrong Syntax")
-        if content[0] == "create":
-            os.mkdir(content)
-            print(f"create venv: {content[1]}")
-        elif content[0] == "remove":
-            os.remove(content[1])
-            self.rion.delete_package(self.table, "venv", content[1])
+        if self.content[0] == "create":
+            os.mkdir(self.content)
+            print(f"create venv: {self.content[1]}")
+        elif self.content[0] == "remove":
+            os.remove(self.content[1])
+            self.rion.delete_package(self.table, "venv", self.content[1])
         os.chdir(path)

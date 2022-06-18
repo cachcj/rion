@@ -63,7 +63,7 @@ def handler() -> None:
         elif loader == "server":
             riox.server()
         elif loader == "venv":
-            riox.venv(flags)
+            riox.venv()
         else:
             # If no command was found, it aborts the program.
             errorx.error_message("no command was found")
@@ -73,33 +73,3 @@ def handler() -> None:
     # End Time Managment
     diff = datetime.now() - start
     print(f"run: {diff.total_seconds()}s")
-
-
-def read_config() -> dict:
-    """
-    Read the config
-    """
-    # create dict
-    user = {"system": "rion"}
-    # go to config file
-    path: str = os.getcwd()
-    os.chdir(Path.home())
-    if not os.path.isdir("rion"):
-        subprocess.run("rion installer", check=True)
-        time.sleep(1)
-    os.chdir("rion")
-    # open file
-    with open("rion.conf", "w", encoding="utf8") as runner:
-        for line in runner.readlines():
-            # The config has no line breaks
-            line = line.replace(" ", "")
-            # Since the config has no descriptions, each line must have a =.
-            # The Config is not there for decoration but to store values.
-            if "=" not in line:
-                Errors.error_message("Wrong Syntax")
-            # Manipulating the Dictonary through the user configs.
-            line = line.split("=")
-            user[line[0]] = line[1]
-    # go back
-    os.chdir(path)
-    return user
