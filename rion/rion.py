@@ -12,6 +12,7 @@ from pathlib import Path
 
 from rion.database import Database
 from rion.errors import Errors
+from rion.ftp import FTPHandler
 from rion.helper import Helper
 
 
@@ -273,13 +274,13 @@ class Rion:
         # check if server or port exist
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # load conf
-        with open("rion.conf", "a", encoding="utf8") as runner:
+        with open("rion.conf", "r", encoding="utf8") as runner:
             for line in runner.readlines():
                 if "server" in line:
                     self.error.error_message("Server Exist")
                 if "port" in line:
                     self.error.error_message("Port Exist")
-            # write conf
+        with open("rion.conf", "a", encoding="utf8") as runner:
             print(f"server={ipaddres}\nport={port}")
             runner.write(str(f"server={ipaddres}\n"))
             runner.write(str(f"port={port}\n"))
