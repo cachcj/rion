@@ -9,7 +9,6 @@ import subprocess
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
-from typing import TextIO
 
 from rion.database import Database
 from rion.errors import Errors
@@ -58,8 +57,7 @@ class Rion:
         if exists("rion_list.txt"):
             os.remove("rion_list.txt")
         # write new file
-        docker: TextIO
-        with open("rion_list.txt", "a", encoding="utf8") as docker:
+        with open("rion_list.txt", encoding="utf8") as docker:
             for runner in outputty:
                 docker.write(
                     (str(runner).replace("(", "").replace(")", "").replace("'", ""))
@@ -149,8 +147,8 @@ class Rion:
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
-            config.write(f"username={username}\n")
-            config.write(f"password={password}\n")
+            config.write(f"username={username}")
+            config.write(f"password={password}")
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
@@ -264,12 +262,12 @@ class Rion:
             if runner not in string.digits + ".":
                 self.error.error_message("Wrong Syntax")
         # check Port
-        if port not in ["22", "21", "2121"]:
+        if port.replace(" ", "") not in ["22", "21", "2121"]:
             self.error.error_message("Wrong Port")
         # check if server or port exist
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # load conf
-        with open("rion.conf", "w", encoding="utf8") as runner:
+        with open("rion.conf", encoding="utf8") as runner:
             for line in runner.readlines():
                 if "server" in line:
                     self.error.error_message("Server Exist")
