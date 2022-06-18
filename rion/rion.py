@@ -285,7 +285,10 @@ class Rion:
         """
         Upgrade Rion Version
         """
-        subprocess.run("pip install -U rion", check=True)
+        if Helper.testsudo():
+            subprocess.run("pip install -U rion", check=True)
+        else:
+            Errors.error_message("Please execute the command with admin rights.")
 
     def manage_venv(self) -> None:
         """
