@@ -3,17 +3,18 @@
 """
 simple FTP Handler
 """
-import urllib3
 import os
 
+import urllib3
 
-class Conmanager:
+
+class FTPHandler:
     """
     simple FTP Handler
     """
 
     def __int__(
-        self, server: str, port: str, protocol: str, user: str, pwd: str
+            self, server: str, port: str, protocol: str, user: str, pwd: str
     ) -> None:
         """
         Konstruktor

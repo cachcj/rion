@@ -33,6 +33,8 @@ class Rion:
         self.helper = Helper()
         self.command = command
         self.user: dict = Helper.read_config(command)
+        self.FTPHandler = FTPHandler("139.162.141.181", "2121", "ftps", "user",
+                                     "aghast-unhealthy-sloppy-elastic-referable")
 
     @staticmethod
     def check() -> None:
