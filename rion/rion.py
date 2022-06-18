@@ -33,7 +33,7 @@ class Rion:
         self.identify = "ident"
         self.helper = Helper()
         self.command = command
-        self.user = Helper.read_config(command)
+        self.user: dict = Helper.read_config(command)
 
     @staticmethod
     def check() -> None:
@@ -154,7 +154,7 @@ class Rion:
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
-        self.user = Helper.read_config(self.command)
+        self.user = Helper.read_config("login")
 
     def remove(self) -> None:
         """
@@ -280,7 +280,7 @@ class Rion:
             runner.write(f"port={port}")
 
         # Reload Config
-        self.user = Helper.read_config(self.command)
+        self.user = Helper.read_config("server")
 
     @staticmethod
     def version() -> None:
