@@ -4,9 +4,6 @@
 simple FTP Handler
 """
 import ftplib
-import os
-
-import urllib3
 
 
 class FTPHandler:
@@ -25,7 +22,7 @@ class FTPHandler:
         @return:
         """
         self.server = server
-        self.protocoll = protocol
+        self.protocol = protocol
         self.user = user
         self.pwd = pwd
         self.port = port
