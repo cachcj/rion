@@ -33,7 +33,7 @@ class Rion:
         self.identify = "ident"
         self.helper = Helper()
         self.command = command
-        self.user = Helper.make_init() if command != "installer" else {}
+        self.user = Helper.read_config() if command != "installer" else {}
 
     @staticmethod
     def check() -> None:
