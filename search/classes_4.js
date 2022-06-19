@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['package_89',['Package',['../classrion_1_1package_1_1_package.html',1,'rion::package']]]
+  ['rion_80',['Rion',['../classrion_1_1rion_1_1_rion.html',1,'rion::rion']]]
 ];

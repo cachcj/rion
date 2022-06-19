@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print_5ftable_137',['print_table',['../classrion_1_1database_1_1_database.html#af39dda63142f03092b086bb33145decc',1,'rion::database::Database']]]
+  ['os_5fbindings_119',['os_bindings',['../classrion_1_1helper_1_1_helper.html#a204eb0d1b6c11010eaef3596e68de05e',1,'rion::helper::Helper']]]
 ];

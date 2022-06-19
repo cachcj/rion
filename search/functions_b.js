@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['read_5fdescription_138',['read_description',['../namespacesetup.html#ac0bdee80c9ae2bb78cb28cb50fb181c6',1,'setup']]],
-  ['remove_139',['remove',['../classrion_1_1rion_1_1_rion.html#aa6e081c0885ec7828f4b43ff9fd5df06',1,'rion::rion::Rion']]]
+  ['ping_120',['ping',['../classrion_1_1helper_1_1_helper.html#a613574d3313d1abf7ded612873418a07',1,'rion::helper::Helper']]],
+  ['print_5ftable_121',['print_table',['../classrion_1_1database_1_1_database.html#af39dda63142f03092b086bb33145decc',1,'rion::database::Database']]]
 ];
