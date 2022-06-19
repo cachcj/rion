@@ -231,7 +231,9 @@ class Rion:
             # Consequently, there is an error
             self.error.error_message("No content")
         # db_content contains an array of all records from corresponding table
-        db_content = self.rion.list_table(self.table, self.identify)
+        db_content = self.rion.list_table(self.table, "name")
+        if len(db_content) == 0:
+            self.error.error_message("No package found")
         # We need three lists to represent the three differnt search priorities.
         exact: list = []
         moreorless: list = []
