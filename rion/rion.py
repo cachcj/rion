@@ -296,13 +296,13 @@ class Rion:
         Writes the connection parameters for the server into the Config
         """
         if len(self.content) == 2:
+            ipaddres = self.content[0]
+            port = self.content[1]
+        else:
             # Reads the server
             ipaddres: str = input("IP Adresse: ")
             # Read the Port
             port: str = input("Port: ")
-        else:
-            ipaddres = self.content[0]
-            port = self.content[1]
         # check IP Adress (Syntax)
         for runner in ipaddres:
             if runner not in string.digits + ".":
