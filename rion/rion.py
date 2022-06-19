@@ -20,7 +20,7 @@ from rion.helper import Helper
 class Rion:
     """Rion Class"""
 
-    def __init__(self, content: object, command: str) -> None:
+    def __init__(self, content: list[str], command: str) -> None:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
@@ -33,7 +33,6 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper()
-        self.command = command
         self.user: dict = Helper.read_config(command)
         self.ftpmodule = FTPHandler(
             "139.162.141.181",
@@ -224,10 +223,10 @@ class Rion:
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # If there are spaces in the name the package will be rejected
-        if " " in self.content:
+        if " " in self.content[0]:
             self.error.error_message("Wrong Package Syntax")
         # Looks if parameters were passed
-        if len(self.content) == 0:
+        if len(self.content[0]) == 0:
             # There are no flags and thus there are no packages to search for.
             # Consequently, there is an error
             self.error.error_message("No content")
@@ -248,12 +247,12 @@ class Rion:
             runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
-            if runner_layer_runner == self.content:
+            if runner_layer_runner == self.content[0]:
                 exact.append(module_layer)
             # If the user input is anywhere in the string, the following statement is executed.
-            elif self.content in runner_layer_runner:
+            elif self.content[0] in runner_layer_runner:
                 moreorless.append(module_layer)
-            elif self.content in module_layer:
+            elif self.content[0] in module_layer:
                 indescrib.append(module_layer)
         os.chdir(path)
 
@@ -337,7 +336,7 @@ class Rion:
         if " " in self.content[1]:
             Errors.error_message("Wrong Syntax")
         if self.content[0] == "create":
-            os.mkdir(self.content)
+            os.mkdir(self.content[0])
             print(f"create venv: {self.content[1]}")
         elif self.content[0] == "remove":
             os.remove(self.content[1])
