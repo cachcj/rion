@@ -33,6 +33,9 @@ def handler() -> None:
         # Create Object
         riox = Rion(flags, loader)
 
+        # Update
+        print("Type content:" + type(loader))
+
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
             riox.install()
