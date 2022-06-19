@@ -99,7 +99,7 @@ class Rion:
         os.chdir(self.content[1])
         name: str = self.helper.name(self.content[0], self.content[2])
         self.ftpmodule.download(name)
-        with tarfile.open(name, 'r:gz') as tar:
+        with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
@@ -246,7 +246,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
