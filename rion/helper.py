@@ -6,6 +6,7 @@ The module does all the things I am too lazy to do. sorry
 """
 
 import ctypes
+import hashlib
 import os
 import os.path
 import platform
@@ -125,3 +126,14 @@ class Helper:
             except Exception as error:
                 self.error.error_message(str(error))
         return user
+
+    @staticmethod
+    def sha256(fname: str) -> None:
+        """
+        Generate SHA Value of a file
+        """
+        sha256_hash = hashlib.sha256()
+        with open(fname, "rb") as docker:
+            for byte_block in iter(lambda: docker.read(4096), b""):
+                sha256_hash.update(byte_block)
+            print(sha256_hash.hexdigest())
