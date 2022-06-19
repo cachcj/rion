@@ -96,6 +96,9 @@ class Rion:
         """
         Rion installer
         """
+        # Test Sudo
+        if not self.helper.testsudo():
+            self.error.error_message("Please use sudo")
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
