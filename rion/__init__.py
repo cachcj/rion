@@ -31,7 +31,7 @@ def handler() -> None:
         flags: object = np.ndarray.tolist(command_list)
 
         # Create Object
-        riox = Rion(flags, loader)
+        riox = Rion(flags, loader, start)
 
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
