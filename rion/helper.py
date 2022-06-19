@@ -21,6 +21,13 @@ class Helper:
     Helper Class
     """
 
+    def __int__(self, start):
+        """
+        Konstruktor
+        """
+        self.start = start
+        self.error = Errors(start)
+
     @staticmethod
     def testsudo() -> bool:
         """
@@ -86,8 +93,7 @@ class Helper:
     def name(name: str, version: str) -> str:
         return f"{name}_v{version}"
 
-    @staticmethod
-    def read_config(modul: str) -> dict:
+    def read_config(self, modul: str) -> dict:
         """
         Read the config
         """
@@ -98,7 +104,7 @@ class Helper:
             path: str = os.getcwd()
             os.chdir(Path.home())
             if not os.path.isdir("rion"):
-                Errors.error_message("Rion ist not installed")
+                self.error.error_message("Irgend ein Bug")
             os.chdir("rion")
             # open file
             try:
@@ -109,7 +115,7 @@ class Helper:
                         # Since the config has no descriptions, each line must have a =.
                         # The Config is not there for decoration but to store values.
                         if "=" not in line:
-                            Errors.error_message("Wrong Syntax")
+                            self.error.error_message("Rion ist not installed")
                         # Manipulating the Dictonary through the user configs.
                         line = line.replace("\n", "")
                         line = line.split("=")
@@ -117,5 +123,5 @@ class Helper:
                 # go back
                 os.chdir(path)
             except Exception as error:
-                Errors.error_message(str(error))
+                self.error.error_message(str(error))
         return user

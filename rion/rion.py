@@ -24,7 +24,7 @@ class Rion:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
-        self.helper = Helper()
+        self.helper = Helper(start)
         self.path_config = f"{self.path_user}/rion.conf"
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
