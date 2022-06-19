@@ -18,7 +18,7 @@ def handler() -> None:
     start = datetime.now()
 
     # Load Error Object
-    errorx = Errors()
+    errorx = Errors(start)
 
     if len(sys.argv) >= 2:
         # Deletes the path and the basic command from the array
