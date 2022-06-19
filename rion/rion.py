@@ -310,7 +310,6 @@ class Rion:
                 if "port" in line:
                     self.error.error_message("Port Exist")
         with open("rion.conf", "a", encoding="utf8") as runner:
-            print(f"server={ipaddres}\nport={port}")
             runner.write(str(f"server={ipaddres}\n"))
             runner.write(str(f"port={port}\n"))
 
