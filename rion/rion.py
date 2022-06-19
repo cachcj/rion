@@ -12,7 +12,6 @@ from os.path import exists
 from pathlib import Path
 
 from rion.database import Database
-from rion.errors import Errors
 from rion.ftp import FTPHandler
 from rion.helper import Helper
 
@@ -29,7 +28,6 @@ class Rion:
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
-        self.error = Errors(start)
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper(start)
@@ -55,7 +53,7 @@ class Rion:
         outputty: list = self.rion.list_table(self.table, "name")
         # Checks if the output is empty
         if len(outputty) == 0:
-            self.error.error_message("The database is empty")
+            self.helper.error.error_message("The database is empty")
         # Set Path
         path_now: str = os.getcwd()
         # Switch to Rion
@@ -80,7 +78,7 @@ class Rion:
         outputty: list = self.rion.list_table(self.table, self.identify)
         # Checks if the output is empty
         if len(outputty) == 0:
-            self.error.error_message("The database is empty")
+            self.helper.error.error_message("The database is empty")
         else:
             # If it is not empty, then spend it all
             for runner in outputty:
@@ -93,7 +91,7 @@ class Rion:
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if len(self.content) == 0:
-            self.error.error_message(
+            self.helper.error.error_message(
                 "Please provide the name of the package that shall be installed."
             )
         os.chdir(self.content[1])
@@ -115,14 +113,14 @@ class Rion:
         """
         # Test Sudo
         if not self.helper.testsudo():
-            self.error.error_message("Please use sudo")
+            self.helper.error.error_message("Please use sudo")
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
         if os.path.exists("rion"):
             # Since Rion is already installed it cannot be installed again.
             # Therefore, this is canceled.
-            self.error.error_message("Rion is already installed.")
+            self.helper.error.error_message("Rion is already installed.")
         else:
             # We overload the path management
             # with platform specific instances to prevent errors
@@ -164,17 +162,17 @@ class Rion:
             # Checks if there are any illegal characters in the string
             for runner in username:
                 if runner not in correct:
-                    self.error.error_message("Wrong Syntax")
+                    self.helper.error.error_message("Wrong Syntax")
         else:
-            self.error.error_message("User exist")
+            self.helper.error.error_message("User exist")
         # Checks if the password is long enough
         if len(password) >= 8:
             # Checks if there are any illegal characters in the string
             for runner in password:
                 if runner not in correct:
-                    self.error.error_message("Wrong Syntax")
+                    self.helper.error.error_message("Wrong Syntax")
         else:
-            self.error.error_message("User exist")
+            self.helper.error.error_message("User exist")
         # Load the rion System
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Change the mode for opening the file
@@ -207,7 +205,7 @@ class Rion:
             venv = input("Venv: ")
             # Test Venv Name
             if len(venv) <= 3:
-                self.error.error_message("Venv Name is to short")
+                self.helper.error.error_message("Venv Name is to short")
             # version
             version = input("Version: ")
             pkg = Helper.name(name, version)
@@ -230,16 +228,16 @@ class Rion:
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # If there are spaces in the name the package will be rejected
         if " " in self.content[0]:
-            self.error.error_message("Wrong Package Syntax")
+            self.helper.error.error_message("Wrong Package Syntax")
         # Looks if parameters were passed
         if len(self.content[0]) == 0:
             # There are no flags and thus there are no packages to search for.
             # Consequently, there is an error
-            self.error.error_message("No content")
+            self.helper.error.error_message("No content")
         # db_content contains an array of all records from corresponding table
         db_content = self.rion.list_table(self.table, "name")
         if len(db_content) == 0:
-            self.error.error_message("No package found")
+            self.helper.error.error_message("No package found")
         # We need three lists to represent the three differnt search priorities.
         exact: list = []
         moreorless: list = []
@@ -274,7 +272,7 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.error.error_message(str(error_log))
+            self.helper.error.error_message(str(error_log))
 
     def update(self) -> None:
         """
@@ -304,19 +302,19 @@ class Rion:
         # check IP Adress (Syntax)
         for runner in ipaddres:
             if runner not in string.digits + ".":
-                self.error.error_message("Wrong Syntax")
+                self.helper.error.error_message("Wrong Syntax")
         # check Port
         if port.replace(" ", "") not in ["22", "21", "2121"]:
-            self.error.error_message("Wrong Port")
+            self.helper.error.error_message("Wrong Port")
         # check if server or port exist
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # load conf
         with open("rion.conf", "r", encoding="utf8") as runner:
             for line in runner.readlines():
                 if "server" in line:
-                    self.error.error_message("Server Exist")
+                    self.helper.error.error_message("Server Exist")
                 if "port" in line:
-                    self.error.error_message("Port Exist")
+                    self.helper.error.error_message("Port Exist")
         with open("rion.conf", "a", encoding="utf8") as runner:
             runner.write(str(f"server={ipaddres}\n"))
             runner.write(str(f"port={port}\n"))
@@ -331,7 +329,7 @@ class Rion:
         if Helper.testsudo():
             subprocess.run("pip install -U rion", check=True)
         else:
-            self.error.error_message("Please execute the command with admin rights.")
+            self.helper.error.error_message("Please execute the command with admin rights.")
 
     def manage_venv(self) -> None:
         """
@@ -340,7 +338,7 @@ class Rion:
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if " " in self.content[1]:
-            self.error.error_message("Wrong Syntax")
+            self.helper.error.error_message("Wrong Syntax")
         if "create" == self.content[0]:
             os.mkdir(self.content[0])
             print(f"create venv: {self.content[1]}")

@@ -22,7 +22,7 @@ class Helper:
     Helper Class
     """
 
-    def __int__(self, start):
+    def __init__(self, start):
         """
         Konstruktor
         """
