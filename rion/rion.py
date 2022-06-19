@@ -201,7 +201,7 @@ class Rion:
             venv = input("Venv: ")
             # Test Venv Name
             if len(venv) <= 3:
-                Errors.error_message("Venv Name is to short")
+                self.error.error_message("Venv Name is to short")
             # version
             version = input("Version: ")
             pkg = Helper.name(name, version)
@@ -246,7 +246,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
@@ -318,15 +318,14 @@ class Rion:
         # Reload Config
         self.user = Helper.read_config("server")
 
-    @staticmethod
-    def version() -> None:
+    def version(self) -> None:
         """
         Upgrade Rion Version
         """
         if Helper.testsudo():
             subprocess.run("pip install -U rion", check=True)
         else:
-            Errors.error_message("Please execute the command with admin rights.")
+            self.error.error_message("Please execute the command with admin rights.")
 
     def manage_venv(self) -> None:
         """
@@ -335,8 +334,8 @@ class Rion:
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if " " in self.content[1]:
-            Errors.error_message("Wrong Syntax")
-        if self.content[0] == "create":
+            self.error.error_message("Wrong Syntax")
+        if "create" == self.content[0]:
             os.mkdir(self.content[0])
             print(f"create venv: {self.content[1]}")
         elif self.content[0] == "remove":

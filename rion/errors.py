@@ -14,6 +14,9 @@ class Errors:
     """
 
     def __init__(self, start) -> None:
+        """
+        Konstruktor
+        """
         self.start = start
 
     def error_message(self, text: str) -> None:
