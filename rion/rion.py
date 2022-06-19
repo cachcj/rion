@@ -149,9 +149,17 @@ class Rion:
         """
         # create Correct list
         correct: str = string.ascii_letters + string.digits
-        # Reads the username
-        username: str = input("Username:")
-        # Checks if the username is long enough
+
+        # Overload
+        if len(self.content) == 2:
+            username = self.content[0]
+            password = self.content[1]
+        else:
+            # Reads the username
+            username: str = input("Username:")
+            # Reads the password
+            password = getpass()
+            # Checks if the username is long enough
         if len(username) >= 5:
             # Checks if there are any illegal characters in the string
             for runner in username:
@@ -159,8 +167,6 @@ class Rion:
                     self.error.error_message("Wrong Syntax")
         else:
             self.error.error_message("User exist")
-        # Reads the password
-        password = getpass()
         # Checks if the password is long enough
         if len(password) >= 8:
             # Checks if there are any illegal characters in the string
