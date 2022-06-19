@@ -1,6 +1,3 @@
 numpy
 termcolor
-
-urllib3
-rion
 setuptools

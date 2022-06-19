@@ -35,7 +35,7 @@ class Rion:
         self.helper = Helper()
         self.command = command
         self.user: dict = Helper.read_config(command)
-        self.FTPModule = FTPHandler(
+        self.ftpmodule = FTPHandler(
             "139.162.141.181",
             "2121",
             "user",
@@ -98,11 +98,11 @@ class Rion:
                 "Please provide the name of the package that shall be installed."
             )
         os.chdir(self.content[1])
-        name: str = self.helper.name(content[0], content[2])
-        self.FTPModule.download(name)
-        tar = tarfile.open(name)
-        tar.extractall()
-        tar.close()
+        name: str = self.helper.name(self.content[0], self.content[2])
+        self.ftpmodule.download(name)
+        with open(name) as tar:
+            tar = tarfile.open(name)
+            tar.extractall()
         os.remove(name)
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         self.rion.input_value(
@@ -196,9 +196,9 @@ class Rion:
         if " " in self.content:
             # [name, venv, version]
             # Remove DB Entry
-            pkg = Helper.make_init(self.content[0], self.content[1], self.content[2])
+            pkg = Helper.name(self.content[0], self.content[2])
         else:
-            name = self.content
+            name = self.content[0]
             # input other data
             venv = input("Venv: ")
             # Test Venv Name
@@ -206,7 +206,7 @@ class Rion:
                 Errors.error_message("Venv Name is to short")
             # version
             version = input("Version: ")
-            pkg = Helper.make_init(name, venv, version)
+            pkg = Helper.name(name, version)
         # Fix Path
         path: str = os.getcwd()
         os.chdir(Helper.os_bindings(f"{self.path_user}/rion/node/{venv}"))
@@ -278,7 +278,7 @@ class Rion:
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if os.path.exists("inor.db"):
             os.remove("inor.db")
-        self.FTPModule.download("inor.db")
+        self.ftpmodule.download("inor.db")
         os.chdir(path)
 
     @staticmethod
