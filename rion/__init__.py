@@ -3,10 +3,12 @@
 """
 import os
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
 import numpy as np
+from termcolor import colored
 
 from rion.errors import Errors
 from rion.rion import Rion
@@ -39,6 +41,7 @@ def handler() -> None:
         print("Version: " + str(riox.__version__))
 
         # Test Version
+        invalid_version = False
         try:
             os.chdir(Path.home())
             os.chdir("rion")
@@ -48,10 +51,12 @@ def handler() -> None:
                     if "version" in line:
                         version_old = line.replace(" ", "").split("=")[1]
             if version_old != riox.__version__:
-                errorx.error_message("Invalid version")
+                invalid_version = True
         except OSError:
-            print("Rion is not installed")
+            time.sleep(1)
         finally:
+            if invalid_version:
+                errorx.error_message("Invalid Version\n Please install Rion again")
             # Transfer the NumPy array with all configs to the relevant functions.
             if loader == "install":
                 riox.install()
