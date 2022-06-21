@@ -137,6 +137,9 @@ class Helper:
             print(sha256_hash.hexdigest())
 
     def name_function(self, content: list[str]) -> dict:
+        """
+        Return Name
+        """
         # Load Package Data
         if len(content) != 3:
             name: str = input("Name: ")
@@ -155,3 +158,11 @@ class Helper:
             venv = "venv"
         # Create Return
         return {"name": name, "version": version, "venv": venv}
+
+    @staticmethod
+    def testversion(dummy: dict, version: str) -> None:
+        """
+        Test Version
+        """
+        if dummy["version"] != str(version):
+            Errors.error_message("Wrong Version")
