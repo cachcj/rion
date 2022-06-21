@@ -105,7 +105,7 @@ class Helper:
             path: str = os.getcwd()
             os.chdir(Path.home())
             if not os.path.isdir("rion"):
-                self.error.error_message("Irgend ein Bug")
+                self.error.error_message("rion not found")
             os.chdir("rion")
             # open file
             try:
@@ -137,3 +137,23 @@ class Helper:
             for byte_block in iter(lambda: docker.read(4096), b""):
                 sha256_hash.update(byte_block)
             print(sha256_hash.hexdigest())
+
+    def name_function(self, content: list[str]) -> dict:
+        # Load Package Data
+        if len(content) != 3:
+            name: str = input("Name: ")
+            version: str = input("Version: ")
+            venv: str = input("Venv :")
+        else:
+            name: str = content[0]
+            version: str = content[1]
+            venv: str = content[2]
+        # Test Package Data
+        if 3 >= len(name) >= 30:
+            self.error.error_message("Wrong Name Syntax")
+        if "." not in version and len(version) <= 3:
+            self.error.error_message("wrong Version Syntax")
+        if len(venv) == 0:
+            venv = "venv"
+        # Create Return
+        return {"name": name, "version": version, "venv": venv}
