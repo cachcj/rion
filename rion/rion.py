@@ -38,6 +38,7 @@ class Rion:
             "user",
             "aghast-unhealthy-sloppy-elastic-referable",
         )
+        self.__version__ = "v0.2.0"
 
     @staticmethod
     def check() -> None:
@@ -228,6 +229,8 @@ class Rion:
         # Modify Path
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # TODO: Delete Test
+        self.rion.input_value(self.table, "test, test, test, node")
         # If there are spaces in the name the package will be rejected
         if " " in self.content[0]:
             self.helper.error.error_message("Wrong Package Syntax")
@@ -252,7 +255,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
