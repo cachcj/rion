@@ -52,6 +52,7 @@ def handler() -> None:
                 for line in docker.readlines():
                     if "version" in line:
                         version_old = line.replace(" ", "").split("=")[1]
+                        print(version_old)
             if version_old != riox.__version__:
                 invalid_version = True
         except OSError:
