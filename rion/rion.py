@@ -356,8 +356,14 @@ class Rion:
         if len(self.content) != 2:
             venv = input("Venv: ")
             command = input("Command: ")
+            if command == "list":
+                for runner in os.listdir("."):
+                    print(runner)
         else:
             command = self.content[0]
+            if command == "list":
+                for runner in os.listdir("."):
+                    print(runner)
             venv = self.content[1]
         # Test content
         for runner in venv:
@@ -381,11 +387,6 @@ class Rion:
                 self.helper.error.error_message(
                     f"The Venv cannot delete.\nError:{error}"
                 )
-
-        elif command == "list":
-            for runner in os.listdir("."):
-                print(runner)
-        os.chdir(path)
 
     def info(self) -> None:
         """
