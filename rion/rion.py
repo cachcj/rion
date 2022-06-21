@@ -279,6 +279,12 @@ class Rion:
             shutil.rmtree("rion")
         except OSError as error_log:
             self.helper.error.error_message(str(error_log))
+        if Helper.testsudo():
+            subprocess.run("pip uninstall rion", check=True)
+        else:
+            self.helper.error.error_message(
+                "Please execute the command with admin rights."
+            )
 
     def update(self) -> None:
         """

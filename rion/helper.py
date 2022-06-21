@@ -34,13 +34,11 @@ class Helper:
         """
         Checks if a script was started with admin or root rights.
         """
-        test: bool = True
         try:
             is_admin = os.getuid() == 0
         except AttributeError:
             is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
-            test = False
-        return test
+        return is_admin
 
     @staticmethod
     def os_bindings(path: str) -> str:
