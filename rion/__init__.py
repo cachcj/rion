@@ -42,8 +42,8 @@ def handler() -> None:
 
         # Test Version
         invalid_version = False
-        if loader == "remove":
-            riox.remove()
+        if loader == "uninstall":
+            riox.uninstall()
         try:
             os.chdir(Path.home())
             os.chdir("rion")
