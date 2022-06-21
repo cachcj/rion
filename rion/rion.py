@@ -387,3 +387,4 @@ class Rion:
             lines = [_.rstrip("\n") for _ in docker.readlines()]
         for docker in lines:
             print(lines)
+        os.chdir(path)
