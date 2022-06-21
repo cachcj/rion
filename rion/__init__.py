@@ -89,6 +89,8 @@ def handler() -> None:
             else:
                 # If no command was found, it aborts the program.
                 errorx.error_message("no command was found")
+    else:
+        errorx.error_message("No Input")
 
     # End Time Managment
     diff = datetime.now() - start
