@@ -8,7 +8,6 @@ from datetime import datetime
 from pathlib import Path
 
 import numpy as np
-from termcolor import colored
 
 from rion.errors import Errors
 from rion.rion import Rion
@@ -52,8 +51,10 @@ def handler() -> None:
                 for line in docker.readlines():
                     if "version" in line:
                         version_old = line.replace(" ", "").split("=")[1]
-                        print(version_old)
-            if version_old != riox.__version__:
+                        print(
+                            f"Version old:{version_old}\n Version New: {riox.__version__.replace(' ', '')}"
+                        )
+            if version_old != riox.__version__.replace(" ", ""):
                 invalid_version = True
         except OSError:
             time.sleep(1)
