@@ -114,8 +114,8 @@ class Rion:
         Rion installer
         """
         # Test Sudo
-        if self.helper.testsudo():
-            self.helper.error.error_message("Please dont use sudo")
+        # if self.helper.testsudo():
+        #    self.helper.error.error_message("Please dont use sudo")
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
@@ -256,7 +256,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
@@ -342,7 +342,7 @@ class Rion:
         """
         Upgrade Rion Version
         """
-        if Helper.testsudo():
+        if not Helper.testsudo():
             subprocess.run("pip install -U rion", check=True)
         else:
             self.helper.error.error_message(
