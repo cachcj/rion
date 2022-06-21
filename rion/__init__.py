@@ -47,9 +47,8 @@ def handler() -> None:
                 for line in docker.readlines():
                     if "version" in line:
                         version_old = line.replace(" ", "").split("=")[1]
-                Errors.error_message("Error: No Version find")
             if version_old != riox.__version__:
-                Errors.error_message("Invalid version")
+                errorx.error_message("Invalid version")
         except OSError:
             print("Rion is not installed")
         finally:
