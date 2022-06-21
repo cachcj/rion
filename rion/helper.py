@@ -90,7 +90,7 @@ class Helper:
 
     @staticmethod
     def name(name: str, version: str) -> str:
-        return f"{name}_v{version}"
+        return f"{name}_v{version.replace('v', '')}"
 
     def read_config(self, modul: str) -> dict:
         """

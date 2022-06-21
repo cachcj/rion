@@ -377,11 +377,16 @@ class Rion:
         # go in venv
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings(package["venv"]))
-        os.chdir(
-            self.helper.os_bindings(
-                self.helper.name(package["name"], package["version"])
+        try:
+            os.chdir(
+                self.helper.os_bindings(
+                    self.helper.name(package["name"], package["version"])
+                )
             )
-        )
+        except Exception as error:
+            self.helper.error.error_message(
+                f"Package ist not installed.\nError: {error}"
+            )
         # Serch File in package
         path_to_meta: list[str] = [].append(glob.glob("rev_info.txt"))
         # Check if no file find
