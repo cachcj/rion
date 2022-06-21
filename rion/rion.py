@@ -347,17 +347,32 @@ class Rion:
         """
         create a new venv
         """
+        # Modify Path
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if " " in self.content[1]:
-            self.helper.error.error_message("Wrong Syntax")
-        if "create" == self.content[0]:
-            os.mkdir(self.content[0])
-            print(f"create venv: {self.content[1]}")
-        elif self.content[0] == "remove":
-            os.remove(self.content[1])
-            self.rion.delete_package(self.table, "venv", self.content[1])
-        os.chdir(path)
+
+        # Test Command
+        # content = [ command , name ]
+        if len(self.content) != 2:
+            venv = input("Venv: ")
+            command = input("Command: ")
+        else:
+            command = self.content[0]
+            venv = self.content[1]
+        # Test content
+        for runner in venv:
+            if runner not in string.ascii_letters:
+                self.helper.error.error_message("Wrong Venv Syntax")
+        if command not in ["create", "list", "remove"]:
+            self.helper.error.error_message("Wrong Command Syntax")
+        os.chdir(self.helper.os_bindings("node"))
+        # Execute Command
+        if command == "create":
+            os.mkdir(self.helper.os_bindings(venv))
+        elif command == "remove":
+            shutil.rmtree(venv)
+        elif command == "list":
+            print(os.listdir("."))
 
     def info(self) -> None:
         """
