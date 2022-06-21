@@ -40,9 +40,6 @@ class Rion:
             "aghast-unhealthy-sloppy-elastic-referable",
         )
         self.__version__ = "v0.2.1 - Test"
-        self.test_version = Helper(start).testversion(
-            Helper(start).read_config(command), "v0.2.1 - Test"
-        )
 
     @staticmethod
     def check() -> None:
@@ -260,7 +257,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
