@@ -39,7 +39,7 @@ class Rion:
             "user",
             "aghast-unhealthy-sloppy-elastic-referable",
         )
-        self.__version__ = "v0.2.1 - Test"
+        self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
     @staticmethod
     def check() -> None:
@@ -67,7 +67,7 @@ class Rion:
         with open("rion_list.txt", encoding="utf8") as docker:
             for runner in outputty:
                 docker.write(
-                    (str(runner).replace("(", "").replace(")", "").replace("'", ""))
+                    (str(runner).replace("(", "").replace(")", "").replace("'", "").replace(" ", ""))
                 )
         # Return folder
         os.chdir(path_now)
@@ -183,8 +183,8 @@ class Rion:
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
-            config.write(f"username={username}\n")
-            config.write(f"password={password}\n")
+            config.write(f"username={username}\n".replace(" ", ""))
+            config.write(f"password={password}\n".replace(" ", ""))
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
@@ -257,7 +257,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:

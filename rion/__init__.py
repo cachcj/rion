@@ -56,7 +56,7 @@ def handler() -> None:
             time.sleep(1)
         finally:
             if invalid_version:
-                errorx.error_message("Invalid Version\n Please install Rion again")
+                errorx.error_message("Invalid Version\nPlease install Rion again")
             # Transfer the NumPy array with all configs to the relevant functions.
             if loader == "install":
                 riox.install()
