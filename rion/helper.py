@@ -123,8 +123,6 @@ class Helper:
                 os.chdir(path)
             except Exception as error:
                 self.error.error_message(str(error))
-        # TODO: Remove
-        print(user)
         return user
 
     @staticmethod
