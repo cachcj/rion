@@ -105,7 +105,7 @@ class Helper:
             path: str = os.getcwd()
             os.chdir(Path.home())
             if not os.path.isdir("rion"):
-                self.error.error_message("Irgend ein Bug")
+                self.error.error_message("rion not found")
             os.chdir("rion")
             # open file
             try:
