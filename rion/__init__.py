@@ -43,6 +43,8 @@ def handler() -> None:
         # Test Version
         invalid_version = False
         try:
+            if loader == "remove":
+                riox.remove()
             os.chdir(Path.home())
             os.chdir("rion")
             version_old = ""

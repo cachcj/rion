@@ -14,7 +14,7 @@ import subprocess
 import uuid
 from pathlib import Path
 
-from packaging import version
+import packaging
 
 from rion.errors import Errors
 
@@ -143,13 +143,14 @@ class Helper:
         Return Name
         """
         # Load Package Data
+        version: str = ""
         if len(content) != 3:
             name: str = input("Name: ")
-            version: str = input("Version: ")
+            version = input("Version: ")
             venv: str = input("Venv :")
         else:
             name: str = content[0]
-            version: str = content[1]
+            version = content[1]
             venv: str = content[2]
         # Test Package Data
         if 3 >= len(name) >= 30:
@@ -175,23 +176,28 @@ class Helper:
         """
         # create container
         compare: int = -2
-
         # Load Version
         version_one = version_one.replace("v", "").replace(" ", "")
         version_two = version_two.replace("v", "").replace(" ", "")
-
         # Test Version
-        if version.parse(version_one) > version.parse(version_two):
+        if packaging.version.parse(version_one) > packaging.version.parse(version_two):
             compare = 1
-
-        if version.parse(version_one) < version.parse(version_two):
+        if packaging.version.parse(version_one) < packaging.version.parse(version_two):
             compare = 2
-
-        if version.parse(version_one) == version.parse(version_two):
+        if packaging.version.parse(version_one) == packaging.version.parse(version_two):
             compare = 0
-
         if compare == -2:
             self.error.error_message("Comparison is not possible")
-
         # Return
         return compare
+
+    @staticmethod
+    def get_package(name: str, idxf: str, venv: str) -> dict:
+        """
+        change Data Type
+        """
+        return {
+            "name": name,
+            "version": idxf,
+            "venv": venv,
+        }

@@ -67,7 +67,13 @@ class Rion:
         with open("rion_list.txt", encoding="utf8") as docker:
             for runner in outputty:
                 docker.write(
-                    (str(runner).replace("(", "").replace(")", "").replace("'", "").replace(" ", ""))
+                    (
+                        str(runner)
+                        .replace("(", "")
+                        .replace(")", "")
+                        .replace("'", "")
+                        .replace(" ", "")
+                    )
                 )
         # Return folder
         os.chdir(path_now)
@@ -257,7 +263,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
