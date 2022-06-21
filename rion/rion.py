@@ -392,5 +392,5 @@ class Rion:
         with open(meta, "r", encoding="utf-8") as docker:
             lines = [_.rstrip("\n") for _ in docker.readlines()]
         for docker in lines:
-            print(lines)
+            print(docker)
         os.chdir(path)

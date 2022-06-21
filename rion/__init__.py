@@ -34,7 +34,7 @@ def handler() -> None:
         riox = Rion(flags, loader, start)
 
         # Set Version
-        print("Version:"+str(riox.__version__))
+        print("Version:" + str(riox.__version__))
 
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
@@ -63,6 +63,8 @@ def handler() -> None:
             riox.server()
         elif loader == "venv":
             riox.manage_venv()
+        elif loader == "info":
+            riox.info()
         else:
             # If no command was found, it aborts the program.
             errorx.error_message("no command was found")
