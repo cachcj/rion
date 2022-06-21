@@ -33,6 +33,9 @@ def handler() -> None:
         # Create Object
         riox = Rion(flags, loader, start)
 
+        # Set Version
+        print("Version:"+str(riox.__version__))
+
         # Transfer the NumPy array with all configs to the relevant functions.
         if loader == "install":
             riox.install()
