@@ -279,7 +279,7 @@ class Rion:
             shutil.rmtree("rion")
         except OSError as error_log:
             self.helper.error.error_message(str(error_log))
-            
+
     def update(self) -> None:
         """
         Load Update File from rion
@@ -377,7 +377,7 @@ class Rion:
                     self.helper.name(package["name"], package["version"])
                 )
             )
-        except Exception as error:
+        except OSError as error:
             self.helper.error.error_message(
                 f"Package ist not installed.\nError: {error}"
             )
