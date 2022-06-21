@@ -183,7 +183,7 @@ class Rion:
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
-        self.user = Helper.read_config("login")
+        self.user = self.helper.read_config("login")
 
     def remove(self) -> None:
         """
@@ -250,7 +250,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
@@ -324,7 +324,7 @@ class Rion:
             runner.write(str(f"port={port}\n"))
 
         # Reload Config
-        self.user = Helper.read_config("server")
+        self.user = self.helper.read_config("server")
 
     def version(self) -> None:
         """
@@ -333,7 +333,9 @@ class Rion:
         if Helper.testsudo():
             subprocess.run("pip install -U rion", check=True)
         else:
-            self.helper.error.error_message("Please execute the command with admin rights.")
+            self.helper.error.error_message(
+                "Please execute the command with admin rights."
+            )
 
     def manage_venv(self) -> None:
         """
