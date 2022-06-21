@@ -39,7 +39,7 @@ class Rion:
             "user",
             "aghast-unhealthy-sloppy-elastic-referable",
         )
-        self.__version__ = "v0.2.0"
+        self.__version__ = "v0.2.1 - Test"
 
     @staticmethod
     def check() -> None:
