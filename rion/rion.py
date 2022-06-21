@@ -115,7 +115,7 @@ class Rion:
         """
         # Test Sudo
         if not self.helper.testsudo():
-            self.helper.error.error_message("Please use sudo")
+            self.helper.error.error_message("Please dont use sudo")
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
@@ -279,11 +279,11 @@ class Rion:
             shutil.rmtree("rion")
         except OSError as error_log:
             self.helper.error.error_message(str(error_log))
-        if Helper.testsudo():
+        if not Helper.testsudo():
             subprocess.run("pip uninstall rion", check=True)
         else:
             self.helper.error.error_message(
-                "Please execute the command with admin rights."
+                "Please dont execute the command with admin rights."
             )
 
     def update(self) -> None:
