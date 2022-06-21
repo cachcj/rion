@@ -285,7 +285,8 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.helper.error.error_message(str(error_log))
+            self.helper.error.error_message("Rion is not installed")
+            # self.helper.error.error_message(str(error_log))
 
     def update(self) -> None:
         """
