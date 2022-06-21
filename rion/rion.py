@@ -1,6 +1,7 @@
 """
 Rion Class
 """
+import glob
 import os
 import os.path
 import shutil
@@ -357,3 +358,32 @@ class Rion:
             os.remove(self.content[1])
             self.rion.delete_package(self.table, "venv", self.content[1])
         os.chdir(path)
+
+    def info(self) -> None:
+        """
+        Load Infos from Metadata
+        """
+        # Modify Path
+        path = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Create Package
+        package: dict = self.helper.name_function(self.content)
+        # go in venv
+        os.chdir(self.helper.os_bindings("node"))
+        os.chdir(self.helper.os_bindings(package["venv"]))
+        os.chdir(
+            self.helper.os_bindings(
+                self.helper.name(package["name"], package["version"])
+            )
+        )
+        # Serch File in package
+        path_to_meta: list[str] = [].append(glob.glob("rev_info.txt"))
+        # Check if no file find
+        if len(path_to_meta) == 0:
+            self.helper.error.error_message("No Info File found")
+        # Read Info file (Overload)
+        meta: str = path_to_meta[0]
+        with open(meta, "r", encoding="utf-8") as docker:
+            lines = [_.rstrip("\n") for _ in docker.readlines()]
+        for docker in lines:
+            print(lines)
