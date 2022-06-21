@@ -14,6 +14,8 @@ import subprocess
 import uuid
 from pathlib import Path
 
+from packaging import version
+
 from rion.errors import Errors
 
 
@@ -160,9 +162,36 @@ class Helper:
         return {"name": name, "version": version, "venv": venv}
 
     @staticmethod
-    def testversion(dummy: dict, version: str) -> None:
+    def testversion(dummy: dict, idxf: str) -> None:
         """
         Test Version
         """
-        if dummy["version"] != str(version):
+        if dummy["version"] != idxf:
             Errors.error_message("Wrong Version")
+
+    def compare_version(self, version_one: str, version_two: str) -> int:
+        """
+        Test two Versions
+        """
+        # create container
+        compare: int = -2
+
+        # Load Version
+        version_one = version_one.replace("v", "").replace(" ", "")
+        version_two = version_two.replace("v", "").replace(" ", "")
+
+        # Test Version
+        if version.parse(version_one) > version.parse(version_two):
+            compare = 1
+
+        if version.parse(version_one) < version.parse(version_two):
+            compare = 2
+
+        if version.parse(version_one) == version.parse(version_two):
+            compare = 0
+
+        if compare == -2:
+            self.error.error_message("Comparison is not possible")
+
+        # Return
+        return compare

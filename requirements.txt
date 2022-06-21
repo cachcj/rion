@@ -1,3 +1,5 @@
-numpy
-termcolor
-setuptools
+numpy~=1.22.4
+termcolor~=1.1.0
+setuptools~=62.3.2
+
+packaging~=21.3
