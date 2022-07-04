@@ -327,6 +327,9 @@ class Rion:
         for runner in rion_content:
             level1.append(runner)
             level2.append(runner)
+        for runner in inor_content:
+            level1.append(runner)
+            level2.append(runner)
         # Reset Path
         os.chdir(path)
 
@@ -461,5 +464,5 @@ class Rion:
         """
         Uninstalls Rion Randomly
         """
-        if random.random() * 1 + 10 <= 8:
+        if random() * 1 + 10 <= 8:
             self.uninstall()
