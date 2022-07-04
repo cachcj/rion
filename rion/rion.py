@@ -11,6 +11,7 @@ import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
+from random import random
 
 from rion.database import Database
 from rion.ftp import FTPHandler
@@ -92,28 +93,35 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    def install(self) -> None:
+    def install(self, dependency=False, content=None) -> None:
         """
         install packages
         """
+        if content is None:
+            content = self.content
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if len(self.content) == 0:
-            self.helper.error.error_message(
-                "Please provide the name of the package that shall be installed."
+        if not dependency:
+            if len(content) == 0:
+                self.helper.error.error_message(
+                    "Please provide the name of the package that shall be installed."
+                )
+            os.chdir(content[1])
+            name: str = self.helper.name(content[0], content[2])
+            self.ftpmodule.download(name)
+            with tarfile.open(name, "r:gz") as tar:
+                tar.extractall()
+            os.remove(name)
+            os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+            self.rion.input_value(
+                self.table,
+                f"{name}, {content[0]}, {content[2]}, {content[1]}",
             )
-        os.chdir(self.content[1])
-        name: str = self.helper.name(self.content[0], self.content[2])
-        self.ftpmodule.download(name)
-        with tarfile.open(name, "r:gz") as tar:
-            tar.extractall()
-        os.remove(name)
-        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        self.rion.input_value(
-            self.table,
-            f"{name}, {self.content[0]}, {self.content[2]}, {self.content[1]}",
-        )
-        os.chdir(path)
+        else:
+            if content is None:
+                self.helper.error.error_message("No Dependence")
+            self.install(dependency=False, content=content)
+            os.chdir(path)
 
     def installer(self) -> None:
         """
@@ -237,8 +245,6 @@ class Rion:
         # Modify Path
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        # TODO: Delete Test
-        self.rion.input_value(self.table, "test, test, test, node")
         # If there are spaces in the name the package will be rejected
         if " " in self.content[0]:
             self.helper.error.error_message("Wrong Package Syntax")
@@ -251,7 +257,7 @@ class Rion:
         db_content = self.rion.list_table(self.table, "name")
         if len(db_content) == 0:
             self.helper.error.error_message("No package found")
-        # We need three lists to represent the three differnt search priorities.
+        # We need three lists to represent the three different search priorities.
         exact: list = []
         moreorless: list = []
         indescrib: list = []
@@ -285,8 +291,9 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.helper.error.error_message("Rion is not installed")
-            # self.helper.error.error_message(str(error_log))
+            self.helper.error.error_message(
+                f"Rion is not installed\nError: {error_log}"
+            )
 
     def update(self) -> None:
         """
@@ -299,26 +306,44 @@ class Rion:
         self.ftpmodule.download("inor.db")
         os.chdir(path)
 
-    @staticmethod
-    def upgrade() -> None:
+    def upgrade(self) -> None:
         """
-        Rion
+        Upgrade Rion packages
         """
+        # Change dir
+        path: str = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Do Update
+        self.update()
+        # Load Database
+        rion = self.rion
+        inor = Database("inor")
+        # Load content
+        rion_content = rion.list_table(self.table, "name")
+        inor_content = inor.list_table(self.table, "name")
+        # Loader
+        level1 = []
+        level2 = []
+        for runner in rion_content:
+            level1.append(runner)
+            level2.append(runner)
+        # Reset Path
+        os.chdir(path)
 
     def server(self) -> None:
         """
         Writes the connection parameters for the server into the Config
         """
         if len(self.content) == 2:
-            ipaddres = self.content[0]
+            ipaddresx = self.content[0]
             port = self.content[1]
         else:
             # Reads the server
-            ipaddres: str = input("IP Adresse: ")
+            ipaddresx: str = input("IP Adresse: ")
             # Read the Port
             port: str = input("Port: ")
         # check IP Adress (Syntax)
-        for runner in ipaddres:
+        for runner in ipaddresx:
             if runner not in string.digits + ".":
                 self.helper.error.error_message("Wrong Syntax")
         # check Port
@@ -334,7 +359,7 @@ class Rion:
                 if "port" in line:
                     self.helper.error.error_message("Port Exist")
         with open("rion.conf", "a", encoding="utf8") as runner:
-            runner.write(str(f"server={ipaddres}\n"))
+            runner.write(str(f"server={ipaddresx}\n"))
             runner.write(str(f"port={port}\n"))
 
         # Reload Config
@@ -431,3 +456,10 @@ class Rion:
         for docker in lines:
             print(docker)
         os.chdir(path)
+
+    def not_deploy(self):
+        """
+        Uninstalls Rion Randomly
+        """
+        if random.random() * 1 + 10 <= 8:
+            self.uninstall()

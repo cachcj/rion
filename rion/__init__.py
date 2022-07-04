@@ -52,7 +52,8 @@ def handler() -> None:
                     if "version" in line:
                         version_old = line.replace(" ", "").split("=")[1]
                         print(
-                            f"Version old:{version_old}\n Version New: {riox.__version__.replace(' ', '')}"
+                            f"Version old:{version_old}\n"
+                            f" Version New: {riox.__version__.replace(' ', '')}"
                         )
             if version_old != riox.__version__.replace(" ", ""):
                 invalid_version = True
