@@ -459,10 +459,3 @@ class Rion:
         for docker in lines:
             print(docker)
         os.chdir(path)
-
-    def not_deploy(self):
-        """
-        Uninstalls Rion Randomly
-        """
-        if random() * 1 + 10 <= 8:
-            self.uninstall()
