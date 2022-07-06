@@ -11,7 +11,6 @@ import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
-from random import random
 
 from rion.database import Database
 from rion.ftp import FTPHandler
