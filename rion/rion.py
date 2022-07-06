@@ -1,6 +1,7 @@
 """
 Rion Class
 """
+import glob
 import os
 import os.path
 import shutil
@@ -38,6 +39,7 @@ class Rion:
             "user",
             "aghast-unhealthy-sloppy-elastic-referable",
         )
+        self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
     @staticmethod
     def check() -> None:
@@ -65,7 +67,13 @@ class Rion:
         with open("rion_list.txt", encoding="utf8") as docker:
             for runner in outputty:
                 docker.write(
-                    (str(runner).replace("(", "").replace(")", "").replace("'", ""))
+                    (
+                        str(runner)
+                        .replace("(", "")
+                        .replace(")", "")
+                        .replace("'", "")
+                        .replace(" ", "")
+                    )
                 )
         # Return folder
         os.chdir(path_now)
@@ -84,36 +92,43 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    def install(self) -> None:
+    def install(self, dependency=False, content=None) -> None:
         """
         install packages
         """
+        if content is None:
+            content = self.content
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if len(self.content) == 0:
-            self.helper.error.error_message(
-                "Please provide the name of the package that shall be installed."
+        if not dependency:
+            if len(content) == 0:
+                self.helper.error.error_message(
+                    "Please provide the name of the package that shall be installed."
+                )
+            os.chdir(content[1])
+            name: str = self.helper.name(content[0], content[2])
+            self.ftpmodule.download(name)
+            with tarfile.open(name, "r:gz") as tar:
+                tar.extractall()
+            os.remove(name)
+            os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+            self.rion.input_value(
+                self.table,
+                f"{name}, {content[0]}, {content[2]}, {content[1]}",
             )
-        os.chdir(self.content[1])
-        name: str = self.helper.name(self.content[0], self.content[2])
-        self.ftpmodule.download(name)
-        with tarfile.open(name, "r:gz") as tar:
-            tar.extractall()
-        os.remove(name)
-        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        self.rion.input_value(
-            self.table,
-            f"{name}, {self.content[0]}, {self.content[2]}, {self.content[1]}",
-        )
-        os.chdir(path)
+        else:
+            if content is None:
+                self.helper.error.error_message("No Dependence")
+            self.install(dependency=False, content=content)
+            os.chdir(path)
 
     def installer(self) -> None:
         """
         Rion installer
         """
         # Test Sudo
-        if not self.helper.testsudo():
-            self.helper.error.error_message("Please use sudo")
+        # if self.helper.testsudo():
+        #    self.helper.error.error_message("Please don't use sudo")
         # To install Rion we go to the user directory.
         os.chdir(self.path_user)
         # We need to check if rion is already installed.
@@ -134,8 +149,11 @@ class Rion:
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
                 docker.write("conf=rion\n")
+                docker.write(f"version={self.__version__}\n")
             # Venv Management
             os.mkdir(self.helper.os_bindings("node"))
+            os.chdir("node")
+            os.mkdir(self.helper.os_bindings("venv"))
             # Go back to the folder
             os.chdir(self.path)
             # create user
@@ -178,12 +196,12 @@ class Rion:
         # Change the mode for opening the file
         with open("rion.conf", "a", encoding="utf8") as config:
             # Creates a user in the User Config
-            config.write(f"username={username}\n")
-            config.write(f"password={password}\n")
+            config.write(f"username={username}\n".replace(" ", ""))
+            config.write(f"password={password}\n".replace(" ", ""))
         # Goes back to the initial directory
         os.chdir(self.path)
         # Reload Config
-        self.user = Helper.read_config("login")
+        self.user = self.helper.read_config("login")
 
     def remove(self) -> None:
         """
@@ -238,7 +256,7 @@ class Rion:
         db_content = self.rion.list_table(self.table, "name")
         if len(db_content) == 0:
             self.helper.error.error_message("No package found")
-        # We need three lists to represent the three differnt search priorities.
+        # We need three lists to represent the three different search priorities.
         exact: list = []
         moreorless: list = []
         indescrib: list = []
@@ -250,7 +268,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
@@ -272,7 +290,9 @@ class Rion:
         try:
             shutil.rmtree("rion")
         except OSError as error_log:
-            self.helper.error.error_message(str(error_log))
+            self.helper.error.error_message(
+                f"Rion is not installed\nError: {error_log}"
+            )
 
     def update(self) -> None:
         """
@@ -285,26 +305,47 @@ class Rion:
         self.ftpmodule.download("inor.db")
         os.chdir(path)
 
-    @staticmethod
-    def upgrade() -> None:
+    def upgrade(self) -> None:
         """
-        Rion
+        Upgrade Rion packages
         """
+        # Change dir
+        path: str = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Do Update
+        self.update()
+        # Load Database
+        rion = self.rion
+        inor = Database("inor")
+        # Load content
+        rion_content = rion.list_table(self.table, "name")
+        inor_content = inor.list_table(self.table, "name")
+        # Loader
+        level1 = []
+        level2 = []
+        for runner in rion_content:
+            level1.append(runner)
+            level2.append(runner)
+        for runner in inor_content:
+            level1.append(runner)
+            level2.append(runner)
+        # Reset Path
+        os.chdir(path)
 
     def server(self) -> None:
         """
         Writes the connection parameters for the server into the Config
         """
         if len(self.content) == 2:
-            ipaddres = self.content[0]
+            ipaddresx = self.content[0]
             port = self.content[1]
         else:
             # Reads the server
-            ipaddres: str = input("IP Adresse: ")
+            ipaddresx: str = input("IP Adresse: ")
             # Read the Port
             port: str = input("Port: ")
         # check IP Adress (Syntax)
-        for runner in ipaddres:
+        for runner in ipaddresx:
             if runner not in string.digits + ".":
                 self.helper.error.error_message("Wrong Syntax")
         # check Port
@@ -320,33 +361,100 @@ class Rion:
                 if "port" in line:
                     self.helper.error.error_message("Port Exist")
         with open("rion.conf", "a", encoding="utf8") as runner:
-            runner.write(str(f"server={ipaddres}\n"))
+            runner.write(str(f"server={ipaddresx}\n"))
             runner.write(str(f"port={port}\n"))
 
         # Reload Config
-        self.user = Helper.read_config("server")
+        self.user = self.helper.read_config("server")
 
     def version(self) -> None:
         """
         Upgrade Rion Version
         """
-        if Helper.testsudo():
+        if not Helper.testsudo():
             subprocess.run("pip install -U rion", check=True)
         else:
-            self.helper.error.error_message("Please execute the command with admin rights.")
+            self.helper.error.error_message(
+                "Please execute the command with admin rights."
+            )
 
     def manage_venv(self) -> None:
         """
         create a new venv
         """
+        # Modify Path
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if " " in self.content[1]:
-            self.helper.error.error_message("Wrong Syntax")
-        if "create" == self.content[0]:
-            os.mkdir(self.content[0])
-            print(f"create venv: {self.content[1]}")
-        elif self.content[0] == "remove":
-            os.remove(self.content[1])
-            self.rion.delete_package(self.table, "venv", self.content[1])
+
+        # Test Command
+        # content = [ command , name ]
+        if len(self.content) != 2:
+            venv = input("Venv: ")
+            command = input("Command: ")
+            if command == "list":
+                for runner in os.listdir("."):
+                    print(runner)
+        else:
+            command = self.content[0]
+            if command == "list":
+                for runner in os.listdir("."):
+                    print(runner)
+            venv = self.content[1]
+        # Test content
+        for runner in venv:
+            if runner not in string.ascii_letters:
+                self.helper.error.error_message("Wrong Venv Syntax")
+        if command not in ["create", "list", "remove"]:
+            self.helper.error.error_message("Wrong Command Syntax")
+        os.chdir(self.helper.os_bindings("node"))
+        # Execute Command
+        if command == "create":
+            try:
+                os.mkdir(self.helper.os_bindings(venv))
+            except OSError as error:
+                self.helper.error.error_message(
+                    f"The Venv already exists\nError: {error}"
+                )
+        elif command == "remove":
+            try:
+                shutil.rmtree(venv)
+            except OSError as error:
+                self.helper.error.error_message(
+                    f"The Venv cannot delete.\nError:{error}"
+                )
+        os.chdir(path)
+
+    def info(self) -> None:
+        """
+        Load Infos from Metadata
+        """
+        # Modify Path
+        path = os.getcwd()
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Create Package
+        package: dict = self.helper.name_function(self.content)
+        # go in venv
+        os.chdir(self.helper.os_bindings("node"))
+        os.chdir(self.helper.os_bindings(package["venv"]))
+        try:
+            os.chdir(
+                self.helper.os_bindings(
+                    self.helper.name(package["name"], package["version"])
+                )
+            )
+        except OSError as error:
+            self.helper.error.error_message(
+                f"Package ist not installed.\nError: {error}"
+            )
+        # Serch File in package
+        path_to_meta: list[str] = [].append(glob.glob("rev_info.txt"))
+        # Check if no file find
+        if len(path_to_meta) == 0:
+            self.helper.error.error_message("No Info File found")
+        # Read Info file (Overload)
+        meta: str = path_to_meta[0]
+        with open(meta, "r", encoding="utf-8") as docker:
+            lines = [_.rstrip("\n") for _ in docker.readlines()]
+        for docker in lines:
+            print(docker)
         os.chdir(path)
