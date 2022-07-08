@@ -1,8 +1,8 @@
 ---
 name: Delete Licence
 about: Delete my name from the licence
-title: ''
-labels: ''
+title: 'Delete the name from the licence'
+labels: 'Licence'
 assignees: ''
 
 ---
