@@ -90,11 +90,11 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    def install(self, content) -> None:
+    def install(self) -> None:
         """
         install packages
         """
-        for runner in content:
+        for runner in self.content:
             print(runner)
         # User Config
         user: dict = Helper.read_config()
