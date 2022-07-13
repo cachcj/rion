@@ -117,6 +117,7 @@ class Rion:
                 )
             os.chdir(content[1])
             name: str = self.helper.name(content[0], content[2])
+            print(name)
             self.ftpmodule.download(name)
             with tarfile.open(name, "r:gz") as tar:
                 tar.extractall()
