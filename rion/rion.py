@@ -11,7 +11,6 @@ import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
-from typing import Type
 
 from rion.database import Database
 from rion.ftp import FTPHandler
@@ -21,7 +20,7 @@ from rion.helper import Helper
 class Rion:
     """Rion Class"""
 
-    def __init__(self, content: list[str], command: str, start) -> None:
+    def __init__(self, content: list[str], start) -> None:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())
@@ -98,8 +97,6 @@ class Rion:
         """
         # User Config
         user: dict = Helper.read_config()
-        #print("   ")
-        #print(user["server"], user["port"], user["username"], user["password"])
         try:
             self.ftpmodule = FTPHandler(
                 user["server"],
@@ -107,8 +104,8 @@ class Rion:
                 user["username"],
                 user["password"],
             )
-        except Exception as error:
-            self.helper.error.error_message("Missing Input")
+        except Exception:
+            self.helper.error.error_message("Missing login credentials. Please enter them in the config file")
         if content is None:
             content = self.content
         path: str = os.getcwd()
