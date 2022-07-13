@@ -7,6 +7,7 @@ import os.path
 import shutil
 import string
 import subprocess
+import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
@@ -94,11 +95,11 @@ class Rion:
         """
         install packages
         """
-        for runner in self.content:
-            print(runner)
+        # content = [name, version, venv]
         # User Config
         user: dict = Helper.read_config()
         path: str = os.getcwd()
+        content: list = self.content
         self.ftpmodule = "Hallo"
         try:
             self.ftpmodule = FTPHandler(
@@ -111,6 +112,29 @@ class Rion:
             self.helper.error.error_message(
                 "Missing login credentials. Please enter them in the config file"
             )
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        os.chdir("node")
+        if len(content) == 0:
+            self.helper.error.error_message(
+                "Please provide the name of the package that shall be installed."
+            )
+        if len(content) == 2:
+            venv = "venv"
+        else:
+            venv = content[2]
+        name = content[0]
+        version = content[1]
+        name: str = self.helper.name(name, version)
+        print("name:", name)
+        self.ftpmodule.download(name)
+        with tarfile.open(name, "r:gz") as tar:
+            tar.extractall()
+        os.remove(name)
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        self.rion.input_value(
+            self.table,
+            f"{name}, {name}, {version}, {venv}",
+        )
 
     def installer(self) -> None:
         """
