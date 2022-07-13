@@ -192,7 +192,7 @@ class Rion:
             # Reads the password
             password = getpass()
             # Checks if the username is long enough
-        if len(username) >= 5:
+        if len(username) >= 4:
             # Checks if there are any illegal characters in the string
             for runner in username:
                 if runner not in correct:
