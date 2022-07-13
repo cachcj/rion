@@ -210,8 +210,6 @@ class Rion:
             config.write(f"password={password}\n".replace(" ", ""))
         # Goes back to the initial directory
         os.chdir(self.path)
-        # Reload Config
-        self.user = self.helper.read_config("login")
 
     def remove(self) -> None:
         """
@@ -373,9 +371,6 @@ class Rion:
         with open("rion.conf", "a", encoding="utf8") as runner:
             runner.write(str(f"server={ipaddresx}\n"))
             runner.write(str(f"port={port}\n"))
-
-        # Reload Config
-        self.user = self.helper.read_config("server")
 
     def version(self) -> None:
         """
