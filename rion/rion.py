@@ -106,6 +106,12 @@ class Rion:
             )
         except Exception:
             self.helper.error.error_message("Missing login credentials. Please enter them in the config file")
+        self.ftpmodule = FTPHandler(
+            user["server"],
+            user["port"],
+            user["username"],
+            user["password"],
+        )
         if content is None:
             content = self.content
         path: str = os.getcwd()

@@ -34,7 +34,7 @@ def handler() -> None:
         flags: object = np.ndarray.tolist(command_list)
 
         # Create Object
-        riox = Rion(flags, loader, start)
+        riox = Rion(flags, start)
 
         # Set Version
         print("Version: " + str(riox.__version__))
