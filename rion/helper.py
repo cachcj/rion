@@ -105,7 +105,7 @@ class Helper:
             "system": "rion",
         }
 
-        with open(Helper.os_bindings(f"{Path.home()}/rion.conf"), "r", encoding="utf-8") as docker:
+        with open(Helper.os_bindings(f"{Path.home()}/rion/rion.conf"), "r", encoding="utf-8") as docker:
             dummy = [_.rstrip("\n") for _ in docker.readlines()]
         for runner in dummy: 
             test = runner.split("=")
