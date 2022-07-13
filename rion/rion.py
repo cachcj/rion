@@ -96,7 +96,7 @@ class Rion:
         install packages
         """
         # User Config
-        user = Helper.read_config()
+        user: dict = Helper.read_config()
         print(user)
         self.ftpmodule = FTPHandler(
             "139.162.141.181",
