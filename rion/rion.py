@@ -32,7 +32,7 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper(start)
-        self.user: dict = Helper(start).read_config(command)
+        self.user: dict = Helper(start).read_config()
         self.ftpmodule = FTPHandler(
             "139.162.141.181",
             "2121",
@@ -96,6 +96,15 @@ class Rion:
         """
         install packages
         """
+        # User Config
+        user_config: dict = self.helper.read_config()
+        print(user_config)
+        self.ftpmodule = FTPHandler(
+            "139.162.141.181",
+            "2121",
+            "user",
+            "aghast-unhealthy-sloppy-elastic-referable",
+        )
         if content is None:
             content = self.content
         path: str = os.getcwd()
