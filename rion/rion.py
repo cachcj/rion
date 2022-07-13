@@ -11,6 +11,7 @@ import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
+from typing import Type
 
 from rion.database import Database
 from rion.ftp import FTPHandler
@@ -97,13 +98,17 @@ class Rion:
         """
         # User Config
         user: dict = Helper.read_config()
-        print(user)
-        self.ftpmodule = FTPHandler(
-            "139.162.141.181",
-            "2121",
-            "user",
-            "aghast-unhealthy-sloppy-elastic-referable",
-        )
+        print("   ")
+        print(user["server"], user["port"], user["username"], user["password"])
+        try:
+            self.ftpmodule = FTPHandler(
+                user["server"],
+                user["port"],
+                user["username"],
+                user["password"],
+            )
+        except Exception as error:
+            self.helper.error.error_message("Missing Input")
         if content is None:
             content = self.content
         path: str = os.getcwd()
@@ -173,7 +178,7 @@ class Rion:
         """
         # create Correct list
         correct: str = (
-            string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+                string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
         )
 
         # Overload
@@ -276,7 +281,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:
