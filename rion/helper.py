@@ -94,7 +94,7 @@ class Helper:
     def name(name: str, version: str) -> str:
         return f"{name}_v{version.replace('v', '')}"
 
-    def read_config(self, modul: str) -> dict:
+    def read_config(self, modul: str="docker") -> dict:
         """
         Read the config
         """
@@ -125,6 +125,7 @@ class Helper:
                 os.chdir(path)
             except Exception as error:
                 self.error.error_message(str(error))
+        print(user)
         return user
 
     @staticmethod
