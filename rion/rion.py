@@ -98,8 +98,8 @@ class Rion:
         """
         # User Config
         user: dict = Helper.read_config()
-        print("   ")
-        print(user["server"], user["port"], user["username"], user["password"])
+        #print("   ")
+        #print(user["server"], user["port"], user["username"], user["password"])
         try:
             self.ftpmodule = FTPHandler(
                 user["server"],
