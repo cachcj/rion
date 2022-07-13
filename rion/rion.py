@@ -112,8 +112,6 @@ class Rion:
             user["username"],
             user["password"],
         )
-        if content is None:
-            content = self.content
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if not dependency:
