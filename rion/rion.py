@@ -164,7 +164,7 @@ class Rion:
         Creates a user in the User Config
         """
         # create Correct list
-        correct: str = string.ascii_letters + string.digits
+        correct: str = string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
 
         # Overload
         if len(self.content) == 2:
