@@ -32,7 +32,6 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper(start)
-        self.user: dict = Helper(start).read_config()
         self.ftpmodule = FTPHandler(
             "139.162.141.181",
             "2121",
@@ -97,8 +96,8 @@ class Rion:
         install packages
         """
         # User Config
-        user_config: dict = self.helper.read_config()
-        print(user_config)
+        user = Helper.read_config()
+        print(user)
         self.ftpmodule = FTPHandler(
             "139.162.141.181",
             "2121",
@@ -173,7 +172,9 @@ class Rion:
         Creates a user in the User Config
         """
         # create Correct list
-        correct: str = string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+        correct: str = (
+            string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+        )
 
         # Overload
         if len(self.content) == 2:
