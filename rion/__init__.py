@@ -1,11 +1,8 @@
 """
  Start modules for all imports
 """
-import os
 import sys
-import time
 from datetime import datetime
-from pathlib import Path
 
 import numpy as np
 
@@ -38,6 +35,11 @@ def handler() -> None:
 
         # Set Version
         print("Version: " + str(riox.__version__))
+
+        # Dummy
+        print("loader:", loader)
+        print("flags: ", flags)
+
 
         if loader == "install":
             riox.install()

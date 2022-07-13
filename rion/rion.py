@@ -91,7 +91,7 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    def install(self, dependency=False, content=None) -> None:
+    def install(self, dependency=False, content) -> None:
         """
         install packages
         """
