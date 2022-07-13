@@ -7,7 +7,6 @@ import os.path
 import shutil
 import string
 import subprocess
-import tarfile
 from getpass import getpass
 from os.path import exists
 from pathlib import Path
@@ -91,12 +90,16 @@ class Rion:
             for runner in outputty:
                 print(str(runner).replace("(", "").replace(")", "").replace("'", ""))
 
-    def install(self, dependency=False, content) -> None:
+    def install(self, content) -> None:
         """
         install packages
         """
+        for runner in content:
+            print(runner)
         # User Config
         user: dict = Helper.read_config()
+        path: str = os.getcwd()
+        self.ftpmodule = "Hallo"
         try:
             self.ftpmodule = FTPHandler(
                 user["server"],
@@ -105,37 +108,9 @@ class Rion:
                 user["password"],
             )
         except Exception:
-            self.helper.error.error_message("Missing login credentials. Please enter them in the config file")
-        self.ftpmodule = FTPHandler(
-            user["server"],
-            user["port"],
-            user["username"],
-            user["password"],
-        )
-        path: str = os.getcwd()
-        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if not dependency:
-            if len(content) == 0:
-                self.helper.error.error_message(
-                    "Please provide the name of the package that shall be installed."
-                )
-            os.chdir(content[1])
-            name: str = self.helper.name(content[0], content[2])
-            print(name)
-            self.ftpmodule.download(name)
-            with tarfile.open(name, "r:gz") as tar:
-                tar.extractall()
-            os.remove(name)
-            os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-            self.rion.input_value(
-                self.table,
-                f"{name}, {content[0]}, {content[2]}, {content[1]}",
+            self.helper.error.error_message(
+                "Missing login credentials. Please enter them in the config file"
             )
-        else:
-            if content is None:
-                self.helper.error.error_message("No Dependence")
-            self.install(dependency=False, content=content)
-            os.chdir(path)
 
     def installer(self) -> None:
         """
@@ -180,7 +155,7 @@ class Rion:
         """
         # create Correct list
         correct: str = (
-                string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
+            string.ascii_letters + string.digits + "!#$%&'()*+,-./:;<=>?@[]^_`{|}~"
         )
 
         # Overload
@@ -283,7 +258,7 @@ class Rion:
             module_layer: str = str(module_layer)
             # We cut off everything useless from the original string,
             # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2: module_layer.index(",")][:-1]
+            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
             # The case occurs when the name is exactly the same.
             # Upper and lower case is respected.
             if runner_layer_runner == self.content[0]:

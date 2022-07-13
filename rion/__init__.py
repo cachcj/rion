@@ -40,7 +40,6 @@ def handler() -> None:
         print("loader:", loader)
         print("flags: ", flags)
 
-
         if loader == "install":
             riox.install()
         elif loader == "update":
