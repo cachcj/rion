@@ -118,7 +118,7 @@ class Rion:
             venv = content[2]
         name = content[0]
         version = content[1]
-        name: str = self.helper.name(name, version)
+        name: str = f"{self.helper.name(name, version)}.tar.gz"
         print("name:", name)
         self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
