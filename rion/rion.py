@@ -116,21 +116,22 @@ class Rion:
             venv = "venv"
         else:
             venv = content[2]
+        os.chdir(venv)
         name = content[0]
         version = content[1]
         name: str = f"{self.helper.name(name, version)}.tar.gz"
         print(name)
         name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
-        self.ftpmodule.download(name)
+        self.ftpmodule.download(name) 
         with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
-        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        self.rion.input_value(
-            self.table,
-            f"{name}, {name}, {version}, {venv}",
-        )
+      #  os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+      #  self.rion.input_value(
+      #      self.table,
+      #      f"{name}, {name}, {version}, {venv}",
+      #  )
         os.chdir(path)
 
     def installer(self) -> None:
