@@ -32,7 +32,7 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper(start)
-        __version__ = "v0.2.1 - Test".replace(" ", "")
+        self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
     @staticmethod
     def check() -> None:
