@@ -1,11 +1,8 @@
 """
  Start modules for all imports
 """
-import os
 import sys
-import time
 from datetime import datetime
-from pathlib import Path
 
 import numpy as np
 
@@ -34,10 +31,14 @@ def handler() -> None:
         flags: object = np.ndarray.tolist(command_list)
 
         # Create Object
-        riox = Rion(flags, loader, start)
+        riox = Rion(flags, start)
 
         # Set Version
         print("Version: " + str(riox.__version__))
+
+        # Dummy
+        print("loader:", loader)
+        print("flags: ", flags)
 
         if loader == "install":
             riox.install()
