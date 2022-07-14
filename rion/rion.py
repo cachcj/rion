@@ -135,6 +135,7 @@ class Rion:
             self.table,
             f"{name}, {name}, {version}, {venv}",
         )
+        os.chdir(path)
 
     def installer(self) -> None:
         """
