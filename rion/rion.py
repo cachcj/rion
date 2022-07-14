@@ -20,7 +20,7 @@ from rion.helper import Helper
 class Rion:
     """Rion Class"""
 
-    def __init__(self, content: list[str], start) -> None:
+    def __init__(self, content="None", start="None") -> None:
         self.rion = Database("rion")
         self.content = content
         self.path_user = str(Path.home())

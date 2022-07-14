@@ -24,7 +24,7 @@ class Helper:
     Helper Class
     """
 
-    def __init__(self, start):
+    def __init__(self, start="None"):
         """
         Konstruktor
         """

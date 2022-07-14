@@ -9,7 +9,7 @@ class Database:
     Database Class
     """
 
-    def __init__(self, db_name: str):
+    def __init__(self, db_name: str="None"):
         """
         Konstruktor
         @param db_name:
