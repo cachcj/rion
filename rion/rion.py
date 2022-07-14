@@ -119,6 +119,8 @@ class Rion:
         name = content[0]
         version = content[1]
         name: str = f"{self.helper.name(name, version)}.tar.gz"
+        print(name)
+        name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
         self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
