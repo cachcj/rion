@@ -32,13 +32,7 @@ class Rion:
         self.table = "installed"
         self.identify = "ident"
         self.helper = Helper(start)
-        self.ftpmodule = FTPHandler(
-            "139.162.141.181",
-            "2121",
-            "user",
-            "aghast-unhealthy-sloppy-elastic-referable",
-        )
-        self.__version__ = "v0.2.1 - Test".replace(" ", "")
+        __version__ = "v0.2.1 - Test".replace(" ", "")
 
     @staticmethod
     def check() -> None:
