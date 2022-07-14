@@ -31,7 +31,7 @@ setuptools.setup(
     url="https://github.com/Riffecs/rion",
     packages=["rion"],
     install_requires=def_requirements(),
-    python_requires=">=3.9",
+    python_requires=">=3.2",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
