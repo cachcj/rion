@@ -12,7 +12,13 @@ class FTPHandler:
     simple FTP Handler
     """
 
-    def __init__(self, server: str="None", port: str="None", user: str="None", pwd: str="None"):
+    def __init__(
+        self,
+        server: str = "None",
+        port: str = "None",
+        user: str = "None",
+        pwd: str = "None",
+    ):
         """
         Konstruktor
         """
