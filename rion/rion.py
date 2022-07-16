@@ -37,7 +37,7 @@ class Rion:
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
     
     
-    @staticmethod
+    @contextmanager
     def suppress_stdout():
         with open(os.devnull, "w") as devnull:
             old_stdout = sys.stdout
@@ -136,8 +136,7 @@ class Rion:
         print(f"\n\n{name}\n\n")
         # name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
-        with suppress_stdout():
-            self.ftpmodule.download(name)
+        self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
@@ -233,35 +232,17 @@ class Rion:
         """
         Remove Package from venv
         """
-        # Message
-        print(
-            "Since here beside the name also the Venv and the version plays a role "
-            "the uninstalling must be adapted somewhat. "
-            "We ask for your understanding. "
-        )
-        if " " in self.content:
-            # [name, venv, version]
-            # Remove DB Entry
-            pkg = Helper.name(self.content[0], self.content[2])
-        else:
-            name = self.content[0]
-            # input other data
-            venv = input("Venv: ")
-            # Test Venv Name
-            if len(venv) <= 3:
-                self.helper.error.error_message("Venv Name is to short")
-            # version
-            version = input("Version: ")
-            pkg = Helper.name(name, version)
-        # Fix Path
-        path: str = os.getcwd()
-        os.chdir(Helper.os_bindings(f"{self.path_user}/rion/node/{venv}"))
-        if os.path.exists(pkg):
-            # removing the file using the os.remove() method
-            os.remove(pkg)
-        self.rion.delete_package(self.table, self.identify, pkg)
-        # go back
-        os.chdir(path)
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        name : str = self.flags
+        # Since the Venv in the videos doesn't matter anyway,
+        # I can quickly fix this myself.
+        os.chdir(self.helper.os_bindings("node"))
+        os.chdir(self.helper.os_bindings("venv"))
+        shutil.rmtree(name)
+        os.chdir(self.path)    
+
+
+        
 
     def search(self) -> None:
         """
