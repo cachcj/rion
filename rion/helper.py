@@ -92,7 +92,7 @@ class Helper:
 
     @staticmethod
     def name(name: str, version: str) -> str:
-        return f"{name}_v{version.replace('v', '')}"
+        return f"{name}-v{version.replace('v', '')}"
 
     @staticmethod
     def read_config() -> dict:
