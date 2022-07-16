@@ -232,12 +232,16 @@ class Rion:
         Remove Package from venv
         """
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        if len(self.content) != 2:
+            self.helper.error.error_message("No Userinput")
         name: str = self.content[0]
+        version: str = self.content[1]
+        print(f"\n\n{name}-v{version}\n\n")
         # Since the Venv in the videos doesn't matter anyway,
         # I can quickly fix this myself.
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
-        shutil.rmtree(name)
+        shutil.rmtree(f"{name}-v{version}")
         os.chdir(self.path)
 
     def search(self) -> None:
