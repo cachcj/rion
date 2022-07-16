@@ -413,6 +413,7 @@ class Rion:
                 os.chdir("node")
                 for runner in os.listdir("."):
                     print(runner)
+                os.exit(0)
             venv = input("Venv: ")
         else:
             os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
