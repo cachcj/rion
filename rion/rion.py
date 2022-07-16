@@ -310,6 +310,21 @@ class Rion:
         """
         Load Update File from rion
         """
+        user: dict = Helper.read_config()
+        path: str = os.getcwd()
+        content: list = self.content
+        self.ftpmodule = "Hallo"
+        try:
+            self.ftpmodule = FTPHandler(
+                user["server"],
+                user["port"],
+                user["username"],
+                user["password"],
+            )
+        except Exception:
+            self.helper.error.error_message(
+                "Missing login credentials. Please enter them in the config file"
+            )
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if os.path.exists("inor.db"):
