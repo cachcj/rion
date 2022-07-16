@@ -139,6 +139,7 @@ class Rion:
         with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
+        os.rename(content[0], self.helper.name(content[0], version))
         #  os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         #  self.rion.input_value(
         #      self.table,
