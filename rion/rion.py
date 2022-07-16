@@ -35,14 +35,13 @@ class Rion:
         self.identify = "ident"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
-    
-    
+
     @contextmanager
     def suppress_stdout():
         with open(os.devnull, "w") as devnull:
             old_stdout = sys.stdout
             sys.stdout = devnull
-            try:  
+            try:
                 yield
             finally:
                 sys.stdout = old_stdout
@@ -233,16 +232,13 @@ class Rion:
         Remove Package from venv
         """
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        name : str = self.flags
+        name: str = self.content[0]
         # Since the Venv in the videos doesn't matter anyway,
         # I can quickly fix this myself.
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(name)
-        os.chdir(self.path)    
-
-
-        
+        os.chdir(self.path)
 
     def search(self) -> None:
         """
