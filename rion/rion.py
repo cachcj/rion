@@ -409,11 +409,11 @@ class Rion:
         # Test Command
         # content = [ command , name ]
         if len(self.content) != 2:
-            venv = input("Venv: ")
             command = input("Command: ")
             if command == "list":
                 for runner in os.listdir("."):
                     print(runner)
+            venv = input("Venv: ")
         else:
             command = self.content[0]
             if command == "list":
@@ -425,7 +425,7 @@ class Rion:
             if runner not in string.ascii_letters:
                 self.helper.error.error_message("Wrong Venv Syntax")
         if command not in ["create", "list", "remove"]:
-            self.helper.error.error_message("Wrong Command Syntax")
+            self.helper.error.error_message("Commands:  create, list, remove")
         os.chdir(self.helper.os_bindings("node"))
         # Execute Command
         if command == "create":
