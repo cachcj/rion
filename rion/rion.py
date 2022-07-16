@@ -15,6 +15,8 @@ from pathlib import Path
 from rion.database import Database
 from rion.ftp import FTPHandler
 from rion.helper import Helper
+from contextlib import contextmanager
+import sys, os
 
 
 class Rion:
@@ -33,6 +35,17 @@ class Rion:
         self.identify = "ident"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
+    
+    
+    @staticmethod
+    def suppress_stdout():
+        with open(os.devnull, "w") as devnull:
+            old_stdout = sys.stdout
+            sys.stdout = devnull
+            try:  
+                yield
+            finally:
+                sys.stdout = old_stdout
 
     @staticmethod
     def check() -> None:
@@ -123,7 +136,8 @@ class Rion:
         print(f"\n\n{name}\n\n")
         # name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
-        self.ftpmodule.download(name)
+        with suppress_stdout():
+            self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
