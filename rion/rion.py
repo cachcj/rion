@@ -405,16 +405,17 @@ class Rion:
         # Modify Path
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-
         # Test Command
         # content = [ command , name ]
         if len(self.content) != 2:
             command = input("Command: ")
             if command == "list":
+                os.chdir("node")
                 for runner in os.listdir("."):
                     print(runner)
             venv = input("Venv: ")
         else:
+            os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
             command = self.content[0]
             if command == "list":
                 for runner in os.listdir("."):
