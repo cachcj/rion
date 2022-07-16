@@ -236,7 +236,7 @@ class Rion:
             self.helper.error.error_message("No Userinput")
         name: str = self.content[0]
         version: str = self.content[1]
-        print(f"\n\n{name}-v{version}\n\n")
+        print(f"\n\n{name}-v{version}\n\ne")
         # Since the Venv in the videos doesn't matter anyway,
         # I can quickly fix this myself.
         os.chdir(self.helper.os_bindings("node"))
