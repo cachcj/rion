@@ -31,7 +31,7 @@ class Rion:
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
-        self.table = "honululu"
+        self.table = "xyz"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
@@ -249,7 +249,7 @@ class Rion:
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
         # Delete from DB
-        self.rion.delete_package(f"{self.table}", f"'id={name}-v{version}'")
+        self.rion.delete_package(f"{self.table}", f"'id={name}-v{version}'", "'id'")
         os.chdir(self.path)
 
     def search(self) -> None:

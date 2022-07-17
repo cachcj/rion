@@ -126,7 +126,7 @@ class Database:
         # Destroys the Courser
         cur = None
 
-    def delete_package(self, db_table: str, db_content: str) -> None:
+    def delete_package(self, db_table: str, db_content: str, db_ident: str) -> None:
         """
         Delete Packages from a SQL table
         @param self:
@@ -137,10 +137,12 @@ class Database:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
+        print(db_table)
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL DELETE Command
-        table = f"DELETE FROM {db_table} WHERE {db_content}"
+        # table = f"DELETE FROM xyz WHERE {db_ident}={db_content}"
+        table = "DELETE FROM xyz WHERE id='buddy-v100_0_4'"
         print(f"\n\n{table}\n\n")
         # Executes the SQL
         cur.execute(table)
