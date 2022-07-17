@@ -141,7 +141,7 @@ class Rion:
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Test
         buggy = f"{content[0]}-v{version}".replace(" ", "")
-        print(f"ID: {content[0]}-v{version} ")
+        print(f"\nID: {content[0]}-v{version} ")
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
         print(f"Venv: {venv}")
@@ -174,7 +174,7 @@ class Rion:
             self.rion.create_database()
             # Name, Version, Venv
             self.rion.create_table(
-                self.table, f"{self.identify} text, name text, version text, venv text"
+                f"{self.table} ({self.table}), f"{self.identify} text, name text, version text, venv text"
             )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
