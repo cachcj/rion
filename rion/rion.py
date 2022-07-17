@@ -258,7 +258,8 @@ class Rion:
         """
         # Modify Path
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        self.rion.print_table(self.table)
+        for i in self.rion.list_table(self.table, "id"):
+            print(i)
 
     def uninstall(self) -> None:
         """
