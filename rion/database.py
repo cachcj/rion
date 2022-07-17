@@ -126,12 +126,12 @@ class Database:
         # Destroys the Courser
         cur = None
 
-    def delete_package(self, db_table: str, package_list: str) -> None:
+    def delete_package(self, db_table: str, db_content: str) -> None:
         """
         Delete Packages from a SQL table
         @param self:
         @param db_table:
-        @param package_list:
+        @param db_content:
         @param content:
         @return:
         """
@@ -140,7 +140,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL DELETE Command
-        table = f"DELETE FROM {db_table} WHERE {package_list}"
+        table = f"DELETE FROM {db_table} WHERE {db_content}"
         print(f"\n\n{table}\n\n")
         # Executes the SQL
         cur.execute(table)
