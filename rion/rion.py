@@ -244,11 +244,8 @@ class Rion:
         name: str = self.content[0]
         version: str = self.content[1]
         self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
-        sys.exit(0)
         if len(self.content) != 2:
             self.helper.error.error_message("No Userinput")
-        name: str = self.content[0]
-        version: str = self.content[1]
         print(f"\n\n{name}-v{version}\n\n")
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
