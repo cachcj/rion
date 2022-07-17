@@ -147,7 +147,7 @@ class Rion:
         print(f"Table: {self.table}")
         self.rion.input_value(
             self.table,
-            f"({str(content[0])}-v{str(version)}, {str(content[0])}, {str(version)},{str(venv)})",
+            f"('{str(content[0])}-v{str(version)}', '{str(content[0])}', '{str(version)}','{str(venv)})'",
         )
         # self.rion.input_value(
         #     self.identify,
