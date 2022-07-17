@@ -145,10 +145,10 @@ class Rion:
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
         print(f"Venv: {venv}")
-
-        self.rion.input_value(
-            self.identify,
-            f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
+        self.rion.input_value(self.identify,"Hallo, Hallo, Hallo, Hallo")
+       # self.rion.input_value(
+       #     self.identify,
+       #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
         os.chdir(path)
 
     def installer(self) -> None:
@@ -174,7 +174,7 @@ class Rion:
             self.rion.create_database()
             # Name, Version, Venv
             self.rion.create_table(
-                f"{self.table} ({self.table})", f"{self.identify} text, name text, version text, venv text"
+                f"{self.table}", f"{self.identify} text, name text, version text, venv text"
             )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
