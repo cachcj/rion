@@ -257,9 +257,11 @@ class Rion:
         Search Package in Database
         """
         # Modify Path
+        print("\n")
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         for i in self.rion.list_table(self.table, "id"):
-            print(i)
+            if self.content[0] in i:
+                print(i)
 
     def uninstall(self) -> None:
         """
