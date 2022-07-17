@@ -46,12 +46,6 @@ class Rion:
             finally:
                 sys.stdout = old_stdout
 
-    @staticmethod
-    def check() -> None:
-        """
-        Rion
-        """
-
     def dlist(self) -> None:
         """
         Prints all installed packages
@@ -145,9 +139,15 @@ class Rion:
         os.remove(name)
         os.rename(content[0], self.helper.name(content[0], version))
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Test
+        print(f"ID: {content[0]}-v{version} ")
+        print(f"Name: {content[0]}")
+        print(f"Version: {version}")
+        print(f"Venv:{venv}")
+
         self.rion.input_value(
             self.table,
-            f"{self.helper.name(name, version)}, {name}, {version}, {venv}",
+            f"{content[0]}-v{version}, {content[0]}, {version}, {venv}",
         )
         os.chdir(path)
 
