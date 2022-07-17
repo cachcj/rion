@@ -140,7 +140,7 @@ class Database:
         @return:
         """
         # self, db_table: str, db_header: str
-        self.input_value(db_table, db_content)
+        self.input_value(db_table, "('buddy-v100_0_3', 'buddy', '100_0_3', 'venv')")
         con = None
         cur = None
         # Creates a connection to the database
