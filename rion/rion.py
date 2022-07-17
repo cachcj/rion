@@ -130,7 +130,6 @@ class Rion:
         version = content[1].replace(" ", "")
         name: str = f"{self.helper.name(name, version)}.tar.gz"
         print(f"\n\n{name}\n\n")
-        # name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
         self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
@@ -139,7 +138,6 @@ class Rion:
         os.rename(content[0], self.helper.name(content[0], version))
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Test
-        buggy = f"{content[0]}-v{version}".replace(" ", "")
         dummy = f"{content[0]}-v{version}"
         print(f"\nID: {content[0]}-v{version} ")
         print(f"Name: {content[0]}")
@@ -247,11 +245,12 @@ class Rion:
         name: str = self.content[0]
         version: str = self.content[1]
         print(f"\n\n{name}-v{version}\n\n")
-        # Since the Venv in the videos doesn't matter anyway,
-        # I can quickly fix this myself.
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
+        # Delete from DB
+        rion = self.rion
+        rion.delete_package(self.table, "id", f"{name}-v{version}")
         os.chdir(self.path)
 
     def search(self) -> None:
