@@ -148,8 +148,8 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL DELETE Command
-        table = f"SELECT * FROM {db_table}"
-        # table = f"DELETE FROM {db_table} WHERE {db_ident}='{db_content}'"
+        # table = f"SELECT * FROM {db_table}"
+        table = f"DELETE FROM {db_table} WHERE {db_ident}='{db_content}'"
         # table = "DELETE FROM xyz WHERE id='buddy-v100_0_4'"
         print(f"\n\n{table}\n\n")
         # Executes the SQL
