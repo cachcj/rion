@@ -68,6 +68,7 @@ class Database:
         cur = con.cursor()
         # Creates the SQL Command
         table = f"INSERT INTO {db_table} VALUES {db_content}"
+        print(f"\n\n{table}\n\n")
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
