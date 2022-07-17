@@ -140,6 +140,7 @@ class Rion:
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Test
         buggy = f"{content[0]}-v{version}".replace(" ", "")
+        dummy = f"{content[0]}-v{version}"
         print(f"\nID: {content[0]}-v{version} ")
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
@@ -147,7 +148,7 @@ class Rion:
         print(f"Table: {self.table}")
         self.rion.input_value(
             self.table,
-            f"('{str(content[0])}-v{str(version)}', '{str(content[0])}', '{str(version)}','{str(venv)})'",
+            f"('{str(dummy)}', '{str(content[0])}', '{str(version)}','{str(venv)}')",
         )
         # self.rion.input_value(
         #     self.identify,
