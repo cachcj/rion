@@ -249,7 +249,7 @@ class Rion:
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
         # Delete from DB
-        self.rion.delete_package(f"{self.table}", f"'{name}-v{version}'", "id")
+        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
         os.chdir(self.path)
 
     def search(self) -> None:
