@@ -155,7 +155,7 @@ class Database:
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
-        # con.commit()
+        con.commit()
         # close
         con.close()
         # Destroys the Courser
