@@ -1,4 +1,5 @@
 git pull 
+black *
 git add *
 UUID=$(cat /proc/sys/kernel/random/uuid)
 git commit -m $UUID
