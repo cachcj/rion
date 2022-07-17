@@ -145,7 +145,10 @@ class Rion:
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
         print(f"Venv: {venv}")
-        self.rion.input_value(f"{self.identify} (id, name, version, venv)","id, Hallo, Hallo, Hallo")
+        self.rion.input_value(
+            self.table,
+            f"Hallo, Hallo, Hallo, Hallo",
+        )
        # self.rion.input_value(
        #     self.identify,
        #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
@@ -174,7 +177,7 @@ class Rion:
             self.rion.create_database()
             # Name, Version, Venv
             self.rion.create_table(
-                f"{self.table}", "id text, name text, version text, venv text"
+                self.table, f"{self.identify} text, name text, version text, venv text"
             )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
