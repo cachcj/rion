@@ -140,11 +140,11 @@ class Rion:
             tar.extractall()
         os.remove(name)
         os.rename(content[0], self.helper.name(content[0], version))
-        #  os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        #  self.rion.input_value(
-        #      self.table,
-        #      f"{name}, {name}, {version}, {venv}",
-        #  )
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        self.rion.input_value(
+              self.table,
+              f"{self.helper.name(name, version)}, {name}, {version}, {venv}",
+        )
         os.chdir(path)
 
     def installer(self) -> None:
@@ -168,6 +168,7 @@ class Rion:
             os.chdir(self.helper.os_bindings("rion"))
             # Database Management
             self.rion.create_database()
+            # Name, Version, Venv
             self.rion.create_table(
                 self.table, f"{self.identify} text, name text, version text, venv text"
             )
