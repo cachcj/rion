@@ -241,6 +241,8 @@ class Rion:
         """
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Delete from DB
+        name: str = self.content[0]
+        version: str = self.content[1]
         self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
         sys.exit(0)
         if len(self.content) != 2:
