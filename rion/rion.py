@@ -147,7 +147,7 @@ class Rion:
         print(f"Venv: {venv}")
         self.rion.input_value(
             self.table,
-            f"Hallo, Hallo, Hallo, Hallo",
+            f"(Hallo, Hallo, Hallo, Hallo)",
         )
        # self.rion.input_value(
        #     self.identify,
