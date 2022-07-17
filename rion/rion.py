@@ -258,8 +258,7 @@ class Rion:
         """
         # Modify Path
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        docker = self.list_table(self.table, "id")
-        print(docker)
+        self.rion.print_table(self.table)
 
     def uninstall(self) -> None:
         """
