@@ -148,8 +148,7 @@ class Rion:
 
         self.rion.input_value(
             self.identify,
-            f"{content[0]}-v{version}, {content[0]}, {version}, {venv}",
-        )
+            f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
         os.chdir(path)
 
     def installer(self) -> None:
