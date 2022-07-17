@@ -243,15 +243,13 @@ class Rion:
         # Delete from DB
         name: str = self.content[0]
         version: str = self.content[1]
-        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
         if len(self.content) != 2:
             self.helper.error.error_message("No Userinput")
         print(f"\n\n{name}-v{version}\n\n")
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
-
-        os.chdir(self.path)
+        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
 
     def search(self) -> None:
         """
