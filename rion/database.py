@@ -73,8 +73,8 @@ class Database:
         cur.execute(table)
         # "Save" the changes
         con.commit()
-        table = f"SELECT * FROM {db_table}"
-        cur.execute(table)
+        # table = f"SELECT * FROM {db_table}"
+        # cur.execute(table)
         # close
         con.close()
         # Destroys the Courser
@@ -138,6 +138,8 @@ class Database:
         @param content:
         @return:
         """
+        con = None
+        cur = None
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
         # Creates a courser that points to the database
@@ -150,8 +152,9 @@ class Database:
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
-        con.commit()
+        # con.commit()
         # close
         con.close()
         # Destroys the Courser
         cur = None
+        con = None
