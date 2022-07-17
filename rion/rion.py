@@ -240,6 +240,9 @@ class Rion:
         Remove Package from venv
         """
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Delete from DB
+        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
+        sys.exit(0)
         if len(self.content) != 2:
             self.helper.error.error_message("No Userinput")
         name: str = self.content[0]
@@ -248,8 +251,7 @@ class Rion:
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
-        # Delete from DB
-        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
+
         os.chdir(self.path)
 
     def search(self) -> None:
