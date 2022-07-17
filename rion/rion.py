@@ -176,7 +176,9 @@ class Rion:
             # Database Management
             self.rion.create_database()
             # Name, Version, Venv
-            self.rion.create_table("test", "name text, version text, venv text")
+            self.rion.create_table(
+                "test", "id, text, name text, version text, venv text"
+            )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
                 docker.write("conf=rion\n")
