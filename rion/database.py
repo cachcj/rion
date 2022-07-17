@@ -77,7 +77,7 @@ class Database:
         cur.execute(table)
         print(cur.execute(table))
         # close
-        # con.close()
+        con.close()
         # Destroys the Courser
         cur = None
         con = None
@@ -139,6 +139,8 @@ class Database:
         @param content:
         @return:
         """
+        # self, db_table: str, db_header: str
+        self.input_value(db_table, db_content)
         con = None
         cur = None
         # Creates a connection to the database
