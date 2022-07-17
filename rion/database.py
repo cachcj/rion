@@ -44,7 +44,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"CREATE TABLE {db_table} ({db_header})"
+        table = f"CREATE TABLE IF NOT EXISTS {db_table} ({db_header})"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
