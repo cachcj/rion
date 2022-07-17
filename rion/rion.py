@@ -32,7 +32,6 @@ class Rion:
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
         self.table = "installed"
-        self.identify = "installed"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
@@ -82,7 +81,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table(self.table, self.identify)
+        outputty: list = self.rion.list_table(self.table, self.table)
         # Checks if the output is empty
         if len(outputty) == 0:
             self.helper.error.error_message("The database is empty")
@@ -145,7 +144,7 @@ class Rion:
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
         print(f"Venv: {venv}")
-        self.rion.input_value(
+        Database("rion").input_value(
             self.table,
             f"(layer, layer, layer, layer)",
         )
