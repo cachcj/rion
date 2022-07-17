@@ -137,13 +137,12 @@ class Database:
         """
         # Creates a connection to the database
         con = sqlite3.connect(f"{self.db_name}.db")
-        print(db_table)
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL DELETE Command
-        tablex = f"DELETE FROM xyz WHERE {db_ident}={db_content}"
-        table = "DELETE FROM xyz WHERE id='buddy-v100_0_4'"
-        print(f"\n\n{table}\n\n{tablex}\n\n")
+        table = f"DELETE FROM {db_table} WHERE '{db_ident}'='{db_content}'"
+        # table = "DELETE FROM xyz WHERE id='buddy-v100_0_4'"
+        print(f"\n\n{table}\n\n")
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
