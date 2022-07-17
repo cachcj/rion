@@ -32,7 +32,7 @@ class Rion:
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
         self.table = "installed"
-        self.identify = "ident"
+        self.identify = "installed"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
@@ -147,7 +147,7 @@ class Rion:
         print(f"Venv: {venv}")
 
         self.rion.input_value(
-            self.table,
+            self.identify,
             f"{content[0]}-v{version}, {content[0]}, {version}, {venv}",
         )
         os.chdir(path)
