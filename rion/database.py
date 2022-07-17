@@ -44,7 +44,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"CREATE TABLE {db_table} {db_header}"
+        table = f"CREATE TABLE {db_table} ({db_header})"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
@@ -67,7 +67,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"INSERT INTO {db_table} VALUES ({db_content})"
+        table = f"INSERT INTO {db_table} VALUES {db_content}"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes
