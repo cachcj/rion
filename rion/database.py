@@ -75,6 +75,7 @@ class Database:
         con.commit()
         table = f"SELECT * FROM {db_table}"
         cur.execute(table)
+        print(cur.execute(table))
         # close
         con.close()
         # Destroys the Courser
