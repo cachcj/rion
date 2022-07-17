@@ -145,7 +145,7 @@ class Rion:
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
         print(f"Venv: {venv}")
-        self.rion.input_value(self.identify,"Hallo, Hallo, Hallo, Hallo")
+        self.rion.input_value(self.identify,self.identify+", Hallo, Hallo, Hallo")
        # self.rion.input_value(
        #     self.identify,
        #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
