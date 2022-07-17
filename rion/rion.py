@@ -147,7 +147,7 @@ class Rion:
         print(f"Venv: {venv}")
         self.rion.input_value(
             self.table,
-            f"(Hallo, Hallo, Hallo, Hallo)",
+            f"(layer, layer, layer, layer)",
         )
        # self.rion.input_value(
        #     self.identify,
@@ -177,7 +177,7 @@ class Rion:
             self.rion.create_database()
             # Name, Version, Venv
             self.rion.create_table(
-                self.table, f"{self.identify} text, name text, version text, venv text"
+                self.table, f"layer text, name text, version text, venv text"
             )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
