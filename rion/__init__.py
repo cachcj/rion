@@ -77,4 +77,4 @@ def handler() -> None:
         diff = datetime.now() - start
         print(f"run: {diff.total_seconds()}s")
     except Exception as error: 
-        Errors.error_message(f"Internal error.\n\nError:\n{error}")
+        Errors.error_message(f"Internal error.")

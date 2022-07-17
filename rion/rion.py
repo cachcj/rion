@@ -107,6 +107,10 @@ class Rion:
         path: str = os.getcwd()
         content: list = self.content
         self.ftpmodule = "Hallo"
+        if len(self.content) == 3:
+            venv = self.content = 2
+        else: 
+            venv = "venv"
         try:
             self.ftpmodule = FTPHandler(
                 user["server"],
