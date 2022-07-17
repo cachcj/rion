@@ -31,7 +31,7 @@ class Rion:
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
-        self.table = "test"
+        self.table = "install"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
@@ -145,7 +145,10 @@ class Rion:
         print(f"Version: {version}")
         print(f"Venv: {venv}")
         print(f"Table: {self.table}")
-        self.rion.input_value("test", "('layer', 'layer', 'layer')")
+        self.rion.input_value(
+            self.table,
+            f"'{content[0]}-v{version}', '{content[0]}', '{str(version)}', '{venv}'",
+        )
         # self.rion.input_value(
         #     self.identify,
         #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
