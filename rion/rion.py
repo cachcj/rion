@@ -125,10 +125,10 @@ class Rion:
         if len(content) == 2:
             venv = "venv"
         else:
-            venv = content[2]
+            venv = content[2].replace(" ", "")
         os.chdir(venv)
-        name = content[0]
-        version = content[1]
+        name = content[0].replace(" ", "")
+        version = content[1].replace(" ", "")
         name: str = f"{self.helper.name(name, version)}.tar.gz"
         print(f"\n\n{name}\n\n")
         # name: str = "buddy-v100_0_3.tar.gz"
@@ -140,10 +140,11 @@ class Rion:
         os.rename(content[0], self.helper.name(content[0], version))
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Test
+        buggy = f"{content[0]}-v{version}".replace(" ", "")
         print(f"ID: {content[0]}-v{version} ")
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
-        print(f"Venv:{venv}")
+        print(f"Venv: {venv}")
 
         self.rion.input_value(
             self.table,
