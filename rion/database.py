@@ -77,7 +77,7 @@ class Database:
         cur.execute(table)
         print(cur.execute(table))
         # close
-        con.close()
+        # con.close()
         # Destroys the Courser
         cur = None
         con = None
