@@ -145,7 +145,7 @@ class Rion:
         print(f"Version: {version}")
         print(f"Venv: {venv}")
         print(f"Table: {self.table}")
-        self.rion.input_value("test", "(layer, layer, layer)")
+        self.rion.input_value("test", "('layer', 'layer', 'layer')")
         # self.rion.input_value(
         #     self.identify,
         #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
