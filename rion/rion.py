@@ -109,7 +109,7 @@ class Rion:
         self.ftpmodule = "Hallo"
         if len(self.content) == 3:
             venv = self.content = 2
-        else: 
+        else:
             venv = "venv"
         try:
             self.ftpmodule = FTPHandler(

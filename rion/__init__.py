@@ -14,67 +14,64 @@ def handler() -> None:
     """
     Manages the CL arguments and distributes them to appropriate commands.
     """
-    try:
-        # time Handler
-        start = datetime.now()
+    # time Handler
+    start = datetime.now()
 
-        # Load Error Object
-        errorx = Errors(start)
+    # Load Error Object
+    errorx = Errors(start)
 
-        if len(sys.argv) >= 2:
-            # Deletes the path and the basic command from the array
-            command_list = np.delete(np.array(sys.argv), [0, 1])
+    if len(sys.argv) >= 2:
+        # Deletes the path and the basic command from the array
+        command_list = np.delete(np.array(sys.argv), [0, 1])
 
-            # Create a variable that stores the main command.
-            loader: str = sys.argv[1]
+        # Create a variable that stores the main command.
+        loader: str = sys.argv[1]
 
-            # Converts the Numpy array back to a normal list
-            flags: object = np.ndarray.tolist(command_list)
+        # Converts the Numpy array back to a normal list
+        flags: object = np.ndarray.tolist(command_list)
 
-            # Create Object
-            riox = Rion(flags, start)
+        # Create Object
+        riox = Rion(flags, start)
 
-            # Set Version
-            print("Version: " + str(riox.__version__))
+        # Set Version
+        print("Version: " + str(riox.__version__))
 
-            # Dummy
-            print("loader:", loader)
-            print("flags: ", flags)
+        # Dummy
+        print("loader:", loader)
+        print("flags: ", flags)
 
-            if loader == "install":
-                riox.install()
-            elif loader == "update":
-                riox.update()
-            elif loader == "upgrade":
-                riox.upgrade()
-            elif loader == "version":
-                riox.version()
-            elif loader == "remove":
-                riox.remove()
-            elif loader == "search":
-                riox.search()
-            elif loader == "freeze":
-                riox.freeze()
-            elif loader == "check":
-                riox.check()
-            elif loader == "installer":
-                riox.installer()
-            elif loader == "uninstall":
-                riox.uninstall()
-            elif loader == "login":
-                riox.login()
-            elif loader == "server":
-                riox.server()
-            elif loader == "venv":
-                riox.manage_venv()
-            elif loader == "info":
-                riox.info()
-            else:
-                # If no command was found, it aborts the program.
-                errorx.error_message("no command was found")
+        if loader == "install":
+            riox.install()
+        elif loader == "update":
+            riox.update()
+        elif loader == "upgrade":
+            riox.upgrade()
+        elif loader == "version":
+            riox.version()
+        elif loader == "remove":
+            riox.remove()
+        elif loader == "search":
+            riox.search()
+        elif loader == "freeze":
+            riox.freeze()
+        elif loader == "check":
+            riox.check()
+        elif loader == "installer":
+            riox.installer()
+        elif loader == "uninstall":
+            riox.uninstall()
+        elif loader == "login":
+            riox.login()
+        elif loader == "server":
+            riox.server()
+        elif loader == "venv":
+            riox.manage_venv()
+        elif loader == "info":
+            riox.info()
+        else:
+            # If no command was found, it aborts the program.
+            errorx.error_message("no command was found")
 
-        # End Time Managment
-        diff = datetime.now() - start
-        print(f"run: {diff.total_seconds()}s")
-    except Exception as error: 
-        Errors.error_message(f"Internal error.")
+    # End Time Managment
+    diff = datetime.now() - start
+    print(f"run: {diff.total_seconds()}s")
