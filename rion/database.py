@@ -9,7 +9,7 @@ class Database:
     Database Class
     """
 
-    def __init__(self, db_name: str="None"):
+    def __init__(self, db_name: str = "None"):
         """
         Konstruktor
         @param db_name:
@@ -67,7 +67,7 @@ class Database:
         # Creates a courser that points to the database
         cur = con.cursor()
         # Creates the SQL Command
-        table = f"INSERT INTO {db_table} VALUES {db_content}"
+        table = f"INSERT INTO {db_table} VALUES ({db_content})"
         # Executes the SQL
         cur.execute(table)
         # "Save" the changes

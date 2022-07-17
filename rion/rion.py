@@ -15,6 +15,8 @@ from pathlib import Path
 from rion.database import Database
 from rion.ftp import FTPHandler
 from rion.helper import Helper
+from contextlib import contextmanager
+import sys, os
 
 
 class Rion:
@@ -34,11 +36,15 @@ class Rion:
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
-    @staticmethod
-    def check() -> None:
-        """
-        Rion
-        """
+    @contextmanager
+    def suppress_stdout():
+        with open(os.devnull, "w") as devnull:
+            old_stdout = sys.stdout
+            sys.stdout = devnull
+            try:
+                yield
+            finally:
+                sys.stdout = old_stdout
 
     def dlist(self) -> None:
         """
@@ -95,6 +101,10 @@ class Rion:
         path: str = os.getcwd()
         content: list = self.content
         self.ftpmodule = "Hallo"
+        if len(self.content) == 3:
+            venv = self.content = 2
+        else:
+            venv = "venv"
         try:
             self.ftpmodule = FTPHandler(
                 user["server"],
@@ -120,18 +130,25 @@ class Rion:
         name = content[0]
         version = content[1]
         name: str = f"{self.helper.name(name, version)}.tar.gz"
-        print(name)
-        name: str = "buddy-v100_0_3.tar.gz"
+        print(f"\n\n{name}\n\n")
+        # name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
-        self.ftpmodule.download(name) 
+        self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
             tar.extractall()
         os.remove(name)
-      #  os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-      #  self.rion.input_value(
-      #      self.table,
-      #      f"{name}, {name}, {version}, {venv}",
-      #  )
+        os.rename(content[0], self.helper.name(content[0], version))
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        # Test
+        print(f"ID: {content[0]}-v{version} ")
+        print(f"Name: {content[0]}")
+        print(f"Version: {version}")
+        print(f"Venv:{venv}")
+
+        self.rion.input_value(
+            self.table,
+            f"{content[0]}-v{version}, {content[0]}, {version}, {venv}",
+        )
         os.chdir(path)
 
     def installer(self) -> None:
@@ -155,6 +172,7 @@ class Rion:
             os.chdir(self.helper.os_bindings("rion"))
             # Database Management
             self.rion.create_database()
+            # Name, Version, Venv
             self.rion.create_table(
                 self.table, f"{self.identify} text, name text, version text, venv text"
             )
@@ -219,35 +237,18 @@ class Rion:
         """
         Remove Package from venv
         """
-        # Message
-        print(
-            "Since here beside the name also the Venv and the version plays a role "
-            "the uninstalling must be adapted somewhat. "
-            "We ask for your understanding. "
-        )
-        if " " in self.content:
-            # [name, venv, version]
-            # Remove DB Entry
-            pkg = Helper.name(self.content[0], self.content[2])
-        else:
-            name = self.content[0]
-            # input other data
-            venv = input("Venv: ")
-            # Test Venv Name
-            if len(venv) <= 3:
-                self.helper.error.error_message("Venv Name is to short")
-            # version
-            version = input("Version: ")
-            pkg = Helper.name(name, version)
-        # Fix Path
-        path: str = os.getcwd()
-        os.chdir(Helper.os_bindings(f"{self.path_user}/rion/node/{venv}"))
-        if os.path.exists(pkg):
-            # removing the file using the os.remove() method
-            os.remove(pkg)
-        self.rion.delete_package(self.table, self.identify, pkg)
-        # go back
-        os.chdir(path)
+        os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
+        if len(self.content) != 2:
+            self.helper.error.error_message("No Userinput")
+        name: str = self.content[0]
+        version: str = self.content[1]
+        print(f"\n\n{name}-v{version}\n\ne")
+        # Since the Venv in the videos doesn't matter anyway,
+        # I can quickly fix this myself.
+        os.chdir(self.helper.os_bindings("node"))
+        os.chdir(self.helper.os_bindings("venv"))
+        shutil.rmtree(f"{name}-v{version}")
+        os.chdir(self.path)
 
     def search(self) -> None:
         """
@@ -310,6 +311,21 @@ class Rion:
         """
         Load Update File from rion
         """
+        user: dict = Helper.read_config()
+        path: str = os.getcwd()
+        content: list = self.content
+        self.ftpmodule = "Hallo"
+        try:
+            self.ftpmodule = FTPHandler(
+                user["server"],
+                user["port"],
+                user["username"],
+                user["password"],
+            )
+        except Exception:
+            self.helper.error.error_message(
+                "Missing login credentials. Please enter them in the config file"
+            )
         path: str = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         if os.path.exists("inor.db"):
@@ -394,16 +410,18 @@ class Rion:
         # Modify Path
         path = os.getcwd()
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-
         # Test Command
         # content = [ command , name ]
         if len(self.content) != 2:
-            venv = input("Venv: ")
             command = input("Command: ")
             if command == "list":
+                os.chdir("node")
                 for runner in os.listdir("."):
                     print(runner)
+                sys.exit(0)
+            venv = input("Venv: ")
         else:
+            os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
             command = self.content[0]
             if command == "list":
                 for runner in os.listdir("."):
@@ -414,7 +432,7 @@ class Rion:
             if runner not in string.ascii_letters:
                 self.helper.error.error_message("Wrong Venv Syntax")
         if command not in ["create", "list", "remove"]:
-            self.helper.error.error_message("Wrong Command Syntax")
+            self.helper.error.error_message("Commands:  create, list, remove")
         os.chdir(self.helper.os_bindings("node"))
         # Execute Command
         if command == "create":
