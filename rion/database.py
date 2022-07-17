@@ -73,10 +73,13 @@ class Database:
         cur.execute(table)
         # "Save" the changes
         con.commit()
+        table = f"SELECT * FROM {db_table}"
+        cur.execute(table)
         # close
         con.close()
         # Destroys the Courser
         cur = None
+        con = None
 
     def list_table(self, db_table: str, db_header: str) -> list:
         """
