@@ -73,8 +73,8 @@ class Database:
         cur.execute(table)
         # "Save" the changes
         con.commit()
-        # table = f"SELECT * FROM {db_table}"
-        # cur.execute(table)
+        table = f"SELECT * FROM {db_table}"
+        cur.execute(table)
         # close
         con.close()
         # Destroys the Courser
