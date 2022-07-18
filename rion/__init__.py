@@ -54,8 +54,8 @@ def handler() -> None:
             riox.search()
         elif loader == "freeze":
             riox.freeze()
-        elif loader == "check":
-            riox.check()
+        # elif loader == "check":
+        #   riox.check()
         elif loader == "installer":
             riox.installer()
         elif loader == "uninstall":

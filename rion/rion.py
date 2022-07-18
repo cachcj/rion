@@ -51,7 +51,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table(self.table, "name")
+        outputty: list = self.rion.list_table(self.table, "id")
         # Checks if the output is empty
         if len(outputty) == 0:
             self.helper.error.error_message("The database is empty")
