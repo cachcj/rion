@@ -4,6 +4,7 @@ Rion Class
 import glob
 import os
 import os.path
+from pydoc import doc
 import shutil
 import string
 import subprocess
@@ -31,8 +32,7 @@ class Rion:
         self.path_db = f"{self.path_user}/rion.db"
         self.node = f"{self.path_user}/node"
         self.path = os.getcwd()
-        self.table = "installed"
-        self.identify = "ident"
+        self.table = "INSTALL"
         self.helper = Helper(start)
         self.__version__ = "v0.2.1 - Test".replace(" ", "")
 
@@ -51,7 +51,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table(self.table, "name")
+        outputty: list = self.rion.list_table(self.table, "id")
         # Checks if the output is empty
         if len(outputty) == 0:
             self.helper.error.error_message("The database is empty")
@@ -82,7 +82,7 @@ class Rion:
         Prints all installed packages
         """
         # outputty contains an array of all records from corresponding table
-        outputty: list = self.rion.list_table(self.table, self.identify)
+        outputty: list = self.rion.list_table(self.table, self.table)
         # Checks if the output is empty
         if len(outputty) == 0:
             self.helper.error.error_message("The database is empty")
@@ -125,13 +125,12 @@ class Rion:
         if len(content) == 2:
             venv = "venv"
         else:
-            venv = content[2]
+            venv = content[2].replace(" ", "")
         os.chdir(venv)
-        name = content[0]
-        version = content[1]
+        name = content[0].replace(" ", "")
+        version = content[1].replace(" ", "")
         name: str = f"{self.helper.name(name, version)}.tar.gz"
         print(f"\n\n{name}\n\n")
-        # name: str = "buddy-v100_0_3.tar.gz"
         print("name:", name)
         self.ftpmodule.download(name)
         with tarfile.open(name, "r:gz") as tar:
@@ -140,15 +139,19 @@ class Rion:
         os.rename(content[0], self.helper.name(content[0], version))
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
         # Test
-        print(f"ID: {content[0]}-v{version} ")
+        dummy = f"{content[0]}-v{version}"
+        print(f"\nID: {content[0]}-v{version} ")
         print(f"Name: {content[0]}")
         print(f"Version: {version}")
-        print(f"Venv:{venv}")
-
+        print(f"Venv: {venv}")
+        print(f"Table: {self.table}")
         self.rion.input_value(
             self.table,
-            f"{content[0]}-v{version}, {content[0]}, {version}, {venv}",
+            f"('{str(dummy)}', '{str(content[0])}', '{str(version)}','{str(venv)}')",
         )
+        # self.rion.input_value(
+        #     self.identify,
+        #     f"{content[0]}-v{version}, {content[0]}, {str(version)}, {venv}")
         os.chdir(path)
 
     def installer(self) -> None:
@@ -174,7 +177,7 @@ class Rion:
             self.rion.create_database()
             # Name, Version, Venv
             self.rion.create_table(
-                self.table, f"{self.identify} text, name text, version text, venv text"
+                self.table, "id text, name text, version text, venv text"
             )
             # Config Managment
             with open("rion.conf", "w", encoding="utf8") as docker:
@@ -238,60 +241,27 @@ class Rion:
         Remove Package from venv
         """
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        if len(self.content) != 2:
-            self.helper.error.error_message("No Userinput")
+        # Delete from DB
         name: str = self.content[0]
         version: str = self.content[1]
-        print(f"\n\n{name}-v{version}\n\ne")
-        # Since the Venv in the videos doesn't matter anyway,
-        # I can quickly fix this myself.
+        self.rion.delete_package(f"{self.table}", f"{name}-v{version}", "id")
+        if len(self.content) != 2:
+            self.helper.error.error_message("No Userinput")
+        print(f"\n\n{name}-v{version}\n\n")
         os.chdir(self.helper.os_bindings("node"))
         os.chdir(self.helper.os_bindings("venv"))
         shutil.rmtree(f"{name}-v{version}")
-        os.chdir(self.path)
 
     def search(self) -> None:
         """
         Search Package in Database
         """
         # Modify Path
-        path: str = os.getcwd()
+        print("\n")
         os.chdir(self.helper.os_bindings(f"{self.path_user}/rion"))
-        # If there are spaces in the name the package will be rejected
-        if " " in self.content[0]:
-            self.helper.error.error_message("Wrong Package Syntax")
-        # Looks if parameters were passed
-        if len(self.content[0]) == 0:
-            # There are no flags and thus there are no packages to search for.
-            # Consequently, there is an error
-            self.helper.error.error_message("No content")
-        # db_content contains an array of all records from corresponding table
-        db_content = self.rion.list_table(self.table, "name")
-        if len(db_content) == 0:
-            self.helper.error.error_message("No package found")
-        # We need three lists to represent the three different search priorities.
-        exact: list = []
-        moreorless: list = []
-        indescrib: list = []
-        # Now that we have them, we use this neet for loop, to go through the array
-        # and add the items to the list, that we want.
-        for module_layer in db_content:
-            # Here we cast a tuple into a string.
-            # This doesn't look very great, but it works.
-            module_layer: str = str(module_layer)
-            # We cut off everything useless from the original string,
-            # so that only the package name remains.
-            runner_layer_runner: str = module_layer[2 : module_layer.index(",")][:-1]
-            # The case occurs when the name is exactly the same.
-            # Upper and lower case is respected.
-            if runner_layer_runner == self.content[0]:
-                exact.append(module_layer)
-            # If the user input is anywhere in the string, the following statement is executed.
-            elif self.content[0] in runner_layer_runner:
-                moreorless.append(module_layer)
-            elif self.content[0] in module_layer:
-                indescrib.append(module_layer)
-        os.chdir(path)
+        for i in self.rion.list_table(self.table, "id"):
+            if self.content[0] in i:
+                print(i)
 
     def uninstall(self) -> None:
         """
